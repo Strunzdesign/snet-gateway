@@ -1,8 +1,10 @@
 /**
- * \file main.cpp
- * \brief 
+ * \file      main.cpp
+ * \brief     
+ * \author    Florian Evers, florian-evers@gmx.de
+ * \copyright GNU Public License version 3.
  *
- * A set of tools to exchange and handle packets of s-net(r) devices via the HDLC Daemon.
+ * The HDLC Deamon implements the HDLC protocol to easily talk to devices connected via serial communications.
  * Copyright (C) 2016  Florian Evers, florian-evers@gmx.de
  *
  * This program is free software: you can redistribute it and/or modify

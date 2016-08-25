@@ -1,6 +1,8 @@
 /**
- * \file ToolHandlerCollection.h
- * \brief 
+ * \file      ToolHandlerCollection.h
+ * \brief     
+ * \author    Florian Evers, florian-evers@gmx.de
+ * \copyright GNU Public License version 3.
  *
  * The HDLC Deamon implements the HDLC protocol to easily talk to devices connected via serial communications.
  * Copyright (C) 2016  Florian Evers, florian-evers@gmx.de
