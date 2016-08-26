@@ -31,7 +31,10 @@
 #include <boost/asio.hpp>
 #include "ToolHandlerCollection.h"
 #include "ToolFrameParser.h"
+#include "PublishSubscribeService.h"
 class Routing;
+class AddressLease;
+class SnetServiceMessage;
 
 class ToolHandler: public std::enable_shared_from_this<ToolHandler> {
 public:
@@ -44,12 +47,14 @@ public:
     
     void Start();
     void Stop();
-    bool Send(const ToolFrame* a_pToolFrame, std::function<void()> a_OnSendDoneCallback = std::function<void()>());
-    
+
+    bool Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback = std::function<void()>());    
     void InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame);
     
 private:
     // Internal helpers
+    bool SendHelper(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback = std::function<void()>());    
+    bool Send(const ToolFrame* a_pToolFrame, std::function<void()> a_OnSendDoneCallback = std::function<void()>());
     void ReadChunkFromSocket();
     void DoWrite();
 
@@ -57,6 +62,9 @@ private:
     Routing* m_pRoutingEntity;
     ToolHandlerCollection& m_ToolHandlerCollection;
     boost::asio::ip::tcp::socket m_TCPSocket;
+    std::shared_ptr<AddressLease> m_AddressLease;
+    PublishSubscribeService m_PublishSubscribeService;
+    
     bool m_Registered;
 
     unsigned char m_ReadBuffer[1];

@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandlerCollection.h
+ * \file      AddressService.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,31 +21,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_HANDLER_COLLECTION_H
-#define TOOL_HANDLER_COLLECTION_H
+#ifndef ADDRESS_SERVICE_H
+#define ADDRESS_SERVICE_H
 
+#include "SnetServiceMessage.h"
 #include <memory>
-#include <list>
-#include "AddressPool.h"
-class ToolHandler;
-class Routing;
-class SnetServiceMessage;
 class AddressLease;
 
-class ToolHandlerCollection {
+class AddressService {
 public:
-    ToolHandlerCollection();
-    std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-    void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
-    void Send(SnetServiceMessage* a_pSnetServiceMessage);
-    
-private:
-    // Members
-    std::shared_ptr<AddressPool> m_AddressPool;
-    std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
-    Routing* m_pRoutingEntity;
+    static SnetServiceMessage ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease);
 };
 
-#endif // TOOL_HANDLER_COLLECTION_H
+#endif // ADDRESS_SERVICE_H
+

@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandlerCollection.h
+ * \file      PublishSubscribeService.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,31 +21,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_HANDLER_COLLECTION_H
-#define TOOL_HANDLER_COLLECTION_H
+#ifndef PUBLISH_SUBSCRIBE_SERVICE_H
+#define PUBLISH_SUBSCRIBE_SERVICE_H
 
+#include "SnetServiceMessage.h"
 #include <memory>
-#include <list>
-#include "AddressPool.h"
-class ToolHandler;
-class Routing;
-class SnetServiceMessage;
 class AddressLease;
 
-class ToolHandlerCollection {
+class PublishSubscribeService {
 public:
-    ToolHandlerCollection();
-    std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-    void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
-    void Send(SnetServiceMessage* a_pSnetServiceMessage);
+    // CTOR
+    PublishSubscribeService();
+    
+    SnetServiceMessage ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease);
+    bool IsServiceIdForMe(uint8_t a_SubscribedServiceId) const;
     
 private:
     // Members
-    std::shared_ptr<AddressPool> m_AddressPool;
-    std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
-    Routing* m_pRoutingEntity;
+    uint8_t m_SubscribedServiceId;
 };
 
-#endif // TOOL_HANDLER_COLLECTION_H
+#endif // PUBLISH_SUBSCRIBE_SERVICE_H

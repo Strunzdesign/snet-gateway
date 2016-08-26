@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandlerCollection.h
+ * \file      AddressLease.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,31 +21,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_HANDLER_COLLECTION_H
-#define TOOL_HANDLER_COLLECTION_H
-
-#include <memory>
-#include <list>
+#include "AddressLease.h"
 #include "AddressPool.h"
-class ToolHandler;
-class Routing;
-class SnetServiceMessage;
-class AddressLease;
+#include <assert.h>
 
-class ToolHandlerCollection {
-public:
-    ToolHandlerCollection();
-    std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-    void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
+AddressLease::AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t a_ToolAddress): m_AddressPool(a_AddressPool), m_ToolAddress(a_ToolAddress) {
+    assert(m_AddressPool);
+}
 
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
-    void Send(SnetServiceMessage* a_pSnetServiceMessage);
-    
-private:
-    // Members
-    std::shared_ptr<AddressPool> m_AddressPool;
-    std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
-    Routing* m_pRoutingEntity;
-};
-
-#endif // TOOL_HANDLER_COLLECTION_H
+AddressLease::~AddressLease() {
+    m_AddressPool->ReleaseAddressLease(m_ToolAddress);
+}

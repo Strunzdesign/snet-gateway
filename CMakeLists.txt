@@ -12,6 +12,10 @@ main.cpp
 HdlcdClient/HdlcdClientHandler.cpp
 HdlcdClient/HdlcdClientHandlerCollection.cpp
 Routing/Routing.cpp
+ToolServer/AddressLease.cpp
+ToolServer/AddressPool.cpp
+ToolServer/AddressService.cpp
+ToolServer/PublishSubscribeService.cpp
 ToolServer/ToolFrameGenerator.cpp
 ToolServer/ToolFrameParser.cpp
 ToolServer/ToolHandler.cpp

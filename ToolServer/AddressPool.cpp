@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandlerCollection.h
+ * \file      AddressPool.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,31 +21,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_HANDLER_COLLECTION_H
-#define TOOL_HANDLER_COLLECTION_H
-
-#include <memory>
-#include <list>
 #include "AddressPool.h"
-class ToolHandler;
-class Routing;
-class SnetServiceMessage;
-class AddressLease;
+#include "AddressLease.h"
 
-class ToolHandlerCollection {
-public:
-    ToolHandlerCollection();
-    std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
-    void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
+AddressPool::AddressPool() {
+    m_NextFreeAddress = 0x4001;
+}
 
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
-    void Send(SnetServiceMessage* a_pSnetServiceMessage);
-    
-private:
-    // Members
-    std::shared_ptr<AddressPool> m_AddressPool;
-    std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
-    Routing* m_pRoutingEntity;
-};
+std::shared_ptr<AddressLease> AddressPool::ObtainAddressLease() {
+    uint16_t l_NextAddress;
+    if (m_ReleasedAddresses.empty()) {
+        l_NextAddress = (m_NextFreeAddress++);
+    } else {
+        l_NextAddress = m_ReleasedAddresses.front();
+        m_ReleasedAddresses.pop_front();
+    } // else
+        
+    auto l_AddressLease = std::make_shared<AddressLease>(shared_from_this(), l_NextAddress);
+    return l_AddressLease;
+}
 
-#endif // TOOL_HANDLER_COLLECTION_H
+void AddressPool::ReleaseAddressLease(uint16_t a_ToolAddress) {
+    m_ReleasedAddresses.push_back(a_ToolAddress);
+}

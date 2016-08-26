@@ -29,12 +29,16 @@
 
 ToolHandlerCollection::ToolHandlerCollection() {
     m_pRoutingEntity = NULL;
+    m_AddressPool = std::make_shared<AddressPool>();
 }
 
-void ToolHandlerCollection::RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
+std::shared_ptr<AddressLease> ToolHandlerCollection::RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
     assert(m_pRoutingEntity);
+    auto l_AddressLease = m_AddressPool->ObtainAddressLease();
     a_ToolHandler->RegisterRoutingEntity(m_pRoutingEntity);
     m_ToolHandlerList.emplace_back(std::move(a_ToolHandler));
+    assert(l_AddressLease);
+    return l_AddressLease;
 }
 
 void ToolHandlerCollection::DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
@@ -48,8 +52,6 @@ void ToolHandlerCollection::RegisterRoutingEntity(Routing* a_pRoutingEntity) {
 
 void ToolHandlerCollection::Send(SnetServiceMessage* a_pSnetServiceMessage) {
     for (auto l_It = m_ToolHandlerList.begin(); l_It != m_ToolHandlerList.end(); ++l_It) {
-        ToolFrame0302 l_ToolFrame0302;
-        l_ToolFrame0302.m_Payload = a_pSnetServiceMessage->Serialize();
-        (*l_It)->Send(&l_ToolFrame0302);
+        (*l_It)->Send(a_pSnetServiceMessage);
     } // for
 }

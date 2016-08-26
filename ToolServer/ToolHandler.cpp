@@ -25,6 +25,8 @@
 #include "ToolFrameGenerator.h"
 #include "../Routing/Routing.h"
 #include "SnetServiceMessage.h"
+#include "AddressLease.h"
+#include "AddressService.h"
 #include <iostream>
 #include <assert.h>
 
@@ -57,7 +59,8 @@ void ToolHandler::QueryForPayload() {
 void ToolHandler::Start() {
     assert(m_Registered == false);
     m_Registered = true;
-    m_ToolHandlerCollection.RegisterToolHandler(shared_from_this());
+    assert(!m_AddressLease);
+    m_AddressLease = m_ToolHandlerCollection.RegisterToolHandler(shared_from_this());
     ReadChunkFromSocket();
 }
 
@@ -66,8 +69,36 @@ void ToolHandler::Stop() {
         m_Registered = false;
         m_TCPSocket.cancel();
         m_TCPSocket.close();
+        assert(m_AddressLease);
+        m_AddressLease.reset(); // Deregisters itself
         m_ToolHandlerCollection.DeregisterToolHandler(shared_from_this());
     } // if
+}
+
+bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {
+    // Check destination address
+    if (((a_pSnetServiceMessage->GetDstSSA() > 0x4000) && (a_pSnetServiceMessage->GetDstSSA() < 0xFFF0)) && (a_pSnetServiceMessage->GetDstSSA() != m_AddressLease->GetAddress())) {
+        // Not for this tool!
+        return false;
+    } // if
+    
+    // Check subscription
+    if (m_PublishSubscribeService.IsServiceIdForMe(a_pSnetServiceMessage->GetSrcServiceId()) == false) {
+        // Subscription does not fit!
+        return false;
+    } // if
+        
+    // Create a copy and change the destination address
+    auto l_SnetServiceMessage = *a_pSnetServiceMessage;
+    l_SnetServiceMessage.SetDstSSA(m_AddressLease->GetAddress());
+    return SendHelper(&l_SnetServiceMessage, a_OnSendDoneCallback);
+}
+
+bool ToolHandler::SendHelper(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {        
+    // Queue for transmission :-)
+    ToolFrame0302 l_ToolFrame0302;
+    l_ToolFrame0302.m_Payload = a_pSnetServiceMessage->Serialize();
+    return Send(&l_ToolFrame0302, a_OnSendDoneCallback);
 }
 
 bool ToolHandler::Send(const ToolFrame* a_pToolFrame, std::function<void()> a_OnSendDoneCallback) {
@@ -120,6 +151,34 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
         // Relay message
         SnetServiceMessage l_ServiceMessage;
         if (l_ServiceMessage.Deserialize(a_ToolFrame->GetPayload())) {
+            // Check if it is directed to the address service
+            if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
+                auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
+                if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
+                    std::cout << "Send packet " << l_AddressAssignmentReply.Dissect() << std::endl;
+                    SendHelper(&l_AddressAssignmentReply);
+                } // if
+
+                return;
+            } // if
+            
+            // Check if it is directed to the publish / subsribe service
+            if (l_ServiceMessage.GetDstSSA() == 0x4000) {
+                auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
+                if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
+                    std::cout << "Send packet " << l_PublishSubscribeConfirmation.Dissect() << std::endl;
+                    SendHelper(&l_PublishSubscribeConfirmation);
+                } // if
+
+                return;
+            } // if
+            
+            // Source address remapping
+            if (l_ServiceMessage.GetSrcSSA() != 0xFFFE) {
+                l_ServiceMessage.SetSrcSSA(m_AddressLease->GetAddress());
+            } // if
+            
+            // Route this packet
             m_pRoutingEntity->RouteIncomingSnetPacket(&l_ServiceMessage);
         } // if
     } // if
