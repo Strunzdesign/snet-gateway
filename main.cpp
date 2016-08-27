@@ -24,28 +24,61 @@
 #include "Config.h"
 #include <iostream>
 #include <boost/asio.hpp>
+#include <boost/program_options.hpp>
+#include <boost/regex.hpp>
 #include "HdlcdClient/HdlcdClientHandlerCollection.h"
 #include "ToolServer/ToolAcceptor.h"
 #include "Routing/Routing.h"
+namespace po = boost::program_options;
 
 int main(int argc, char* argv[]) {
     try {
-        std::cerr << "s-net(r) gateway v" << SNET_TOOLS_VERSION_MAJOR << "." << SNET_TOOLS_VERSION_MINOR << std::endl;
-        if (argc != 1) {
-            std::cerr << "Usage: snet-gateway\n";
-            return 1;
+        // Declare the supported options.
+        boost::program_options::options_description l_Description("Allowed options");
+        l_Description.add_options()
+            ("help,h", "produce this help message")
+            ("version,v", "show version information")
+            ("port,p", po::value<uint16_t>(), "the TCP port to accept clients on")
+            ("connect,c", po::value<std::vector<std::string>>()->multitoken(),
+                       "connect to devices via the HDLCd\n"
+                       "syntax: SerialPort@IPAddess:PortNbr\n"
+                       "  linux:   /dev/ttyUSB0@localhost:5001\n"
+                       "  windows: //./COM1@example.com:5001")
+        ;
+
+        // Parse the command line
+        boost::program_options::variables_map l_VariablesMap;
+        boost::program_options::store(boost::program_options::parse_command_line(argc, argv, l_Description), l_VariablesMap);
+        boost::program_options::notify(l_VariablesMap);
+        if (l_VariablesMap.count("version")) {
+            std::cerr << "s-net(r) gateway version " << SNET_TOOLS_VERSION_MAJOR << "." << SNET_TOOLS_VERSION_MINOR << std::endl;
         } // if
 
+        if (l_VariablesMap.count("l_Description")) {
+            std::cout << l_Description << std::endl;
+            return 1;
+        } // if
+                
+        if (!l_VariablesMap.count("port")) {
+            std::cout << "you have to specify the TCP listener port" << std::endl;
+            return 1;
+        } // if
+        
+        if (!l_VariablesMap.count("connect")) {
+            std::cout << "you have to specify at least one device to connect to!" << std::endl;
+            return 1;
+        } // if
+        
         // Install signal handlers
-        boost::asio::io_service io_service;
-        boost::asio::signal_set signals_(io_service);
-        signals_.add(SIGINT);
-        signals_.add(SIGTERM);
-        signals_.async_wait([&io_service](boost::system::error_code a_ErrorCode, int a_SignalNumber){io_service.stop();});
+        boost::asio::io_service l_IoService;
+        boost::asio::signal_set l_Signals(l_IoService);
+        l_Signals.add(SIGINT);
+        l_Signals.add(SIGTERM);
+        l_Signals.async_wait([&l_IoService](boost::system::error_code, int){ l_IoService.stop(); });
 
         ToolHandlerCollection l_ToolHandlerCollection;
-        HdlcdClientHandlerCollection l_HdlcdClientHandlerCollection(io_service);
-        ToolAcceptor l_ToolAcceptor(io_service, 10002, l_ToolHandlerCollection);
+        HdlcdClientHandlerCollection l_HdlcdClientHandlerCollection(l_IoService);
+        ToolAcceptor l_ToolAcceptor(l_IoService, l_VariablesMap["port"].as<uint16_t>(), l_ToolHandlerCollection);
         
         // Routing entity
         Routing l_Routing(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection);
@@ -53,15 +86,23 @@ int main(int argc, char* argv[]) {
         l_HdlcdClientHandlerCollection.RegisterRoutingEntity(&l_Routing);
         
         // Create HDLCd client entities
-        l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler("127.0.0.1", "10001", "/dev/ttyUSB0");
-        //l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler("127.0.0.1", "10001", "/dev/ttyUSB1");
-        //l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler("127.0.0.1", "10001", "/dev/ttyUSB2");
-        //l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler("127.0.0.1", "10001", "/dev/ttyUSB3");
+        auto l_DestSpecifiers(l_VariablesMap["connect"].as<std::vector<std::string>>());
+        for (auto l_DestSpecifier = l_DestSpecifiers.begin(); l_DestSpecifier != l_DestSpecifiers.end(); ++l_DestSpecifier) {
+            // Parse each destination specifier
+            static boost::regex r("^(.*?)@(.*?):(.*?)$");
+            boost::smatch match;
+            if (boost::regex_match(*l_DestSpecifier, match, r)) {
+                l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler(match[2], match[3], match[1]);
+            } else {
+                throw boost::program_options::validation_error(boost::program_options::validation_error::invalid_option_value);
+            } // else
+        } // for
         
         // Start event processing
-        io_service.run();
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << "\n";
+        l_IoService.run();
+    } catch (std::exception& a_ErrorCode) {
+        std::cerr << "Exception: " << a_ErrorCode.what() << "\n";
+        return 1;
     } // catch
 
     return 0;
