@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
             std::cerr << "s-net(r) gateway version " << SNET_TOOLS_VERSION_MAJOR << "." << SNET_TOOLS_VERSION_MINOR << std::endl;
         } // if
 
-        if (l_VariablesMap.count("l_Description")) {
+        if (l_VariablesMap.count("help")) {
             std::cout << l_Description << std::endl;
             return 1;
         } // if
