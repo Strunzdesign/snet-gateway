@@ -24,10 +24,6 @@
 #include "PublishSubscribeService.h"
 #include "AddressLease.h"
 
-PublishSubscribeService::PublishSubscribeService() {
-    m_SubscribedServiceId = 0;
-}
-
 SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease) {
     std::cout << "SUBSCRIBE msg = " << a_ServiceMessage.Dissect() << std::endl;
     if ((a_ServiceMessage.GetSrcSSA() == a_AddressLease->GetAddress()) &&
@@ -36,23 +32,27 @@ SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMess
         (a_ServiceMessage.GetDstServiceId() == 0xB0)   &&
         (a_ServiceMessage.GetToken() == 0x10)) {
         // Subscribe request
-        m_SubscribedServiceId = a_ServiceMessage.GetPayload()[0];
-    
+        uint8_t l_SubscribedServiceId = a_ServiceMessage.GetPayload()[0];
         SnetServiceMessage l_PublishSubscribeConfirmation(0xB0, 0xB0, 0x11, 0x4000, a_AddressLease->GetAddress(), false);
         std::vector<unsigned char> l_Payload;
-        l_Payload.emplace_back(m_SubscribedServiceId);
+        l_Payload.emplace_back(l_SubscribedServiceId);
         l_Payload.emplace_back(00);
         l_PublishSubscribeConfirmation.SetPayload(l_Payload);
+        
+        if (l_SubscribedServiceId == 0xFF) {
+            // Wildcard: all service IDs are demanded for
+            m_SubscribedServiceIds.set();
+        } else {
+            // A specific service ID was demanded for, add it to the bitset
+            m_SubscribedServiceIds.set(l_SubscribedServiceId);
+        } // else
+
         return l_PublishSubscribeConfirmation;
     } // if
     
     return SnetServiceMessage();
 }
 
-bool PublishSubscribeService::IsServiceIdForMe(uint8_t a_SubscribedServiceId) const {
-    if (m_SubscribedServiceId == 0xFF) {
-        return true;
-    } else {
-        return (m_SubscribedServiceId == a_SubscribedServiceId);
-    } // else
+bool PublishSubscribeService::IsServiceIdForMe(uint8_t a_ServiceId) const {
+    return (m_SubscribedServiceIds[a_ServiceId]);
 }

@@ -32,7 +32,7 @@ Routing::Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHand
     m_ToolHandlerCollection(a_ToolHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection) {
 }
 
-void Routing::RouteIncomingSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
+void Routing::RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
     std::cout << "Revd packet " << a_pSnetServiceMessage->Dissect() << std::endl;
     
     uint16_t l_SrcSSA = a_pSnetServiceMessage->GetSrcSSA();

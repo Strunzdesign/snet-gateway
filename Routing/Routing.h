@@ -33,7 +33,7 @@ class Routing {
 public:
     Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection);
     
-    void RouteIncomingSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
+    void RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
 
 private:
     // Members

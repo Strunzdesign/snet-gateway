@@ -57,7 +57,7 @@ void HdlcdClientHandler::ResolveDestination() {
         m_HdlcdAccessClient->SetOnDataCallback([this](const HdlcdPacketData& a_PacketData){
             SnetServiceMessage l_ServiceMessage;
             if (l_ServiceMessage.Deserialize(a_PacketData.GetData())) {
-                m_pRouting->RouteIncomingSnetPacket(&l_ServiceMessage);
+                m_pRouting->RouteSnetPacket(&l_ServiceMessage);
             } // if
         });
     });

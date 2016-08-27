@@ -179,7 +179,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             } // if
             
             // Route this packet
-            m_pRoutingEntity->RouteIncomingSnetPacket(&l_ServiceMessage);
+            m_pRoutingEntity->RouteSnetPacket(&l_ServiceMessage);
         } // if
     } // if
 }

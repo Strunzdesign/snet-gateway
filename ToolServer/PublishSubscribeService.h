@@ -26,19 +26,17 @@
 
 #include "SnetServiceMessage.h"
 #include <memory>
+#include <bitset>
 class AddressLease;
 
 class PublishSubscribeService {
 public:
-    // CTOR
-    PublishSubscribeService();
-    
     SnetServiceMessage ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease);
-    bool IsServiceIdForMe(uint8_t a_SubscribedServiceId) const;
+    bool IsServiceIdForMe(uint8_t a_ServiceId) const;
     
 private:
     // Members
-    uint8_t m_SubscribedServiceId;
+    std::bitset<256> m_SubscribedServiceIds;
 };
 
 #endif // PUBLISH_SUBSCRIBE_SERVICE_H

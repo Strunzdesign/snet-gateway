@@ -30,5 +30,6 @@ AddressLease::AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t 
 }
 
 AddressLease::~AddressLease() {
+    // On destruction, free the leased address
     m_AddressPool->ReleaseAddressLease(m_ToolAddress);
 }

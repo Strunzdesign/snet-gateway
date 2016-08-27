@@ -31,8 +31,10 @@ AddressPool::AddressPool() {
 std::shared_ptr<AddressLease> AddressPool::ObtainAddressLease() {
     uint16_t l_NextAddress;
     if (m_ReleasedAddresses.empty()) {
+        // No reclaimed addresses available
         l_NextAddress = (m_NextFreeAddress++);
     } else {
+        // Take the oldest of the reclaimed addresses
         l_NextAddress = m_ReleasedAddresses.front();
         m_ReleasedAddresses.pop_front();
     } // else
@@ -42,5 +44,6 @@ std::shared_ptr<AddressLease> AddressPool::ObtainAddressLease() {
 }
 
 void AddressPool::ReleaseAddressLease(uint16_t a_ToolAddress) {
+    // Store the reclaimed address for reuse
     m_ReleasedAddresses.push_back(a_ToolAddress);
 }
