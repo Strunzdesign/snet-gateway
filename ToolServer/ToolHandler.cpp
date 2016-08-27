@@ -143,6 +143,12 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
         Send(&l_ToolFrame0101);
     } // if
     
+    if (a_ToolFrame->GetRequestId() == 0x0110) {
+        // We have to send a respose now
+        ToolFrame0111 l_ToolFrame0111;
+        Send(&l_ToolFrame0111);
+    } // if
+    
     if (a_ToolFrame->GetRequestId() == 0x0300) {
         // We have to send a respose now
         ToolFrame0301 l_ToolFrame0301;

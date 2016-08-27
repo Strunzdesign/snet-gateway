@@ -25,7 +25,6 @@
 #include "AddressLease.h"
 
 SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease) {
-    std::cout << "SUBSCRIBE msg = " << a_ServiceMessage.Dissect() << std::endl;
     if ((a_ServiceMessage.GetSrcSSA() == a_AddressLease->GetAddress()) &&
         (a_ServiceMessage.GetDstSSA() == 0x4000) &&
         (a_ServiceMessage.GetSrcServiceId() == 0x00)   &&

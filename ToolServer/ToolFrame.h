@@ -66,6 +66,29 @@ public:
     const std::vector<unsigned char> GetPayload() const {}
 };
 
+class ToolFrame0110: public ToolFrame {
+public:
+    ToolFrame0110(): ToolFrame(0x0110) {}
+    const std::vector<unsigned char> GetPayload() const {}
+};
+
+class ToolFrame0111: public ToolFrame {
+public:
+    ToolFrame0111(): ToolFrame(0x0111) {}
+    const std::vector<unsigned char> SerializeFrame() const {
+        std::vector<unsigned char> l_ToolFrameBuffer;
+        l_ToolFrameBuffer.emplace_back(0x7E);
+        l_ToolFrameBuffer.emplace_back(0x01);
+        l_ToolFrameBuffer.emplace_back(0x11);
+        l_ToolFrameBuffer.emplace_back(0x00);
+        l_ToolFrameBuffer.emplace_back(0x00);
+        l_ToolFrameBuffer.emplace_back(0x7E);
+        return l_ToolFrameBuffer;
+    }
+    
+    const std::vector<unsigned char> GetPayload() const {}
+};
+
 class ToolFrame0300: public ToolFrame {
 public:
     ToolFrame0300(): ToolFrame(0x0300) {}

@@ -157,6 +157,8 @@ std::shared_ptr<ToolFrame> ToolFrameParser::DeserializeToolFrame(const std::vect
     uint16_t l_RequestId = ((uint16_t(a_UnescapedBuffer[1]) << 8) + a_UnescapedBuffer[2]);
     if (l_RequestId == 0x0100) {
         l_ToolFrame = std::make_shared<ToolFrame0100>();
+    } else if (l_RequestId == 0x0110) {
+        l_ToolFrame = std::make_shared<ToolFrame0110>();
     } else if (l_RequestId == 0x0300) {
         auto l_ToolFrame0300 = std::make_shared<ToolFrame0300>();
         l_ToolFrame0300->m_Payload.clear();
