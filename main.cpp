@@ -29,21 +29,21 @@
 #include "HdlcdClient/HdlcdClientHandlerCollection.h"
 #include "ToolServer/ToolAcceptor.h"
 #include "Routing/Routing.h"
-namespace po = boost::program_options;
 
 int main(int argc, char* argv[]) {
     try {
         // Declare the supported options.
         boost::program_options::options_description l_Description("Allowed options");
         l_Description.add_options()
-            ("help,h", "produce this help message")
+            ("help,h",    "produce this help message")
             ("version,v", "show version information")
-            ("port,p", po::value<uint16_t>(), "the TCP port to accept clients on")
-            ("connect,c", po::value<std::vector<std::string>>()->multitoken(),
-                       "connect to devices via the HDLCd\n"
-                       "syntax: SerialPort@IPAddess:PortNbr\n"
-                       "  linux:   /dev/ttyUSB0@localhost:5001\n"
-                       "  windows: //./COM1@example.com:5001")
+            ("port,p",    boost::program_options::value<uint16_t>(),
+                          "the TCP port to accept clients on")
+            ("connect,c", boost::program_options::value<std::vector<std::string>>()->multitoken(),
+                          "connect to devices via the HDLCd\n"
+                          "syntax: SerialPort@IPAddess:PortNbr\n"
+                          "  linux:   /dev/ttyUSB0@localhost:5001\n"
+                          "  windows: //./COM1@example.com:5001")
         ;
 
         // Parse the command line
@@ -89,10 +89,10 @@ int main(int argc, char* argv[]) {
         auto l_DestSpecifiers(l_VariablesMap["connect"].as<std::vector<std::string>>());
         for (auto l_DestSpecifier = l_DestSpecifiers.begin(); l_DestSpecifier != l_DestSpecifiers.end(); ++l_DestSpecifier) {
             // Parse each destination specifier
-            static boost::regex r("^(.*?)@(.*?):(.*?)$");
-            boost::smatch match;
-            if (boost::regex_match(*l_DestSpecifier, match, r)) {
-                l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler(match[2], match[3], match[1]);
+            static boost::regex s_RegEx("^(.*?)@(.*?):(.*?)$");
+            boost::smatch l_Match;
+            if (boost::regex_match(*l_DestSpecifier, l_Match, s_RegEx)) {
+                l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler(l_Match[2], l_Match[3], l_Match[1]);
             } else {
                 throw boost::program_options::validation_error(boost::program_options::validation_error::invalid_option_value);
             } // else
@@ -100,8 +100,8 @@ int main(int argc, char* argv[]) {
         
         // Start event processing
         l_IoService.run();
-    } catch (std::exception& a_ErrorCode) {
-        std::cerr << "Exception: " << a_ErrorCode.what() << "\n";
+    } catch (std::exception& a_Error) {
+        std::cerr << "Exception: " << a_Error.what() << "\n";
         return 1;
     } // catch
 
