@@ -1,0 +1,14 @@
+This file provides some examples how to use the s-net gateway software together with the HDLCd:
+---
+1.) You have to specify a TCP listener port via "--port" to allow clients to connect
+2.) You have to provide a list of serial ports specifiers to connect to via --connect
+
+Example (GNU/Linux):
+
+cd build/src/snet-gateway
+./snet-gateway --port 5000 --connect /dev/ttyUSB0@127.0.0.1:10000 --connect /dev/ttyUSB1@127.0.0.1:10000
+
+Example (Microsoft Windows):
+
+cd build\src\snet-gateway
+snet-dissector.exe --port 5000 --connect //./COM1@example.com:10000 --connect //./COM2@example.com:10000
