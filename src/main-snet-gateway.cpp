@@ -1,5 +1,5 @@
 /**
- * \file      main.cpp
+ * \file      main-snet-gateway.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.

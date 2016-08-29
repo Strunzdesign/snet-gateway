@@ -7,7 +7,7 @@ include_directories(${Boost_INCLUDE_DIR})
 find_package(Threads)
 
 add_executable(snet-gateway
-main.cpp
+main-snet-gateway.cpp
 HdlcdClient/HdlcdClientHandler.cpp
 HdlcdClient/HdlcdClientHandlerCollection.cpp
 Routing/Routing.cpp
