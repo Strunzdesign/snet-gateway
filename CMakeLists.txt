@@ -1,37 +1,39 @@
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED ON)  
-set(Boost_USE_STATIC_RUNTIME OFF) 
-find_package(Boost REQUIRED COMPONENTS system signals program_options regex)
-include_directories(${Boost_INCLUDE_DIR})
-include_directories("${PROJECT_SOURCE_DIR}/src/include")
+cmake_minimum_required(VERSION 2.6)
 
-find_package(Threads)
+project(snet-gateway)
 
-add_executable(snet-gateway
-main.cpp
-HdlcdClient/HdlcdClientHandler.cpp
-HdlcdClient/HdlcdClientHandlerCollection.cpp
-Routing/Routing.cpp
-ToolServer/AddressLease.cpp
-ToolServer/AddressPool.cpp
-ToolServer/AddressService.cpp
-ToolServer/PublishSubscribeService.cpp
-ToolServer/ToolFrameGenerator.cpp
-ToolServer/ToolFrameParser.cpp
-ToolServer/ToolHandler.cpp
-ToolServer/ToolHandlerCollection.cpp
-)
-
-if(WIN32)
-    set(ADDITIONAL_LIBRARIES wsock32 ws2_32)
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-    set(ADDITIONAL_LIBRARIES "")
+    message(FATAL_ERROR "Compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
 endif()
 
-target_link_libraries(snet-gateway
-${Boost_LIBRARIES}
-${CMAKE_THREAD_LIBS_INIT}
-${ADDITIONAL_LIBRARIES}
+# Automatically set the version number
+set(SNET_GATEWAY_VERSION_MAJOR \"1\")
+set(SNET_GATEWAY_VERSION_MINOR \"0pre\")
+include_directories("${PROJECT_BINARY_DIR}/src")
+configure_file (
+    "${PROJECT_SOURCE_DIR}/src/Config.h.in"
+    "${PROJECT_BINARY_DIR}/src/Config.h"
 )
 
-install(TARGETS snet-gateway RUNTIME DESTINATION bin)
+# Add include path for Microsoft Windows: hdlcd-devel
+set(HDLCD_DEVEL_INCLUDE_DIR "/usr/local/include" CACHE FILEPATH "/usr/local/include")
+if (NOT EXISTS ${HDLCD_DEVEL_INCLUDE_DIR}/HdlcdConfig.h)
+    message(SEND_ERROR "Can't find the HDLC daemon header files in ${HDLCD_DEVEL_INCLUDE_DIR}")
+endif()
+include_directories(${HDLCD_DEVEL_INCLUDE_DIR})
+
+# Add include path for Microsoft Windows: snet-devel
+set(SNET_DEVEL_INCLUDE_DIR "/usr/local/include" CACHE FILEPATH "/usr/local/include")
+if (NOT EXISTS ${SNET_DEVEL_INCLUDE_DIR}/SnetConfig.h)
+    message(SEND_ERROR "Can't find the snet header files in ${SNET_DEVEL_INCLUDE_DIR}")
+endif()
+include_directories(${SNET_DEVEL_INCLUDE_DIR})
+
+add_subdirectory(src)
