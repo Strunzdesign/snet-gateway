@@ -51,7 +51,9 @@ int main(int argc, char* argv[]) {
         boost::program_options::store(boost::program_options::parse_command_line(argc, argv, l_Description), l_VariablesMap);
         boost::program_options::notify(l_VariablesMap);
         if (l_VariablesMap.count("version")) {
-            std::cerr << "s-net(r) gateway version " << SNET_TOOLS_VERSION_MAJOR << "." << SNET_TOOLS_VERSION_MINOR << std::endl;
+            std::cerr << "s-net(r) gateway version " << SNET_GATEWAY_VERSION_MAJOR << "." << SNET_GATEWAY_VERSION_MINOR
+                      << " built with hdlcd-devel version " << HDLCD_DEVEL_VERSION_MAJOR << "." << HDLCD_DEVEL_VERSION_MINOR
+                      << " and snet-devel version " << SNET_DEVEL_VERSION_MAJOR << "." << SNET_DEVEL_VERSION_MINOR << std::endl;
         } // if
 
         if (l_VariablesMap.count("help")) {
