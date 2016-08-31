@@ -25,7 +25,6 @@
 #include "SnetServiceMessage.h"
 #include "../ToolServer/ToolHandlerCollection.h"
 #include "../HdlcdClient/HdlcdClientHandlerCollection.h"
-#include "../ToolServer/ToolFrame.h"
 #include <assert.h>
 
 Routing::Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection):
