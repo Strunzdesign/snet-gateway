@@ -72,6 +72,7 @@ private:
     
     bool m_bWriteInProgress;
     std::deque<std::pair<std::vector<unsigned char>, std::function<void()>>> m_SendQueue; // To be transmitted
+    size_t m_SendBufferOffset; //!< To detect and handle partial writes to the TCP socket
 };
 
 #endif // TOOL_HANDLER_H

@@ -37,11 +37,10 @@ ToolHandler::ToolHandler(ToolHandlerCollection& a_ToolHandlerCollection, boost::
     m_pRoutingEntity = NULL;
     m_Registered = false;
     m_bWriteInProgress = false;
-    std::cout << "CTOR" << std::endl;   
+    m_SendBufferOffset = 0;
 }
 
 ToolHandler::~ToolHandler() {
-    std::cout << "DTOR" << std::endl;
     Stop();
 }
 
@@ -59,6 +58,7 @@ void ToolHandler::QueryForPayload() {
 void ToolHandler::Start() {
     assert(m_Registered == false);
     m_Registered = true;
+    m_SendBufferOffset = 0;
     assert(!m_AddressLease);
     m_AddressLease = m_ToolHandlerCollection.RegisterToolHandler(shared_from_this());
     ReadChunkFromSocket();
@@ -105,17 +105,16 @@ bool ToolHandler::Send(const ToolFrame* a_pToolFrame, std::function<void()> a_On
     assert(a_pToolFrame != NULL);
 
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
-    if (m_SendQueue.size() >= 10) {
+    if (m_SendQueue.size() >= 100) {
         if (a_OnSendDoneCallback) {
             a_OnSendDoneCallback();
         } // if
 
-        // TODO: check what happens if this is caused by an important packet, e.g., a keep alive or an echo response packet
         return false;
     } // if
     
     m_SendQueue.emplace_back(std::make_pair(std::move(ToolFrameGenerator::EscapeFrame(a_pToolFrame->SerializeFrame())), a_OnSendDoneCallback));
-    if ((!m_bWriteInProgress) && (!m_SendQueue.empty()) /*&& (m_SEPState == SEPSTATE_CONNECTED)*/) {
+    if ((!m_bWriteInProgress) && (!m_SendQueue.empty())) {
         DoWrite();
     } // if
     
@@ -125,14 +124,15 @@ bool ToolHandler::Send(const ToolFrame* a_pToolFrame, std::function<void()> a_On
 void ToolHandler::ReadChunkFromSocket() {
     boost::asio::async_read(m_TCPSocket, boost::asio::buffer(m_ReadBuffer, 2),[this](boost::system::error_code a_ErrorCode, std::size_t length) {
         if (a_ErrorCode == boost::asio::error::operation_aborted) return;
+        if (!m_Registered) return;
         if (!a_ErrorCode) {
             m_ToolFrameParser.AddReceivedRawBytes(m_ReadBuffer, length);
             ReadChunkFromSocket();
         } else {
-            std::cerr << "TCP READ ERROR HEADER1:" << a_ErrorCode << std::endl;
+            std::cerr << "TCP read error on gateway client side, error=" << a_ErrorCode << std::endl;
             Stop();
         } // else
-    });
+    }); // async_read
 }
 
 void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame) {
@@ -154,7 +154,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
         ToolFrame0301 l_ToolFrame0301;
         Send(&l_ToolFrame0301);
         
-        // Relay message
+        // Relay the payload
         SnetServiceMessage l_ServiceMessage;
         if (l_ServiceMessage.Deserialize(a_ToolFrame->GetPayload())) {
             // Check if it is directed to the address service
@@ -179,7 +179,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
                 return;
             } // if
             
-            // Source address remapping
+            // Remap the source address
             if (l_ServiceMessage.GetSrcSSA() != 0xFFFE) {
                 l_ServiceMessage.SetSrcSSA(m_AddressLease->GetAddress());
             } // if
@@ -192,32 +192,35 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
 
 void ToolHandler::DoWrite() {
     auto self(shared_from_this());
-//    if (m_bStopped) return;
+    if (!m_Registered) return;
     m_bWriteInProgress = true;
-    boost::asio::async_write(m_TCPSocket, boost::asio::buffer(m_SendQueue.front().first.data(), m_SendQueue.front().first.size()),
-                                [this, self](boost::system::error_code a_ErrorCode, std::size_t a_BytesSent) {
+    boost::asio::async_write(m_TCPSocket, boost::asio::buffer(&(m_SendQueue.front().first.data()[m_SendBufferOffset]), (m_SendQueue.front().first.size() - m_SendBufferOffset)),
+                                 [this, self](boost::system::error_code a_ErrorCode, std::size_t a_BytesSent) {
         if (a_ErrorCode == boost::asio::error::operation_aborted) return;
-//        if (m_bStopped) return;
+        if (!m_Registered) return;
         if (!a_ErrorCode) {
-            // If a callback was provided, call it now to demand for a subsequent packet
-            if (m_SendQueue.front().second) {
-                m_SendQueue.front().second();
-            } // if
+            m_SendBufferOffset += a_BytesSent;
+            if (m_SendBufferOffset == m_SendQueue.front().first.size()) {
+                // Completed transmission. If a callback was provided, call it now to demand for a subsequent packet
+                if (m_SendQueue.front().second) {
+                    m_SendQueue.front().second();
+                } // if
 
-            m_SendQueue.pop_front();
-            if (!m_SendQueue.empty()) {
-                DoWrite();
+                // Remove transmitted packet
+                m_SendQueue.pop_front();
+                m_SendBufferOffset = 0;
+                if (!m_SendQueue.empty()) {
+                    DoWrite();
+                } else {
+                    m_bWriteInProgress = false;
+                } // else
             } else {
-                m_bWriteInProgress = false;
-/*                if (m_bShutdown) {
-                    m_SEPState = SEPSTATE_SHUTDOWN;
-                    m_TCPSocket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
-                    Close();
-                } // if*/
+                // Only a partial transmission. We are not done yet.
+                DoWrite();
             } // else
         } else {
-            std::cerr << "TCP write error!" << std::endl;
-//            Close();
-        }
-    });
+            std::cerr << "TCP write error on gateway client side, error=" << a_ErrorCode << std::endl;
+            Stop();
+        } // else
+    }); // async_write
 }
