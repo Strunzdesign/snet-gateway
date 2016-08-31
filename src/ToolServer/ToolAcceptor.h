@@ -33,46 +33,44 @@ using boost::asio::ip::tcp;
 /*! \class ToolAcceptor
  *  \brief Class ToolAcceptor
  * 
- *  This class is responsible to accept incoming TCP connections. For each inbound TCP connection, a ClientHandler object is creating
- *  taking full responsibility of the connection. These TCP connections originate from clients that access the HDLCd and contain PDUs
- *  of the HDLCd access protocol.
+ *  This class is responsible to accept incoming TCP connections. For each inbound TCP connection, a ToolHandler object is created
+ *  taking full responsibility of the connection. These TCP connections originate from clients that access the snet gateway.
  */
 class ToolAcceptor {
 public:
-    /*! \brief The constructor of ClientAcceptor objects
+    /*! \brief The constructor of ToolAcceptor objects
      * 
-     *  Listener is started directly on instantiation (RAII)
+     *  The TCP listener is started directly on instantiation (RAII)
      * 
      *  \param a_IOService the boost IOService object
      *  \param a_usPortNbr the TCP port number to wait for incoming TCP connections
-     *  \param a_SerialPortHandlerCollection the collection helper class of serial port handlers responsible for talking to devices using the HDLC protocol 
+     *  \param a_ToolHandlerCollection the collection helper class for tool handlers responsible for talking with gateway clients
      */
     ToolAcceptor(boost::asio::io_service& a_IOService, unsigned short a_usPortNbr, ToolHandlerCollection& a_ToolHandlerCollection): m_ToolHandlerCollection(a_ToolHandlerCollection), m_TCPAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_usPortNbr)), m_TCPSocket(a_IOService) {
-        // Create the collection helper regarding accepted clients
-        do_accept(); // start accepting TCP connections
+        DoAccept(); // start accepting TCP connections
     }
 
 private:
     /*! \brief Internal callback to handle a single incoming TCP connection
      * 
-     *  In this internal callback function, for each incoming TCP connection a ClientHandler object is created. This handler consumes the TCP connection and adds itself
-     *  to the collection of client handlers.
+     *  In this internal callback function, for each incoming TCP connection a ToolHandler object is created. This handler consumes the TCP connection and adds itself
+     *  to the collection of tool handlers.
      */
-    void do_accept() {
+    void DoAccept() {
         m_TCPAcceptor.async_accept(m_TCPSocket, [this](boost::system::error_code a_ErrorCode) {
             if (!a_ErrorCode) {
-                // Create ClientHandler, store, and start it
+                // Create a tool handler object and start it. It registers itself to the tool handler collection
                 auto l_ToolHandler = std::make_shared<ToolHandler>(m_ToolHandlerCollection, std::move(m_TCPSocket));
                 l_ToolHandler->Start();
             } // if
 
             // Wait for subsequent TCP connections
-            do_accept();
-        });
+            DoAccept();
+        }); // async_accept
     }
 
     // Members
-    ToolHandlerCollection&        m_ToolHandlerCollection;
+    ToolHandlerCollection& m_ToolHandlerCollection; //!< The collection of all tool handlers
     tcp::acceptor m_TCPAcceptor; //!< The TCP listener
     tcp::socket m_TCPSocket; //!< One incoming TCP socket
 };
