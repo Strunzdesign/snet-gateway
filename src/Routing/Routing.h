@@ -31,12 +31,13 @@ class HdlcdClientHandlerCollection;
 
 class Routing {
 public:
-    Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection);
+    Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection, bool a_bTrace);
     
     void RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
 
 private:
     // Members
+    bool m_bTrace;
     ToolHandlerCollection&        m_ToolHandlerCollection;
     HdlcdClientHandlerCollection& m_HdlcdClientHandlerCollection;
 };

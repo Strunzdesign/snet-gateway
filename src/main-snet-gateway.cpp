@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
                           "syntax: SerialPort@IPAddess:PortNbr\n"
                           "  linux:   /dev/ttyUSB0@localhost:5001\n"
                           "  windows: //./COM1@example.com:5001")
+            ("trace,t",   "each relayed snet packet is dissected and printed")
         ;
 
         // Parse the command line
@@ -83,7 +84,7 @@ int main(int argc, char* argv[]) {
         ToolAcceptor l_ToolAcceptor(l_IoService, l_VariablesMap["port"].as<uint16_t>(), l_ToolHandlerCollection);
         
         // Routing entity
-        Routing l_Routing(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection);
+        Routing l_Routing(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"));
         l_ToolHandlerCollection.RegisterRoutingEntity(&l_Routing);
         l_HdlcdClientHandlerCollection.RegisterRoutingEntity(&l_Routing);
         
