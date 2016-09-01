@@ -29,7 +29,7 @@
 #include <string>
 #include <boost/asio.hpp>
 #include "HdlcdPacketData.h"
-class HdlcdAccessClient;
+class HdlcdClient;
 class Routing;
 
 class HdlcdClientHandler {
@@ -52,7 +52,7 @@ private:
     boost::asio::deadline_timer m_ConnectionRetryTimer;
     
     // The connection to the HDLC Daemon
-    std::shared_ptr<HdlcdAccessClient> m_HdlcdAccessClient;
+    std::shared_ptr<HdlcdClient> m_HdlcdClient;
     
     Routing* m_pRouting;
 };
