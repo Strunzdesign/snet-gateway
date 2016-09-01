@@ -51,14 +51,14 @@ void HdlcdClientHandler::ResolveDestination() {
                     // Reestablish the connection to the HDLC Daemon
                     ResolveDestination();
                 } // if
-            });
-        });
+            }); // async_wait
+        }); // SetOnClosedCallback
         
         m_HdlcdAccessClient->SetOnDataCallback([this](const HdlcdPacketData& a_PacketData){
             SnetServiceMessage l_ServiceMessage;
             if (l_ServiceMessage.Deserialize(a_PacketData.GetData())) {
                 m_pRouting->RouteSnetPacket(&l_ServiceMessage);
             } // if
-        });
-    });
+        }); // SetOnDataCallback
+    }); // async_resolve
 }
