@@ -1,0 +1,16 @@
+Issues to be resolved before a first release:
+- Doxygen (STARTED)
+- Fix all the TODOs in the source code
+- Add a big warning somewhere that the "tool protocol" breaks during congestion and should not be used for any future project
+
+
+
+Issues to be resolved after the first release:
+- The ToolFrame.h file looks very quick and dirty... requires a cleanup
+- All data transmission paths within the gateway should be asynchronous
+- The queue in ToolHandler.cpp has to be removed to allow congestion control
+
+
+
+// DONE
+- Add command line switches and online help ("-h --help") to the gateway (DONE)
