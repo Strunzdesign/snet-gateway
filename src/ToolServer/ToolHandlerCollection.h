@@ -26,26 +26,39 @@
 
 #include <memory>
 #include <list>
-#include "AddressPool.h"
+#include <boost/asio.hpp>
 class ToolHandler;
 class Routing;
 class SnetServiceMessage;
+class AddressPool;
 class AddressLease;
 
-class ToolHandlerCollection {
+class ToolHandlerCollection: public std::enable_shared_from_this<ToolHandlerCollection> {
 public:
-    ToolHandlerCollection();
+    // CTOR, initializer, and resetter
+    ToolHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr);
+    void Initialize(std::shared_ptr<Routing> a_RoutingEntity);
+    void SystemShutdown();
+    
+    // Self-registering and -deregistering of ToolHandler objects
     std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
     void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
 
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
     void Send(SnetServiceMessage* a_pSnetServiceMessage);
     
 private:
+    // Internal helpers
+    void DoAccept();
+
     // Members
+    boost::asio::io_service& m_IOService;
     std::shared_ptr<AddressPool> m_AddressPool;
     std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
-    Routing* m_pRoutingEntity;
+    std::shared_ptr<Routing> m_RoutingEntity;
+    
+    // Accept incoming TCP connections
+    boost::asio::ip::tcp::tcp::acceptor m_TcpAcceptor; //!< The TCP listener
+    boost::asio::ip::tcp::tcp::socket   m_TcpSocket; //!< One incoming TCP socket
 };
 
 #endif // TOOL_HANDLER_COLLECTION_H

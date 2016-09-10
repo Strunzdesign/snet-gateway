@@ -34,7 +34,8 @@ class Routing;
 
 class HdlcdClientHandler {
 public:
-    HdlcdClientHandler(boost::asio::io_service& a_IOService, const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName, Routing* a_pRouting);
+    HdlcdClientHandler(boost::asio::io_service& a_IOService, const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName, std::shared_ptr<Routing> a_RoutingEntity);
+    void Close();
     void Send(const HdlcdPacketData& a_HdlcdPacketData, std::function<void()> a_OnSendDoneCallback = std::function<void()>());
     
 private:
@@ -54,7 +55,7 @@ private:
     // The connection to the HDLC Daemon
     std::shared_ptr<HdlcdClient> m_HdlcdClient;
     
-    Routing* m_pRouting;
+    std::shared_ptr<Routing> m_RoutingEntity;
 };
 
 #endif // HDLCD_CLIENT_HANDLER_H

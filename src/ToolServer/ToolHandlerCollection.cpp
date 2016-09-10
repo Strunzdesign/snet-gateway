@@ -25,17 +25,33 @@
 #include "ToolHandler.h"
 #include "ToolFrame.h"
 #include "SnetServiceMessage.h"
+#include "AddressPool.h"
 #include <assert.h>
+using boost::asio::ip::tcp;
 
-ToolHandlerCollection::ToolHandlerCollection() {
-    m_pRoutingEntity = NULL;
+ToolHandlerCollection::ToolHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_IOService(a_IOService), m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService)  {
     m_AddressPool = std::make_shared<AddressPool>();
 }
 
+void ToolHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
+    assert(a_RoutingEntity);
+    m_RoutingEntity = a_RoutingEntity;
+}
+
+void ToolHandlerCollection::SystemShutdown() {
+    // Drop all shared pointers
+    m_RoutingEntity.reset();    
+    for (auto l_HandlerIterator = m_ToolHandlerList.begin(); l_HandlerIterator != m_ToolHandlerList.end(); ++l_HandlerIterator) {
+        auto& l_Handler = (*l_HandlerIterator);
+        l_Handler->Close();
+        l_Handler.reset();
+    } // for
+}
+
 std::shared_ptr<AddressLease> ToolHandlerCollection::RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
-    assert(m_pRoutingEntity);
+    assert(m_RoutingEntity);
     auto l_AddressLease = m_AddressPool->ObtainAddressLease();
-    a_ToolHandler->RegisterRoutingEntity(m_pRoutingEntity);
+    a_ToolHandler->RegisterRoutingEntity(m_RoutingEntity);
     m_ToolHandlerList.emplace_back(std::move(a_ToolHandler));
     assert(l_AddressLease);
     return l_AddressLease;
@@ -45,13 +61,21 @@ void ToolHandlerCollection::DeregisterToolHandler(std::shared_ptr<ToolHandler> a
     m_ToolHandlerList.remove(a_ToolHandler);
 }
 
-void ToolHandlerCollection::RegisterRoutingEntity(Routing* a_pRoutingEntity) {
-    assert(a_pRoutingEntity);
-    m_pRoutingEntity = a_pRoutingEntity;
-}
-
 void ToolHandlerCollection::Send(SnetServiceMessage* a_pSnetServiceMessage) {
     for (auto l_It = m_ToolHandlerList.begin(); l_It != m_ToolHandlerList.end(); ++l_It) {
         (*l_It)->Send(a_pSnetServiceMessage);
     } // for
+}
+
+void ToolHandlerCollection::DoAccept() {
+    m_TcpAcceptor.async_accept(m_TcpSocket, [this](boost::system::error_code a_ErrorCode) {
+        if (!a_ErrorCode) {
+            // Create a tool handler object and start it. It registers itself to the tool handler collection
+            auto l_ToolHandler = std::make_shared<ToolHandler>(shared_from_this(), m_TcpSocket);
+            l_ToolHandler->Start();
+        } // if
+
+        // Wait for subsequent TCP connections
+        DoAccept();
+    }); // async_accept
 }

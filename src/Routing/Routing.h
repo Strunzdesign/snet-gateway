@@ -24,6 +24,7 @@
 #ifndef ROUTING_H
 #define ROUTING_H
 
+#include <memory>
 #include <vector>
 class SnetServiceMessage;
 class ToolHandlerCollection;
@@ -31,15 +32,17 @@ class HdlcdClientHandlerCollection;
 
 class Routing {
 public:
-    Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection, bool a_bTrace);
-    
+    // CTOR and resetter
+    Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace);
+    void SystemShutdown();
+
     void RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
 
 private:
     // Members
+    std::shared_ptr<ToolHandlerCollection>        m_ToolHandlerCollection;
+    std::shared_ptr<HdlcdClientHandlerCollection> m_HdlcdClientHandlerCollection;
     bool m_bTrace;
-    ToolHandlerCollection&        m_ToolHandlerCollection;
-    HdlcdClientHandlerCollection& m_HdlcdClientHandlerCollection;
 };
 
 #endif // ROUTING_H

@@ -25,18 +25,28 @@
 #include "HdlcdClientHandler.h"
 #include <assert.h>
 
-HdlcdClientHandlerCollection::HdlcdClientHandlerCollection(boost::asio::io_service& a_IOService): m_IOService(a_IOService), m_pRoutingEntity(NULL) {
+HdlcdClientHandlerCollection::HdlcdClientHandlerCollection(boost::asio::io_service& a_IOService): m_IOService(a_IOService) {
 }
 
-void HdlcdClientHandlerCollection::RegisterRoutingEntity(Routing* a_pRoutingEntity) {
-    assert(a_pRoutingEntity);
-    m_pRoutingEntity = a_pRoutingEntity;
+void HdlcdClientHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
+    assert(a_RoutingEntity);
+    m_RoutingEntity = a_RoutingEntity;
+}
+
+void HdlcdClientHandlerCollection::SystemShutdown() {
+    // Drop all shared pointers
+    m_RoutingEntity.reset();    
+    for (auto l_HandlerIterator = m_HdlcdClientHandlerVector.begin(); l_HandlerIterator != m_HdlcdClientHandlerVector.end(); ++l_HandlerIterator) {
+        auto& l_Handler = (*l_HandlerIterator);
+        l_Handler->Close();
+        l_Handler.reset();
+    } // for
 }
 
 void HdlcdClientHandlerCollection::CreateHdlcdClientHandler(const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName) {
     // Create new HDLCd client entity
-    assert(m_pRoutingEntity);
-    auto l_NewClientHandler = std::make_shared<HdlcdClientHandler>(m_IOService, a_DestinationName, a_TcpPort, a_SerialPortName, m_pRoutingEntity);
+    assert(m_RoutingEntity);
+    auto l_NewClientHandler = std::make_shared<HdlcdClientHandler>(m_IOService, a_DestinationName, a_TcpPort, a_SerialPortName, m_RoutingEntity);
     m_HdlcdClientHandlerVector.push_back(l_NewClientHandler);
 }
 

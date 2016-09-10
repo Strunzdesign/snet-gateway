@@ -27,8 +27,17 @@
 #include "../HdlcdClient/HdlcdClientHandlerCollection.h"
 #include <assert.h>
 
-Routing::Routing(ToolHandlerCollection &a_ToolHandlerCollection, HdlcdClientHandlerCollection &a_HdlcdClientHandlerCollection, bool a_bTrace):
+Routing::Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace):
     m_ToolHandlerCollection(a_ToolHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace) {
+    // Checks
+    assert(m_ToolHandlerCollection);
+    assert(m_HdlcdClientHandlerCollection);
+}
+
+void Routing::SystemShutdown() {
+    // Drop all shared pointers
+    m_ToolHandlerCollection.reset();
+    m_HdlcdClientHandlerCollection.reset();
 }
 
 void Routing::RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
@@ -43,13 +52,17 @@ void Routing::RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
             std::cout << "To the HDLCd: " << a_pSnetServiceMessage->Dissect() << std::endl;
         } // if
         
-        m_HdlcdClientHandlerCollection.Send(std::move(HdlcdPacketData::CreatePacket(a_pSnetServiceMessage->Serialize(), true)));
+        if (m_HdlcdClientHandlerCollection) {
+            m_HdlcdClientHandlerCollection->Send(std::move(HdlcdPacketData::CreatePacket(a_pSnetServiceMessage->Serialize(), true)));
+        } // if
     } else {
         // To the tools
         if (m_bTrace) {
             std::cout << "To clients:   " << a_pSnetServiceMessage->Dissect() << std::endl;
         } // if
 
-        m_ToolHandlerCollection.Send(a_pSnetServiceMessage);
+        if (m_ToolHandlerCollection) {
+            m_ToolHandlerCollection->Send(a_pSnetServiceMessage);
+        } // if
     } // else
 }

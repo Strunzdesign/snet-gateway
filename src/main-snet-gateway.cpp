@@ -26,9 +26,9 @@
 #include <boost/asio.hpp>
 #include <boost/program_options.hpp>
 #include <boost/regex.hpp>
-#include "HdlcdClient/HdlcdClientHandlerCollection.h"
-#include "ToolServer/ToolAcceptor.h"
-#include "Routing/Routing.h"
+#include "HdlcdClientHandlerCollection.h"
+#include "ToolHandlerCollection.h"
+#include "Routing.h"
 
 int main(int argc, char* argv[]) {
     try {
@@ -79,14 +79,14 @@ int main(int argc, char* argv[]) {
         l_Signals.add(SIGTERM);
         l_Signals.async_wait([&l_IoService](boost::system::error_code, int){ l_IoService.stop(); });
 
-        ToolHandlerCollection l_ToolHandlerCollection;
-        HdlcdClientHandlerCollection l_HdlcdClientHandlerCollection(l_IoService);
-        ToolAcceptor l_ToolAcceptor(l_IoService, l_VariablesMap["port"].as<uint16_t>(), l_ToolHandlerCollection);
+        // Create main components
+        auto l_ToolHandlerCollection        = std::make_shared<ToolHandlerCollection>(l_IoService, l_VariablesMap["port"].as<uint16_t>());
+        auto l_HdlcdClientHandlerCollection = std::make_shared<HdlcdClientHandlerCollection>(l_IoService);
         
         // Routing entity
-        Routing l_Routing(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"));
-        l_ToolHandlerCollection.RegisterRoutingEntity(&l_Routing);
-        l_HdlcdClientHandlerCollection.RegisterRoutingEntity(&l_Routing);
+        auto l_RoutingEntity = std::make_shared<Routing>(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"));
+        l_ToolHandlerCollection->Initialize(l_RoutingEntity);
+        l_HdlcdClientHandlerCollection->Initialize(l_RoutingEntity);
         
         // Create HDLCd client entities
         auto l_DestSpecifiers(l_VariablesMap["connect"].as<std::vector<std::string>>());
@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
             static boost::regex s_RegEx("^(.*?)@(.*?):(.*?)$");
             boost::smatch l_Match;
             if (boost::regex_match(*l_DestSpecifier, l_Match, s_RegEx)) {
-                l_HdlcdClientHandlerCollection.CreateHdlcdClientHandler(l_Match[2], l_Match[3], l_Match[1]);
+                l_HdlcdClientHandlerCollection->CreateHdlcdClientHandler(l_Match[2], l_Match[3], l_Match[1]);
             } else {
                 throw boost::program_options::validation_error(boost::program_options::validation_error::invalid_option_value);
             } // else
@@ -103,6 +103,11 @@ int main(int argc, char* argv[]) {
         
         // Start event processing
         l_IoService.run();
+        
+        // Shutdown
+        l_HdlcdClientHandlerCollection->SystemShutdown();
+        l_ToolHandlerCollection->SystemShutdown();
+        l_RoutingEntity->SystemShutdown();
     } catch (std::exception& a_Error) {
         std::cerr << "Exception: " << a_Error.what() << "\n";
         return 1;

@@ -26,25 +26,39 @@
 #include "../Routing/Routing.h"
 #include "SnetServiceMessage.h"
 #include <assert.h>
+using boost::asio::ip::tcp;
 
-HdlcdClientHandler::HdlcdClientHandler(boost::asio::io_service& a_IOService, const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName, Routing* a_pRouting):
-    m_IOService(a_IOService), m_DestinationName(a_DestinationName), m_TcpPort(a_TcpPort), m_SerialPortName(a_SerialPortName), m_Resolver(a_IOService), m_ConnectionRetryTimer(a_IOService), m_pRouting(a_pRouting) {
-    assert(m_pRouting);
+HdlcdClientHandler::HdlcdClientHandler(boost::asio::io_service& a_IOService, const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName,
+                                       std::shared_ptr<Routing> a_RoutingEntity):
+    m_IOService(a_IOService), m_DestinationName(a_DestinationName), m_TcpPort(a_TcpPort), m_SerialPortName(a_SerialPortName), m_Resolver(a_IOService), m_ConnectionRetryTimer(a_IOService), m_RoutingEntity(a_RoutingEntity) {
+    // Checks
+    assert(m_RoutingEntity);
+    
+    // Trigger activity
     ResolveDestination();
 }
 
+void HdlcdClientHandler::Close() {
+    // Drop all shared pointers
+    m_RoutingEntity.reset();
+    if (m_HdlcdClient) {
+        m_HdlcdClient->Close();
+        m_HdlcdClient.reset();
+    } // if
+}
+
 void HdlcdClientHandler::Send(const HdlcdPacketData& a_HdlcdPacketData, std::function<void()> a_OnSendDoneCallback) {
-    // TODO: check what happens if this is currently not connected, or will be deletet. Starvation?
-    m_HdlcdClient->Send(a_HdlcdPacketData, a_OnSendDoneCallback);
+    if (m_HdlcdClient) {
+        m_HdlcdClient->Send(a_HdlcdPacketData, a_OnSendDoneCallback);
+    } else {
+        m_IOService.post([a_OnSendDoneCallback](){ a_OnSendDoneCallback(); });
+    } // else
 }
 
 void HdlcdClientHandler::ResolveDestination() {
     m_Resolver.async_resolve({m_DestinationName, m_TcpPort}, [this](const boost::system::error_code& a_ErrorCode, boost::asio::ip::tcp::resolver::iterator a_EndpointIterator) {
-        // Start the HDLCd access client
-        m_HdlcdClient = std::make_shared<HdlcdClient>(m_IOService, a_EndpointIterator, m_SerialPortName, 0x01);
-        
-        // On any error, restart after a short delay
-        m_HdlcdClient->SetOnClosedCallback([this](){
+        if (a_ErrorCode) {
+            std::cout << "Failed to resolve host name: " << m_DestinationName << std::endl;
             m_ConnectionRetryTimer.expires_from_now(boost::posix_time::seconds(2));
             m_ConnectionRetryTimer.async_wait([this](const boost::system::error_code& a_ErrorCode) {
                 if (!a_ErrorCode) {
@@ -52,13 +66,27 @@ void HdlcdClientHandler::ResolveDestination() {
                     ResolveDestination();
                 } // if
             }); // async_wait
-        }); // SetOnClosedCallback
-        
-        m_HdlcdClient->SetOnDataCallback([this](const HdlcdPacketData& a_PacketData){
-            SnetServiceMessage l_ServiceMessage;
-            if (l_ServiceMessage.Deserialize(a_PacketData.GetData())) {
-                m_pRouting->RouteSnetPacket(&l_ServiceMessage);
-            } // if
-        }); // SetOnDataCallback
+        } else {
+            // Start the HDLCd access client
+            m_HdlcdClient = std::make_shared<HdlcdClient>(m_IOService, a_EndpointIterator, m_SerialPortName, 0x01);
+            
+            // On any error, restart after a short delay
+            m_HdlcdClient->SetOnClosedCallback([this](){
+                m_ConnectionRetryTimer.expires_from_now(boost::posix_time::seconds(2));
+                m_ConnectionRetryTimer.async_wait([this](const boost::system::error_code& a_ErrorCode) {
+                    if (!a_ErrorCode) {
+                        // Reestablish the connection to the HDLC Daemon
+                        ResolveDestination();
+                    } // if
+                }); // async_wait
+            }); // SetOnClosedCallback
+            
+            m_HdlcdClient->SetOnDataCallback([this](const HdlcdPacketData& a_PacketData){
+                SnetServiceMessage l_ServiceMessage;
+                if (l_ServiceMessage.Deserialize(a_PacketData.GetData())) {
+                    m_RoutingEntity->RouteSnetPacket(&l_ServiceMessage);
+                } // if
+            }); // SetOnDataCallback
+        } // else
     }); // async_resolve
 }

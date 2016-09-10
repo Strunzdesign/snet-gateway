@@ -38,15 +38,12 @@ class SnetServiceMessage;
 
 class ToolHandler: public std::enable_shared_from_this<ToolHandler> {
 public:
-    ToolHandler(ToolHandlerCollection& a_ToolHandlerCollection, boost::asio::ip::tcp::socket a_TCPSocket);
+    ToolHandler(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
     ~ToolHandler();
-    void RegisterRoutingEntity(Routing* a_pRoutingEntity);
-    
-    void DeliverBufferToTools(const std::vector<unsigned char> &a_Payload);
-    void QueryForPayload();
+    void RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity);
     
     void Start();
-    void Stop();
+    void Close();
 
     bool Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback = std::function<void()>());    
     void InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame);
@@ -59,8 +56,8 @@ private:
     void DoWrite();
 
     // Members
-    Routing* m_pRoutingEntity;
-    ToolHandlerCollection& m_ToolHandlerCollection;
+    std::shared_ptr<Routing> m_RoutingEntity;
+    std::shared_ptr<ToolHandlerCollection> m_ToolHandlerCollection;
     boost::asio::ip::tcp::socket m_TCPSocket;
     std::shared_ptr<AddressLease> m_AddressLease;
     PublishSubscribeService m_PublishSubscribeService;

@@ -23,36 +23,32 @@
 
 #include "ToolHandler.h"
 #include "ToolFrameGenerator.h"
-#include "../Routing/Routing.h"
+#include "Routing.h"
 #include "SnetServiceMessage.h"
 #include "AddressLease.h"
 #include "AddressService.h"
 #include <iostream>
 #include <assert.h>
 
-ToolHandler::ToolHandler(ToolHandlerCollection& a_ToolHandlerCollection, boost::asio::ip::tcp::socket a_TCPSocket):
+ToolHandler::ToolHandler(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket):
     m_ToolHandlerCollection(a_ToolHandlerCollection),
     m_TCPSocket(std::move(a_TCPSocket)),
     m_ToolFrameParser(*this) {
-    m_pRoutingEntity = NULL;
+    // Checks
+    assert(m_ToolHandlerCollection);
+        
     m_Registered = false;
     m_bWriteInProgress = false;
     m_SendBufferOffset = 0;
 }
 
 ToolHandler::~ToolHandler() {
-    Stop();
+    Close();
 }
 
-void ToolHandler::RegisterRoutingEntity(Routing* a_pRoutingEntity) {
-    assert(a_pRoutingEntity);
-    m_pRoutingEntity = a_pRoutingEntity;
-}
-
-void ToolHandler::DeliverBufferToTools(const std::vector<unsigned char> &a_Payload) {
-}
-
-void ToolHandler::QueryForPayload() {
+void ToolHandler::RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity) {
+    assert(a_RoutingEntity);
+    m_RoutingEntity = a_RoutingEntity;
 }
 
 void ToolHandler::Start() {
@@ -60,19 +56,22 @@ void ToolHandler::Start() {
     m_Registered = true;
     m_SendBufferOffset = 0;
     assert(!m_AddressLease);
-    m_AddressLease = m_ToolHandlerCollection.RegisterToolHandler(shared_from_this());
+    m_AddressLease = m_ToolHandlerCollection->RegisterToolHandler(shared_from_this());
     ReadChunkFromSocket();
 }
 
-void ToolHandler::Stop() {
+void ToolHandler::Close() {
     if (m_Registered) {
         m_Registered = false;
         m_TCPSocket.cancel();
         m_TCPSocket.close();
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
-        m_ToolHandlerCollection.DeregisterToolHandler(shared_from_this());
+        m_ToolHandlerCollection->DeregisterToolHandler(shared_from_this());
     } // if
+    
+    // Drop all shared pointers
+    m_ToolHandlerCollection.reset();
 }
 
 bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {
@@ -130,7 +129,7 @@ void ToolHandler::ReadChunkFromSocket() {
             ReadChunkFromSocket();
         } else {
             std::cerr << "TCP read error on gateway client side, error=" << a_ErrorCode << std::endl;
-            Stop();
+            Close();
         } // else
     }); // async_read
 }
@@ -185,7 +184,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             } // if
             
             // Route this packet
-            m_pRoutingEntity->RouteSnetPacket(&l_ServiceMessage);
+            m_RoutingEntity->RouteSnetPacket(&l_ServiceMessage);
         } // if
     } // if
 }
@@ -220,7 +219,7 @@ void ToolHandler::DoWrite() {
             } // else
         } else {
             std::cerr << "TCP write error on gateway client side, error=" << a_ErrorCode << std::endl;
-            Stop();
+            Close();
         } // else
     }); // async_write
 }
