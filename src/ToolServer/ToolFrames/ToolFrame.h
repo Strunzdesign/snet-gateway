@@ -46,7 +46,10 @@ private:
 class ToolFrame0100: public ToolFrame {
 public:
     ToolFrame0100(): ToolFrame(0x0100) {}
-    const std::vector<unsigned char> GetPayload() const {}
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
 class ToolFrame0101: public ToolFrame {
@@ -63,13 +66,19 @@ public:
         return l_ToolFrameBuffer;
     }
     
-    const std::vector<unsigned char> GetPayload() const {}
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
 class ToolFrame0110: public ToolFrame {
 public:
     ToolFrame0110(): ToolFrame(0x0110) {}
-    const std::vector<unsigned char> GetPayload() const {}
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
 class ToolFrame0111: public ToolFrame {
@@ -86,7 +95,10 @@ public:
         return l_ToolFrameBuffer;
     }
     
-    const std::vector<unsigned char> GetPayload() const {}
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
 class ToolFrame0300: public ToolFrame {
@@ -110,7 +122,11 @@ public:
         l_ToolFrameBuffer.emplace_back(0x7E);
         return l_ToolFrameBuffer;
     }
-    const std::vector<unsigned char> GetPayload() const {}
+    
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
 class ToolFrame0302: public ToolFrame {
