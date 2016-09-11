@@ -36,16 +36,20 @@ ToolHandlerCollection::ToolHandlerCollection(boost::asio::io_service& a_IOServic
 void ToolHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
     assert(a_RoutingEntity);
     m_RoutingEntity = a_RoutingEntity;
+    
+    // Trigger activity
+    DoAccept();
 }
 
 void ToolHandlerCollection::SystemShutdown() {
+    // Stop accepting subsequent TCP connections
+    m_TcpAcceptor.close();
+
     // Drop all shared pointers
-    m_RoutingEntity.reset();    
-    for (auto l_HandlerIterator = m_ToolHandlerList.begin(); l_HandlerIterator != m_ToolHandlerList.end(); ++l_HandlerIterator) {
-        auto& l_Handler = (*l_HandlerIterator);
-        l_Handler->Close();
-        l_Handler.reset();
-    } // for
+    m_RoutingEntity.reset();
+    while (!m_ToolHandlerList.empty()) {
+        (*m_ToolHandlerList.begin())->Close();
+    } // while
 }
 
 std::shared_ptr<AddressLease> ToolHandlerCollection::RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {

@@ -40,7 +40,7 @@ public:
     void Initialize(std::shared_ptr<Routing> a_RoutingEntity);
     void SystemShutdown();
     
-    // Self-registering and -deregistering of ToolHandler objects
+    // Self-registering and -deregistering of tool handler objects
     std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
     void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
 
