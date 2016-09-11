@@ -62,16 +62,16 @@ void ToolHandler::Start() {
 
 void ToolHandler::Close() {
     if (m_Registered) {
+        // Keep this object alive
+        auto self(shared_from_this());
         m_Registered = false;
         m_TCPSocket.cancel();
         m_TCPSocket.close();
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
         m_ToolHandlerCollection->DeregisterToolHandler(shared_from_this());
+        m_ToolHandlerCollection.reset();
     } // if
-    
-    // Drop all shared pointers
-    m_ToolHandlerCollection.reset();
 }
 
 bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {
