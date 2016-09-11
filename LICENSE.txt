@@ -1,1 +1,0 @@
-All source code files of this project are under the GPLv3 or later (see file LICENSE.GPLv3).
