@@ -63,8 +63,8 @@ private:
     PublishSubscribeService m_PublishSubscribeService;
     
     bool m_Registered;
-
-    unsigned char m_ReadBuffer[1];
+    enum { E_MAX_LENGTH = 65535 };
+    unsigned char m_ReadBuffer[E_MAX_LENGTH];
     ToolFrameParser m_ToolFrameParser;
     
     bool m_bWriteInProgress;

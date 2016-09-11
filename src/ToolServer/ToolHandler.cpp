@@ -121,11 +121,11 @@ bool ToolHandler::Send(const ToolFrame* a_pToolFrame, std::function<void()> a_On
 }
     
 void ToolHandler::ReadChunkFromSocket() {
-    boost::asio::async_read(m_TCPSocket, boost::asio::buffer(m_ReadBuffer, 2),[this](boost::system::error_code a_ErrorCode, std::size_t length) {
+    m_TCPSocket.async_read_some(boost::asio::buffer(m_ReadBuffer, E_MAX_LENGTH),[this](boost::system::error_code a_ErrorCode, std::size_t a_ReadBytes) {
         if (a_ErrorCode == boost::asio::error::operation_aborted) return;
         if (!m_Registered) return;
         if (!a_ErrorCode) {
-            m_ToolFrameParser.AddReceivedRawBytes(m_ReadBuffer, length);
+            m_ToolFrameParser.AddReceivedRawBytes(m_ReadBuffer, a_ReadBytes);
             ReadChunkFromSocket();
         } else {
             std::cerr << "TCP read error on gateway client side, error=" << a_ErrorCode << std::endl;
