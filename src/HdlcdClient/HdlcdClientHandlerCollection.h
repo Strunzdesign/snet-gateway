@@ -41,7 +41,7 @@ public:
     
     void CreateHdlcdClientHandler(const std::string& a_DestinationName, const std::string& a_TcpPort, const std::string& a_SerialPortName);
     
-    void Send(const HdlcdPacketData& a_HdlcdPacketData, std::function<void()> a_OnSendDoneCallback = std::function<void()>());
+    void Send(const HdlcdPacketData& a_HdlcdPacketData);
     
 private:
     // Members

@@ -45,6 +45,7 @@ int main(int argc, char* argv[]) {
                           "  linux:   /dev/ttyUSB0@localhost:5001\n"
                           "  windows: //./COM1@example.com:5001")
             ("trace,t",   "each relayed packet is dissected and printed")
+            ("reliable,r","always set the OnAirARQ bit if sent to the HDLCd")
         ;
 
         // Parse the command line
@@ -86,7 +87,7 @@ int main(int argc, char* argv[]) {
         auto l_HdlcdClientHandlerCollection = std::make_shared<HdlcdClientHandlerCollection>(l_IoService);
         
         // Routing entity
-        auto l_RoutingEntity = std::make_shared<Routing>(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"));
+        auto l_RoutingEntity = std::make_shared<Routing>(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"), l_VariablesMap.count("reliable"));
         l_ToolHandlerCollection->Initialize(l_RoutingEntity);
         l_HdlcdClientHandlerCollection->Initialize(l_RoutingEntity);
         

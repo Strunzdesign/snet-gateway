@@ -74,7 +74,7 @@ void ToolHandler::Close() {
     } // if
 }
 
-bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {
+bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage) {
     // Check destination address
     if (((a_pSnetServiceMessage->GetDstSSA() > 0x4000) && (a_pSnetServiceMessage->GetDstSSA() < 0xFFF0)) && (a_pSnetServiceMessage->GetDstSSA() != m_AddressLease->GetAddress())) {
         // Not for this tool!
@@ -90,29 +90,25 @@ bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<
     // Create a copy and change the destination address
     auto l_SnetServiceMessage = *a_pSnetServiceMessage;
     l_SnetServiceMessage.SetDstSSA(m_AddressLease->GetAddress());
-    return SendHelper(&l_SnetServiceMessage, a_OnSendDoneCallback);
+    return SendHelper(&l_SnetServiceMessage);
 }
 
-bool ToolHandler::SendHelper(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback) {        
+bool ToolHandler::SendHelper(SnetServiceMessage* a_pSnetServiceMessage) {        
     // Queue for transmission :-)
     ToolFrame0302 l_ToolFrame0302;
     l_ToolFrame0302.m_Payload = a_pSnetServiceMessage->Serialize();
-    return Send(&l_ToolFrame0302, a_OnSendDoneCallback);
+    return Send(&l_ToolFrame0302);
 }
 
-bool ToolHandler::Send(const ToolFrame* a_pToolFrame, std::function<void()> a_OnSendDoneCallback) {
+bool ToolHandler::Send(const ToolFrame* a_pToolFrame) {
     assert(a_pToolFrame != NULL);
 
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
     if (m_SendQueue.size() >= 100) {
-        if (a_OnSendDoneCallback) {
-            a_OnSendDoneCallback();
-        } // if
-
         return false;
     } // if
     
-    m_SendQueue.emplace_back(std::make_pair(std::move(ToolFrameGenerator::EscapeFrame(a_pToolFrame->SerializeFrame())), a_OnSendDoneCallback));
+    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_pToolFrame->SerializeFrame()));
     if ((!m_bWriteInProgress) && (!m_SendQueue.empty())) {
         DoWrite();
     } // if
@@ -193,19 +189,14 @@ void ToolHandler::DoWrite() {
     auto self(shared_from_this());
     if (!m_Registered) return;
     m_bWriteInProgress = true;
-    boost::asio::async_write(m_TCPSocket, boost::asio::buffer(&(m_SendQueue.front().first.data()[m_SendBufferOffset]), (m_SendQueue.front().first.size() - m_SendBufferOffset)),
+    boost::asio::async_write(m_TCPSocket, boost::asio::buffer(&(m_SendQueue.front().data()[m_SendBufferOffset]), (m_SendQueue.front().size() - m_SendBufferOffset)),
                                  [this, self](boost::system::error_code a_ErrorCode, std::size_t a_BytesSent) {
         if (a_ErrorCode == boost::asio::error::operation_aborted) return;
         if (!m_Registered) return;
         if (!a_ErrorCode) {
             m_SendBufferOffset += a_BytesSent;
-            if (m_SendBufferOffset == m_SendQueue.front().first.size()) {
-                // Completed transmission. If a callback was provided, call it now to demand for a subsequent packet
-                if (m_SendQueue.front().second) {
-                    m_SendQueue.front().second();
-                } // if
-
-                // Remove transmitted packet
+            if (m_SendBufferOffset == m_SendQueue.front().size()) {
+                // Completed transmission. Remove the transmitted packet
                 m_SendQueue.pop_front();
                 m_SendBufferOffset = 0;
                 if (!m_SendQueue.empty()) {

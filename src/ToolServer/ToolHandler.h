@@ -45,13 +45,13 @@ public:
     void Start();
     void Close();
 
-    bool Send(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback = std::function<void()>());    
+    bool Send(SnetServiceMessage* a_pSnetServiceMessage);    
     void InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame);
     
 private:
     // Internal helpers
-    bool SendHelper(SnetServiceMessage* a_pSnetServiceMessage, std::function<void()> a_OnSendDoneCallback = std::function<void()>());    
-    bool Send(const ToolFrame* a_pToolFrame, std::function<void()> a_OnSendDoneCallback = std::function<void()>());
+    bool SendHelper(SnetServiceMessage* a_pSnetServiceMessage);    
+    bool Send(const ToolFrame* a_pToolFrame);
     void ReadChunkFromSocket();
     void DoWrite();
 
@@ -68,7 +68,7 @@ private:
     ToolFrameParser m_ToolFrameParser;
     
     bool m_bWriteInProgress;
-    std::deque<std::pair<std::vector<unsigned char>, std::function<void()>>> m_SendQueue; // To be transmitted
+    std::deque<std::vector<unsigned char>> m_SendQueue; // To be transmitted
     size_t m_SendBufferOffset; //!< To detect and handle partial writes to the TCP socket
 };
 

@@ -33,7 +33,7 @@ class HdlcdClientHandlerCollection;
 class Routing {
 public:
     // CTOR and resetter
-    Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace);
+    Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable);
     void SystemShutdown();
 
     void RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
@@ -43,6 +43,7 @@ private:
     std::shared_ptr<ToolHandlerCollection>        m_ToolHandlerCollection;
     std::shared_ptr<HdlcdClientHandlerCollection> m_HdlcdClientHandlerCollection;
     bool m_bTrace;
+    bool m_bReliable;
 };
 
 #endif // ROUTING_H

@@ -50,7 +50,7 @@ void HdlcdClientHandlerCollection::CreateHdlcdClientHandler(const std::string& a
     m_HdlcdClientHandlerVector.push_back(l_NewClientHandler);
 }
 
-void HdlcdClientHandlerCollection::Send(const HdlcdPacketData& a_HdlcdPacketData, std::function<void()> a_OnSendDoneCallback) {
+void HdlcdClientHandlerCollection::Send(const HdlcdPacketData& a_HdlcdPacketData) {
     for (auto l_HdlcdClientHandlerIterator = m_HdlcdClientHandlerVector.begin(); l_HdlcdClientHandlerIterator != m_HdlcdClientHandlerVector.end(); ++l_HdlcdClientHandlerIterator) {
         (*l_HdlcdClientHandlerIterator)->Send(a_HdlcdPacketData);
     } // for

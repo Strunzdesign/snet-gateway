@@ -47,12 +47,10 @@ void HdlcdClientHandler::Close() {
     } // if
 }
 
-void HdlcdClientHandler::Send(const HdlcdPacketData& a_HdlcdPacketData, std::function<void()> a_OnSendDoneCallback) {
+void HdlcdClientHandler::Send(const HdlcdPacketData& a_HdlcdPacketData) {
     if (m_HdlcdClient) {
-        m_HdlcdClient->Send(a_HdlcdPacketData, a_OnSendDoneCallback);
-    } else {
-        m_IOService.post([a_OnSendDoneCallback](){ a_OnSendDoneCallback(); });
-    } // else
+        m_HdlcdClient->Send(a_HdlcdPacketData);
+    } // if
 }
 
 void HdlcdClientHandler::ResolveDestination() {

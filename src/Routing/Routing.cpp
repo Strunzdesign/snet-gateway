@@ -27,8 +27,8 @@
 #include "../HdlcdClient/HdlcdClientHandlerCollection.h"
 #include <assert.h>
 
-Routing::Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace):
-    m_ToolHandlerCollection(a_ToolHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace) {
+Routing::Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
+    m_ToolHandlerCollection(a_ToolHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace), m_bReliable(a_bReliable) {
     // Checks
     assert(m_ToolHandlerCollection);
     assert(m_HdlcdClientHandlerCollection);
@@ -46,8 +46,11 @@ void Routing::RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
     if ((l_DstSSA == 0x3FFc) || ((l_DstSSA == 0x4000) && (l_SrcSSA >= 0x4000))) {
         // Not caught yet
     } else if (l_DstSSA < 0x4000) {
-        // To the HDLCd: explicitely demand for OnAirARQ for all outgoing snet packets :-)
-        a_pSnetServiceMessage->SetOnAirARQ(true);
+        if (m_bReliable) {
+            // To the HDLCd: explicitely demand for OnAirARQ for all outgoing snet packets :-)
+            a_pSnetServiceMessage->SetOnAirARQ(true);
+        } // if
+
         if (m_bTrace) {
             std::cout << "To the HDLCd: " << a_pSnetServiceMessage->Dissect() << std::endl;
         } // if
