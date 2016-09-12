@@ -101,7 +101,7 @@ bool ToolHandler::SendHelper(SnetServiceMessage* a_pSnetServiceMessage) {
 }
 
 bool ToolHandler::Send(const ToolFrame* a_pToolFrame) {
-    assert(a_pToolFrame != NULL);
+    assert(a_pToolFrame);
 
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
     if (m_SendQueue.size() >= 100) {
