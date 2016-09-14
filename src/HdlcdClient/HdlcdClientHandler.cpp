@@ -66,7 +66,7 @@ void HdlcdClientHandler::ResolveDestination() {
             }); // async_wait
         } else {
             // Start the HDLCd access client. On any error, restart after a short delay
-            m_HdlcdClient = std::make_shared<HdlcdClient>(m_IOService, m_SerialPortName, 0x01);
+            m_HdlcdClient = std::make_shared<HdlcdClient>(m_IOService, m_SerialPortName, HdlcdSessionDescriptor(SESSION_TYPE_TRX_ALL, SESSION_FLAGS_DELIVER_RCVD));
             m_HdlcdClient->SetOnClosedCallback([this]() {
                 m_ConnectionRetryTimer.expires_from_now(boost::posix_time::seconds(2));
                 m_ConnectionRetryTimer.async_wait([this](const boost::system::error_code& a_ErrorCode) {
