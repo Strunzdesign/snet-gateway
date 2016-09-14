@@ -66,12 +66,14 @@ int main(int argc, char* argv[]) {
         } // if
                 
         if (!l_VariablesMap.count("port")) {
-            std::cout << "you have to specify the TCP listener port" << std::endl;
+            std::cout << "snet-gateway: you have to specify the TCP listener port" << std::endl;
+            std::cout << "snet-gateway: Use --help for more information." << std::endl;
             return 1;
         } // if
         
         if (!l_VariablesMap.count("connect")) {
-            std::cout << "you have to specify at least one device to connect to!" << std::endl;
+            std::cout << "snet-gateway: you have to specify at least one device to connect to!" << std::endl;
+            std::cout << "snet-gateway: Use --help for more information." << std::endl;
             return 1;
         } // if
         
