@@ -1,5 +1,0 @@
-// The configured options and settings for the s-net(r) gateway
-#include "HdlcdConfig.h"
-#include "SnetConfig.h"
-#define SNET_GATEWAY_VERSION_MAJOR @SNET_GATEWAY_VERSION_MAJOR@
-#define SNET_GATEWAY_VERSION_MINOR @SNET_GATEWAY_VERSION_MINOR@
