@@ -156,7 +156,6 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
                 auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
                 if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
-                    std::cout << "Send packet " << l_AddressAssignmentReply.Dissect() << std::endl;
                     SendHelper(&l_AddressAssignmentReply);
                 } // if
 
@@ -167,7 +166,6 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             if (l_ServiceMessage.GetDstSSA() == 0x4000) {
                 auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
                 if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
-                    std::cout << "Send packet " << l_PublishSubscribeConfirmation.Dissect() << std::endl;
                     SendHelper(&l_PublishSubscribeConfirmation);
                 } // if
 
