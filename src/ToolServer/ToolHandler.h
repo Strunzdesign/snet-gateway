@@ -32,9 +32,9 @@
 #include "ToolHandlerCollection.h"
 #include "ToolFrameParser.h"
 #include "PublishSubscribeService.h"
+#include "SnetServiceMessage.h"
 class Routing;
 class AddressLease;
-class SnetServiceMessage;
 
 class ToolHandler: public std::enable_shared_from_this<ToolHandler> {
 public:
@@ -45,13 +45,13 @@ public:
     void Start();
     void Close();
 
-    bool Send(SnetServiceMessage* a_pSnetServiceMessage);    
-    void InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame);
+    bool Send(const SnetServiceMessage& a_SnetServiceMessage);
+    void InterpretDeserializedToolFrame(const std::shared_ptr<ToolFrame> a_ToolFrame);
     
 private:
     // Internal helpers
-    bool SendHelper(SnetServiceMessage* a_pSnetServiceMessage);    
-    bool Send(const ToolFrame* a_pToolFrame);
+    bool SendHelper(const SnetServiceMessage& a_SnetServiceMessage);
+    bool Send(const ToolFrame& a_ToolFrame);
     void ReadChunkFromSocket();
     void DoWrite();
 

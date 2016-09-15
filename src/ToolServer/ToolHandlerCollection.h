@@ -27,9 +27,9 @@
 #include <memory>
 #include <list>
 #include <boost/asio.hpp>
+#include "SnetServiceMessage.h"
 class ToolHandler;
 class Routing;
-class SnetServiceMessage;
 class AddressPool;
 class AddressLease;
 
@@ -44,7 +44,7 @@ public:
     std::shared_ptr<AddressLease> RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
     void DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler);
 
-    void Send(SnetServiceMessage* a_pSnetServiceMessage);
+    void Send(const SnetServiceMessage& a_SnetServiceMessage);
     
 private:
     // Internal helpers

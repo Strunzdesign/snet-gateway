@@ -36,7 +36,7 @@ public:
     Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable);
     void SystemShutdown();
 
-    void RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage);
+    void RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage);
 
 private:
     // Members

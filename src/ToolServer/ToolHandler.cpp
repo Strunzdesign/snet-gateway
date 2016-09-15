@@ -74,41 +74,39 @@ void ToolHandler::Close() {
     } // if
 }
 
-bool ToolHandler::Send(SnetServiceMessage* a_pSnetServiceMessage) {
+bool ToolHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     // Check destination address
-    if (((a_pSnetServiceMessage->GetDstSSA() > 0x4000) && (a_pSnetServiceMessage->GetDstSSA() < 0xFFF0)) && (a_pSnetServiceMessage->GetDstSSA() != m_AddressLease->GetAddress())) {
+    if (((a_SnetServiceMessage.GetDstSSA() > 0x4000) && (a_SnetServiceMessage.GetDstSSA() < 0xFFF0)) && (a_SnetServiceMessage.GetDstSSA() != m_AddressLease->GetAddress())) {
         // Not for this tool!
         return false;
     } // if
     
     // Check subscription
-    if (m_PublishSubscribeService.IsServiceIdForMe(a_pSnetServiceMessage->GetSrcServiceId()) == false) {
+    if (m_PublishSubscribeService.IsServiceIdForMe(a_SnetServiceMessage.GetSrcServiceId()) == false) {
         // Subscription does not fit!
         return false;
     } // if
         
     // Create a copy and change the destination address
-    auto l_SnetServiceMessage = *a_pSnetServiceMessage;
+    auto l_SnetServiceMessage(a_SnetServiceMessage);
     l_SnetServiceMessage.SetDstSSA(m_AddressLease->GetAddress());
-    return SendHelper(&l_SnetServiceMessage);
+    return SendHelper(l_SnetServiceMessage);
 }
 
-bool ToolHandler::SendHelper(SnetServiceMessage* a_pSnetServiceMessage) {        
+bool ToolHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
     // Queue for transmission :-)
     ToolFrame0302 l_ToolFrame0302;
-    l_ToolFrame0302.m_Payload = a_pSnetServiceMessage->Serialize();
-    return Send(&l_ToolFrame0302);
+    l_ToolFrame0302.m_Payload = a_SnetServiceMessage.Serialize();
+    return Send(l_ToolFrame0302);
 }
 
-bool ToolHandler::Send(const ToolFrame* a_pToolFrame) {
-    assert(a_pToolFrame);
-
+bool ToolHandler::Send(const ToolFrame& a_ToolFrame) {
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
     if (m_SendQueue.size() >= 100) {
         return false;
     } // if
     
-    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_pToolFrame->SerializeFrame()));
+    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_ToolFrame.SerializeFrame()));
     if ((!m_bWriteInProgress) && (!m_SendQueue.empty())) {
         DoWrite();
     } // if
@@ -130,24 +128,24 @@ void ToolHandler::ReadChunkFromSocket() {
     }); // async_read
 }
 
-void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_ToolFrame) {
+void ToolHandler::InterpretDeserializedToolFrame(const std::shared_ptr<ToolFrame> a_ToolFrame) {
     if (!a_ToolFrame) { return; }
     if (a_ToolFrame->GetRequestId() == 0x0100) {
         // We have to send a respose now
         ToolFrame0101 l_ToolFrame0101;
-        Send(&l_ToolFrame0101);
+        Send(l_ToolFrame0101);
     } // if
     
     if (a_ToolFrame->GetRequestId() == 0x0110) {
         // We have to send a respose now
         ToolFrame0111 l_ToolFrame0111;
-        Send(&l_ToolFrame0111);
+        Send(l_ToolFrame0111);
     } // if
     
     if (a_ToolFrame->GetRequestId() == 0x0300) {
         // We have to send a respose now
         ToolFrame0301 l_ToolFrame0301;
-        Send(&l_ToolFrame0301);
+        Send(l_ToolFrame0301);
         
         // Relay the payload
         SnetServiceMessage l_ServiceMessage;
@@ -156,7 +154,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
                 auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
                 if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
-                    SendHelper(&l_AddressAssignmentReply);
+                    SendHelper(l_AddressAssignmentReply);
                 } // if
 
                 return;
@@ -166,7 +164,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             if (l_ServiceMessage.GetDstSSA() == 0x4000) {
                 auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
                 if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
-                    SendHelper(&l_PublishSubscribeConfirmation);
+                    SendHelper(l_PublishSubscribeConfirmation);
                 } // if
 
                 return;
@@ -178,7 +176,7 @@ void ToolHandler::InterpretDeserializedToolFrame(std::shared_ptr<ToolFrame> a_To
             } // if
             
             // Route this packet
-            m_RoutingEntity->RouteSnetPacket(&l_ServiceMessage);
+            m_RoutingEntity->RouteSnetPacket(l_ServiceMessage);
         } // if
     } // if
 }

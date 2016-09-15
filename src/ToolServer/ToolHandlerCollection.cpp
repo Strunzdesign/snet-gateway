@@ -65,9 +65,9 @@ void ToolHandlerCollection::DeregisterToolHandler(std::shared_ptr<ToolHandler> a
     m_ToolHandlerList.remove(a_ToolHandler);
 }
 
-void ToolHandlerCollection::Send(SnetServiceMessage* a_pSnetServiceMessage) {
+void ToolHandlerCollection::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     for (auto l_It = m_ToolHandlerList.begin(); l_It != m_ToolHandlerList.end(); ++l_It) {
-        (*l_It)->Send(a_pSnetServiceMessage);
+        (*l_It)->Send(a_SnetServiceMessage);
     } // for
 }
 

@@ -23,8 +23,8 @@
 
 #include "Routing.h"
 #include "SnetServiceMessage.h"
-#include "../ToolServer/ToolHandlerCollection.h"
-#include "../HdlcdClient/HdlcdClientHandlerCollection.h"
+#include "ToolHandlerCollection.h"
+#include "HdlcdClientHandlerCollection.h"
 #include <assert.h>
 
 Routing::Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
@@ -40,32 +40,32 @@ void Routing::SystemShutdown() {
     m_HdlcdClientHandlerCollection.reset();
 }
 
-void Routing::RouteSnetPacket(SnetServiceMessage* a_pSnetServiceMessage) {
-    uint16_t l_SrcSSA = a_pSnetServiceMessage->GetSrcSSA();
-    uint16_t l_DstSSA = a_pSnetServiceMessage->GetDstSSA();
+void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage) {
+    uint16_t l_SrcSSA = a_SnetServiceMessage.GetSrcSSA();
+    uint16_t l_DstSSA = a_SnetServiceMessage.GetDstSSA();
     if ((l_DstSSA == 0x3FFc) || ((l_DstSSA == 0x4000) && (l_SrcSSA >= 0x4000))) {
         // Not caught yet
     } else if (l_DstSSA < 0x4000) {
         if (m_bReliable) {
             // To the HDLCd: explicitely demand for OnAirARQ for all outgoing snet packets :-)
-            a_pSnetServiceMessage->SetOnAirARQ(true);
+            a_SnetServiceMessage.SetOnAirARQ(true);
         } // if
 
         if (m_bTrace) {
-            std::cout << "To the HDLCd: " << a_pSnetServiceMessage->Dissect() << std::endl;
+            std::cout << "To the HDLCd: " << a_SnetServiceMessage.Dissect() << std::endl;
         } // if
         
         if (m_HdlcdClientHandlerCollection) {
-            m_HdlcdClientHandlerCollection->Send(std::move(HdlcdPacketData::CreatePacket(a_pSnetServiceMessage->Serialize(), true)));
+            m_HdlcdClientHandlerCollection->Send(HdlcdPacketData::CreatePacket(a_SnetServiceMessage.Serialize(), true));
         } // if
     } else {
         // To the tools
         if (m_bTrace) {
-            std::cout << "To clients:   " << a_pSnetServiceMessage->Dissect() << std::endl;
+            std::cout << "To clients:   " << a_SnetServiceMessage.Dissect() << std::endl;
         } // if
 
         if (m_ToolHandlerCollection) {
-            m_ToolHandlerCollection->Send(a_pSnetServiceMessage);
+            m_ToolHandlerCollection->Send(a_SnetServiceMessage);
         } // if
     } // else
 }
