@@ -1,0 +1,11 @@
+<map id="ToolHandler::InterpretDeserializedToolFrame" name="ToolHandler::InterpretDeserializedToolFrame">
+<area shape="rect" id="node2" href="$classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0" title="ToolHandler::Send" alt="" coords="338,141,477,167"/>
+<area shape="rect" id="node8" href="$classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165" title="ToolHandler::Close" alt="" coords="611,254,753,281"/>
+<area shape="rect" id="node9" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="292,297,523,323"/>
+<area shape="rect" id="node10" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="321,348,494,389"/>
+<area shape="rect" id="node3" href="$classPublishSubscribeService.html#a00dbab30fdc9ce967253397f8523fae7" title="PublishSubscribeService\l::IsServiceIdForMe" alt="" coords="595,5,769,47"/>
+<area shape="rect" id="node4" href="$classToolFrameGenerator.html#a381a0e3745476789d888d3b497015614" title="ToolFrameGenerator\l::EscapeFrame" alt="" coords="605,71,759,112"/>
+<area shape="rect" id="node5" href="$classToolFrame.html#ae7a1852c306d9ac3b4f49f998127a436" title="ToolFrame::SerializeFrame" alt="" coords="587,137,777,163"/>
+<area shape="rect" id="node7" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="571,188,793,229"/>
+<area shape="rect" id="node6" href="$classToolFrame.html#ac10c79f12b8a4c69a047bacdeb826dce" title="ToolFrame::GetPayload" alt="" coords="841,137,1012,163"/>
+</map>

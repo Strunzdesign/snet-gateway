@@ -1,0 +1,5 @@
+<map id="ToolFrame::SerializeFrame" name="ToolFrame::SerializeFrame">
+<area shape="rect" id="node2" href="$classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0" title="ToolHandler::Send" alt="" coords="244,42,383,69"/>
+<area shape="rect" id="node3" href="$classToolHandler.html#a612a2b02ba51087c11f2e8346ece9f72" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="431,5,669,47"/>
+<area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="717,35,940,76"/>
+</map>
