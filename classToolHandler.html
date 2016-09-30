@@ -117,33 +117,27 @@ $(document).ready(function(){initNavTree('classToolHandler.html','');});
 Inheritance diagram for ToolHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classToolHandler__inherit__graph.png" border="0" usemap="#ToolHandler_inherit__map" alt="Inheritance graph"/></div>
-<map name="ToolHandler_inherit__map" id="ToolHandler_inherit__map">
-</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for ToolHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classToolHandler__coll__graph.png" border="0" usemap="#ToolHandler_coll__map" alt="Collaboration graph"/></div>
-<map name="ToolHandler_coll__map" id="ToolHandler_coll__map">
-</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d23197e0b2bf3567f190a54acdf0834"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a7d23197e0b2bf3567f190a54acdf0834">ToolHandler</a> (std::shared_ptr&lt; <a class="el" href="classToolHandlerCollection.html">ToolHandlerCollection</a> &gt; a_ToolHandlerCollection, boost::asio::ip::tcp::socket &amp;a_TCPSocket)</td></tr>
 <tr class="separator:a7d23197e0b2bf3567f190a54acdf0834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ac3255d7a534d3c0481dbe6b193d34d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a0ac3255d7a534d3c0481dbe6b193d34d">~ToolHandler</a> ()</td></tr>
-<tr class="separator:a0ac3255d7a534d3c0481dbe6b193d34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12ce51e4faa4908607bc5bee4a61adaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a12ce51e4faa4908607bc5bee4a61adaf">RegisterRoutingEntity</a> (std::shared_ptr&lt; <a class="el" href="classRouting.html">Routing</a> &gt; a_RoutingEntity)</td></tr>
 <tr class="separator:a12ce51e4faa4908607bc5bee4a61adaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5074ac31f3d56d0ce906ee749de21654"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a5074ac31f3d56d0ce906ee749de21654">Start</a> ()</td></tr>
 <tr class="separator:a5074ac31f3d56d0ce906ee749de21654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1535d87dc713731ae2a7d9590e0a5165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165">Close</a> ()</td></tr>
 <tr class="separator:a1535d87dc713731ae2a7d9590e0a5165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a751b6eafd7065dbbd8054ca8df4fb7a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0">Send</a> (SnetServiceMessage *a_pSnetServiceMessage)</td></tr>
-<tr class="separator:a751b6eafd7065dbbd8054ca8df4fb7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612a2b02ba51087c11f2e8346ece9f72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a612a2b02ba51087c11f2e8346ece9f72">InterpretDeserializedToolFrame</a> (std::shared_ptr&lt; <a class="el" href="classToolFrame.html">ToolFrame</a> &gt; a_ToolFrame)</td></tr>
-<tr class="separator:a612a2b02ba51087c11f2e8346ece9f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cf52e949538c48e7efee4e00c8323e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9">Send</a> (const SnetServiceMessage &amp;a_SnetServiceMessage)</td></tr>
+<tr class="separator:a3cf52e949538c48e7efee4e00c8323e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e3072bd463c8dd035307049bc389af6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToolHandler.html#a6e3072bd463c8dd035307049bc389af6">InterpretDeserializedToolFrame</a> (const std::shared_ptr&lt; <a class="el" href="classToolFrame.html">ToolFrame</a> &gt; a_ToolFrame)</td></tr>
+<tr class="separator:a6e3072bd463c8dd035307049bc389af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -177,33 +171,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0ac3255d7a534d3c0481dbe6b193d34d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ToolHandler::~ToolHandler </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00045">45</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classToolHandler_a0ac3255d7a534d3c0481dbe6b193d34d_cgraph.png" border="0" usemap="#classToolHandler_a0ac3255d7a534d3c0481dbe6b193d34d_cgraph" alt=""/></div>
-<map name="classToolHandler_a0ac3255d7a534d3c0481dbe6b193d34d_cgraph" id="classToolHandler_a0ac3255d7a534d3c0481dbe6b193d34d_cgraph">
-<area shape="rect" id="node2" href="classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165" title="ToolHandler::Close" alt="" coords="245,5,388,32"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a1535d87dc713731ae2a7d9590e0a5165"></a>
 <div class="memitem">
@@ -218,45 +185,44 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00063">63</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00059">59</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classToolHandler_a1535d87dc713731ae2a7d9590e0a5165_icgraph.png" border="0" usemap="#classToolHandler_a1535d87dc713731ae2a7d9590e0a5165_icgraph" alt=""/></div>
 <map name="classToolHandler_a1535d87dc713731ae2a7d9590e0a5165_icgraph" id="classToolHandler_a1535d87dc713731ae2a7d9590e0a5165_icgraph">
-<area shape="rect" id="node2" href="classToolHandler.html#a0ac3255d7a534d3c0481dbe6b193d34d" title="ToolHandler::~ToolHandler" alt="" coords="196,5,388,32"/>
-<area shape="rect" id="node3" href="classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0" title="ToolHandler::Send" alt="" coords="223,107,361,133"/>
-<area shape="rect" id="node4" href="classToolHandler.html#a612a2b02ba51087c11f2e8346ece9f72" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="436,49,675,90"/>
-<area shape="rect" id="node5" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="723,78,945,119"/>
+<area shape="rect" id="node2" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="196,63,335,90"/>
+<area shape="rect" id="node3" href="classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="383,5,621,47"/>
+<area shape="rect" id="node4" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="669,35,892,76"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a612a2b02ba51087c11f2e8346ece9f72"></a>
+<a class="anchor" id="a6e3072bd463c8dd035307049bc389af6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ToolHandler::InterpretDeserializedToolFrame </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classToolFrame.html">ToolFrame</a> &gt;&#160;</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classToolFrame.html">ToolFrame</a> &gt;&#160;</td>
           <td class="paramname"><em>a_ToolFrame</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00133">133</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00127">127</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_cgraph.png" border="0" usemap="#classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_cgraph" alt=""/></div>
-<map name="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_cgraph" id="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_cgraph">
-<area shape="rect" id="node2" href="classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0" title="ToolHandler::Send" alt="" coords="338,141,477,167"/>
+<div class="center"><img src="classToolHandler_a6e3072bd463c8dd035307049bc389af6_cgraph.png" border="0" usemap="#classToolHandler_a6e3072bd463c8dd035307049bc389af6_cgraph" alt=""/></div>
+<map name="classToolHandler_a6e3072bd463c8dd035307049bc389af6_cgraph" id="classToolHandler_a6e3072bd463c8dd035307049bc389af6_cgraph">
+<area shape="rect" id="node2" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="338,141,477,167"/>
 <area shape="rect" id="node8" href="classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165" title="ToolHandler::Close" alt="" coords="611,254,753,281"/>
 <area shape="rect" id="node9" href="classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="292,297,523,323"/>
 <area shape="rect" id="node10" href="classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="321,348,494,389"/>
@@ -272,10 +238,10 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_icgraph.png" border="0" usemap="#classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_icgraph" alt=""/></div>
-<map name="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_icgraph" id="classToolHandler_a612a2b02ba51087c11f2e8346ece9f72_icgraph">
+<div class="center"><img src="classToolHandler_a6e3072bd463c8dd035307049bc389af6_icgraph.png" border="0" usemap="#classToolHandler_a6e3072bd463c8dd035307049bc389af6_icgraph" alt=""/></div>
+<map name="classToolHandler_a6e3072bd463c8dd035307049bc389af6_icgraph" id="classToolHandler_a6e3072bd463c8dd035307049bc389af6_icgraph">
 <area shape="rect" id="node2" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="292,5,515,47"/>
-<area shape="rect" id="node3" href="classToolHandler.html#a751b6eafd7065dbbd8054ca8df4fb7a0" title="ToolHandler::Send" alt="" coords="563,42,701,69"/>
+<area shape="rect" id="node3" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="563,42,701,69"/>
 </map>
 </div>
 </p>
@@ -296,38 +262,38 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00049">49</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00045">45</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a751b6eafd7065dbbd8054ca8df4fb7a0"></a>
+<a class="anchor" id="a3cf52e949538c48e7efee4e00c8323e9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool ToolHandler::Send </td>
           <td>(</td>
-          <td class="paramtype">SnetServiceMessage *&#160;</td>
-          <td class="paramname"><em>a_pSnetServiceMessage</em></td><td>)</td>
+          <td class="paramtype">const SnetServiceMessage &amp;&#160;</td>
+          <td class="paramname"><em>a_SnetServiceMessage</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00077">77</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00073">73</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_cgraph.png" border="0" usemap="#classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_cgraph" alt=""/></div>
-<map name="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_cgraph" id="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_cgraph">
+<div class="center"><img src="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_cgraph.png" border="0" usemap="#classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_cgraph" alt=""/></div>
+<map name="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_cgraph" id="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_cgraph">
 <area shape="rect" id="node2" href="classPublishSubscribeService.html#a00dbab30fdc9ce967253397f8523fae7" title="PublishSubscribeService\l::IsServiceIdForMe" alt="" coords="217,5,390,47"/>
 <area shape="rect" id="node3" href="classToolFrameGenerator.html#a381a0e3745476789d888d3b497015614" title="ToolFrameGenerator\l::EscapeFrame" alt="" coords="226,71,381,112"/>
 <area shape="rect" id="node4" href="classToolFrame.html#ae7a1852c306d9ac3b4f49f998127a436" title="ToolFrame::SerializeFrame" alt="" coords="208,137,399,163"/>
 <area shape="rect" id="node6" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="192,188,415,229"/>
 <area shape="rect" id="node10" href="classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165" title="ToolHandler::Close" alt="" coords="793,305,936,331"/>
 <area shape="rect" id="node5" href="classToolFrame.html#ac10c79f12b8a4c69a047bacdeb826dce" title="ToolFrame::GetPayload" alt="" coords="497,137,667,163"/>
-<area shape="rect" id="node7" href="classToolHandler.html#a612a2b02ba51087c11f2e8346ece9f72" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="463,239,701,280"/>
+<area shape="rect" id="node7" href="classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="463,239,701,280"/>
 <area shape="rect" id="node8" href="classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="749,187,980,214"/>
 <area shape="rect" id="node9" href="classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="778,239,951,280"/>
 </map>
@@ -337,9 +303,9 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_icgraph.png" border="0" usemap="#classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_icgraph" alt=""/></div>
-<map name="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_icgraph" id="classToolHandler_a751b6eafd7065dbbd8054ca8df4fb7a0_icgraph">
-<area shape="rect" id="node2" href="classToolHandler.html#a612a2b02ba51087c11f2e8346ece9f72" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="192,5,431,47"/>
+<div class="center"><img src="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_icgraph.png" border="0" usemap="#classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_icgraph" alt=""/></div>
+<map name="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_icgraph" id="classToolHandler_a3cf52e949538c48e7efee4e00c8323e9_icgraph">
+<area shape="rect" id="node2" href="classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="192,5,431,47"/>
 <area shape="rect" id="node3" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="479,35,701,76"/>
 </map>
 </div>
@@ -360,7 +326,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00054">54</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ToolHandler_8cpp_source.html#l00050">50</a> of file <a class="el" href="ToolHandler_8cpp_source.html">ToolHandler.cpp</a>.</p>
 
 </div>
 </div>
