@@ -29,7 +29,7 @@
 #include <assert.h>
 using boost::asio::ip::tcp;
 
-ToolHandlerCollection::ToolHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_IOService(a_IOService), m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService)  {
+ToolHandlerCollection::ToolHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService)  {
     m_AddressPool = std::make_shared<AddressPool>();
 }
 

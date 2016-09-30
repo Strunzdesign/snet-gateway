@@ -23,7 +23,7 @@
 
 #include "HdlcdClientHandler.h"
 #include "HdlcdClient.h"
-#include "../Routing/Routing.h"
+#include "Routing.h"
 #include "SnetServiceMessage.h"
 #include <assert.h>
 using boost::asio::ip::tcp;

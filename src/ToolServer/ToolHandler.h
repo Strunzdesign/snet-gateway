@@ -39,7 +39,6 @@ class AddressLease;
 class ToolHandler: public std::enable_shared_from_this<ToolHandler> {
 public:
     ToolHandler(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
-    ~ToolHandler();
     void RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity);
     
     void Start();

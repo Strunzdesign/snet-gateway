@@ -42,10 +42,6 @@ ToolHandler::ToolHandler(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCol
     m_SendBufferOffset = 0;
 }
 
-ToolHandler::~ToolHandler() {
-    Close();
-}
-
 void ToolHandler::RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity) {
     assert(a_RoutingEntity);
     m_RoutingEntity = a_RoutingEntity;
@@ -61,15 +57,15 @@ void ToolHandler::Start() {
 }
 
 void ToolHandler::Close() {
+    // Keep this object alive
+    auto self(shared_from_this());
     if (m_Registered) {
-        // Keep this object alive
-        auto self(shared_from_this());
         m_Registered = false;
         m_TCPSocket.cancel();
         m_TCPSocket.close();
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
-        m_ToolHandlerCollection->DeregisterToolHandler(shared_from_this());
+        m_ToolHandlerCollection->DeregisterToolHandler(self);
         m_ToolHandlerCollection.reset();
     } // if
 }

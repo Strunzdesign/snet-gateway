@@ -51,7 +51,6 @@ private:
     void DoAccept();
 
     // Members
-    boost::asio::io_service& m_IOService;
     std::shared_ptr<AddressPool> m_AddressPool;
     std::list<std::shared_ptr<ToolHandler>> m_ToolHandlerList;
     std::shared_ptr<Routing> m_RoutingEntity;
