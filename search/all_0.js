@@ -9,5 +9,6 @@ var searchData=
   ['addresspool_2eh',['AddressPool.h',['../AddressPool_8h.html',1,'']]],
   ['addressservice',['AddressService',['../classAddressService.html',1,'']]],
   ['addressservice_2ecpp',['AddressService.cpp',['../AddressService_8cpp.html',1,'']]],
-  ['addressservice_2eh',['AddressService.h',['../AddressService_8h.html',1,'']]]
+  ['addressservice_2eh',['AddressService.h',['../AddressService_8h.html',1,'']]],
+  ['asyncconnect',['AsyncConnect',['../classHdlcdClient.html#a485e29db5cb483d9c0ac45febd963bbf',1,'HdlcdClient']]]
 ];

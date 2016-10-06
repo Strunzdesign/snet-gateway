@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['processrequest',['ProcessRequest',['../classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93',1,'AddressService::ProcessRequest()'],['../classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482',1,'PublishSubscribeService::ProcessRequest()']]],
-  ['publishsubscribeservice',['PublishSubscribeService',['../classPublishSubscribeService.html',1,'']]],
-  ['publishsubscribeservice_2ecpp',['PublishSubscribeService.cpp',['../PublishSubscribeService_8cpp.html',1,'']]],
-  ['publishsubscribeservice_2eh',['PublishSubscribeService.h',['../PublishSubscribeService_8h.html',1,'']]]
+  ['m_5fbuffer',['m_Buffer',['../classFrame.html#a2e811bd64b50c9c8f5afd3236a5325ca',1,'Frame']]],
+  ['m_5fbytesremaining',['m_BytesRemaining',['../classFrame.html#a17df3390173d38e71e3a69c5142ec5b3',1,'Frame']]],
+  ['m_5fpayload',['m_Payload',['../classToolFrame0300.html#a9b59ede6d1ad5e1ac0ee8d8671110642',1,'ToolFrame0300::m_Payload()'],['../classToolFrame0302.html#a573741d6098abca94ed59f2420eaa59e',1,'ToolFrame0302::m_Payload()']]],
+  ['main',['main',['../main-snet-gateway_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main-snet-gateway.cpp']]],
+  ['main_2dsnet_2dgateway_2ecpp',['main-snet-gateway.cpp',['../main-snet-gateway_8cpp.html',1,'']]]
 ];

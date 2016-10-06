@@ -1,0 +1,8 @@
+<map id="SnetPacket::Serialize" name="SnetPacket::Serialize">
+<area shape="rect" id="node2" href="$classSnetAppMessage.html#ae17d90b06081556f8fe4361f25705282" title="SnetAppMessage::Serialize" alt="" coords="208,31,403,57"/>
+<area shape="rect" id="node3" href="$classSnetServiceMessage.html#aeb1983c322915642b6043bb57c646e9c" title="SnetServiceMessage\l::Serialize" alt="" coords="451,23,607,65"/>
+<area shape="rect" id="node4" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="655,5,840,32"/>
+<area shape="rect" id="node5" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="678,56,817,83"/>
+<area shape="rect" id="node6" href="$classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="888,19,1127,61"/>
+<area shape="rect" id="node7" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="1175,49,1397,90"/>
+</map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hdlcdclienthandler',['HdlcdClientHandler',['../classHdlcdClientHandler.html',1,'']]],
-  ['hdlcdclienthandlercollection',['HdlcdClientHandlerCollection',['../classHdlcdClientHandlerCollection.html',1,'']]]
+  ['frame',['Frame',['../classFrame.html',1,'']]],
+  ['frameendpoint',['FrameEndpoint',['../classFrameEndpoint.html',1,'']]]
 ];
