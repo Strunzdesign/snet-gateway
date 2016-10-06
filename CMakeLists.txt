@@ -20,24 +20,15 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra")
 # Automatically set the version number
 set(SNET_GATEWAY_VERSION_MAJOR \"1\")
 set(SNET_GATEWAY_VERSION_MINOR \"0pre\")
-include_directories("${PROJECT_BINARY_DIR}/src")
+include_directories(
+    "${PROJECT_BINARY_DIR}/src"
+    "${PROJECT_SOURCE_DIR}/libs/framing/src"
+    "${PROJECT_SOURCE_DIR}/libs/hdlcd-devel/src"
+    "${PROJECT_SOURCE_DIR}/libs/snet-devel/src"
+)
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/Config.h.in"
     "${PROJECT_BINARY_DIR}/src/Config.h"
 )
-
-# Add include path for Microsoft Windows: hdlcd-devel
-set(HDLCD_DEVEL_INCLUDE_DIR "/usr/local/include" CACHE FILEPATH "/usr/local/include")
-if (NOT EXISTS ${HDLCD_DEVEL_INCLUDE_DIR}/HdlcdConfig.h)
-    message(SEND_ERROR "Can't find the HDLC daemon header files in ${HDLCD_DEVEL_INCLUDE_DIR}")
-endif()
-include_directories(${HDLCD_DEVEL_INCLUDE_DIR})
-
-# Add include path for Microsoft Windows: snet-devel
-set(SNET_DEVEL_INCLUDE_DIR "/usr/local/include" CACHE FILEPATH "/usr/local/include")
-if (NOT EXISTS ${SNET_DEVEL_INCLUDE_DIR}/SnetConfig.h)
-    message(SEND_ERROR "Can't find the snet header files in ${SNET_DEVEL_INCLUDE_DIR}")
-endif()
-include_directories(${SNET_DEVEL_INCLUDE_DIR})
 
 add_subdirectory(src)

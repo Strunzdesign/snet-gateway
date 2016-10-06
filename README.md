@@ -8,19 +8,14 @@ This package connects to the "HDLC Daemon" (HDLCd) that implements the "High-lev
 This software is intended to be portable and makes use of the boost libraries. It was tested on GNU/Linux (GCC toolchain)
 and Microsoft Windows (nuwen MinGW).
 
-Before being able to compile the gateway software of this repository, you have to install the shared header files from these repositories:
-- https://github.com/Strunzdesign/hdlcd-devel
-- https://github.com/Strunzdesign/snet-devel
-
 Stable releases of the s-net(r) gateway software:
 - none yet
 
 Current state:
 - v1.0pre (git master branch)
+  - Makes use of git submodules for "externals"
   - Works well with s-net(r) BASE release 3.6
   - Works well with each version of the HDLC Daemon (HDLCd)
-  - Requires the header files from https://github.com/Strunzdesign/hdlcd-devel for compilation!
-  - Requires the header files from https://github.com/Strunzdesign/snet-devel for compilation!
 
 Required libraries and tools:
 - GCC, the only tested compiler collection thus far (tested: GCC 4.9.3, GCC 6.1)

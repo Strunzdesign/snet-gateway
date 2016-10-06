@@ -8,8 +8,6 @@ Preparations:
 - Install the "GCC toolchain"
 - Install the "Boost Libraries"
 - Install the "CMake" build system
-- Install the shared header files from https://github.com/Strunzdesign/hdlcd-devel.git
-- Install the shared header files from https://github.com/Strunzdesign/snet-devel.git
 
 To compile and install the s-net(r) gateway, just follow these steps:
 1.) git clone https://github.com/Strunzdesign/snet-gateway.git
@@ -32,8 +30,6 @@ Preparations:
 - Follow the installation guide, e.g., unpack MinGW to C:\MinGW
 - Add MinGW to the path according to the installation guide
 - Download and install "CMake" from https://cmake.org/download
-- Install the shared header files from https://github.com/Strunzdesign/hdlcd-devel.git
-- Install the shared header files from https://github.com/Strunzdesign/snet-devel.git
 
 To compile and install the s-net(r) gateway, just follow these steps:
 1.) Go to your projects' folder and open a shell there
@@ -42,12 +38,10 @@ To compile and install the s-net(r) gateway, just follow these steps:
 4.) mkdir build
 5.) cd build
 6.) Pick yourself a directory to install the compiled files, e.g., consider C:\snet-gateway
-7.) Remember the directory where you installed the shared header files, e.g., C:\hdlcd-devel
-8.) Remember the directory where you installed the shared header files, e.g., C:\snet-devel
-10.) cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/c/snet-gateway -DHDLCD_DEVEL_INCLUDE_DIR=/c/hdlcd-devel/include -DSNET_DEVEL_INCLUDE_DIR=/c/snet-devel/include ..
-11.) If you get an error message on step 10, repeat step 10 once
-12.) make
-13.) make install
+7.) cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/c/snet-gateway ..
+8.) If you get an error message on step 10, repeat step 10 once
+9.) make
+10.) make install
 
 The snet-gateway binary will be installed to "C:\snet-gateway\bin\" if not specified differently.
 
