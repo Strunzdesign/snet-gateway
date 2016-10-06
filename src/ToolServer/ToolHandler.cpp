@@ -27,6 +27,7 @@
 #include "SnetServiceMessage.h"
 #include "AddressLease.h"
 #include "AddressService.h"
+#include "Component.h"
 #include <iostream>
 #include <assert.h>
 
@@ -77,8 +78,9 @@ bool ToolHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
         return false;
     } // if
     
-    // Check subscription
-    if (m_PublishSubscribeService.IsServiceIdForMe(a_SnetServiceMessage.GetSrcServiceId()) == false) {
+    // Check subscription if the message was sent to the gateway address 0x4000 or, i.e., the wildcard address 0xFFFE (WIRED_ADDR)
+    if (((a_SnetServiceMessage.GetDstSSA() == 0x4000) || (a_SnetServiceMessage.GetDstSSA() >= 0xFFF0)) &&
+        (m_PublishSubscribeService.IsServiceIdForMe(a_SnetServiceMessage.GetSrcServiceId()) == false)) {
         // Subscription does not fit!
         return false;
     } // if
@@ -172,7 +174,7 @@ void ToolHandler::InterpretDeserializedToolFrame(const std::shared_ptr<ToolFrame
             } // if
             
             // Route this packet
-            m_RoutingEntity->RouteSnetPacket(l_ServiceMessage);
+            m_RoutingEntity->RouteSnetPacket(l_ServiceMessage, COMPONENT_TOOLS);
         } // if
     } // if
 }
