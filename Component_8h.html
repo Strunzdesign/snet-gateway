@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>s-net-Gateway: src/HdlcdClient/HdlcdClientHandler.cpp File Reference</title>
+<title>s-net-Gateway: src/Routing/Component.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('HdlcdClientHandler_8cpp.html','');});
+$(document).ready(function(){initNavTree('Component_8h.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -102,28 +102,35 @@ $(document).ready(function(){initNavTree('HdlcdClientHandler_8cpp.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">HdlcdClientHandler.cpp File Reference</div>  </div>
+<div class="title">Component.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="HdlcdClientHandler_8h_source.html">HdlcdClientHandler.h</a>&quot;</code><br />
-<code>#include &quot;HdlcdClient.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="Routing_8h_source.html">Routing.h</a>&quot;</code><br />
-<code>#include &quot;SnetServiceMessage.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="Component_8h_source.html">Component.h</a>&quot;</code><br />
-<code>#include &lt;assert.h&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for HdlcdClientHandler.cpp:</div>
+<div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="HdlcdClientHandler_8cpp__incl.png" border="0" usemap="#src_2HdlcdClient_2HdlcdClientHandler_8cpp" alt=""/></div>
-<map name="src_2HdlcdClient_2HdlcdClientHandler_8cpp" id="src_2HdlcdClient_2HdlcdClientHandler_8cpp">
-<area shape="rect" id="node2" href="HdlcdClientHandler_8h.html" title="HdlcdClientHandler.h" alt="" coords="237,95,392,121"/>
-<area shape="rect" id="node9" href="Routing_8h.html" title="Routing.h" alt="" coords="131,95,213,121"/>
-<area shape="rect" id="node10" href="Component_8h.html" title="Component.h" alt="" coords="5,169,112,196"/>
+<div class="center"><img src="Component_8h__dep__incl.png" border="0" usemap="#src_2Routing_2Component_8hdep" alt=""/></div>
+<map name="src_2Routing_2Component_8hdep" id="src_2Routing_2Component_8hdep">
+<area shape="rect" id="node2" href="HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="5,155,199,196"/>
+<area shape="rect" id="node3" href="Routing_8h.html" title="src/Routing/Routing.h" alt="" coords="317,80,473,107"/>
+<area shape="rect" id="node6" href="ToolHandler_8cpp.html" title="src/ToolServer/ToolHandler.cpp" alt="" coords="632,162,855,189"/>
+<area shape="rect" id="node4" href="main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="223,162,413,189"/>
+<area shape="rect" id="node5" href="Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="437,162,607,189"/>
 </map>
 </div>
 </div>
-<p><a href="HdlcdClientHandler_8cpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="Component_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a5ad979ef79c95ec880b3b81d9574de37"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37">E_COMPONENT</a> { <a class="el" href="Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37ae0dd59d6c62e8979ad03d614b7508de4">COMPONENT_UNKNOWN</a> = 0, 
+<a class="el" href="Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37a530afda0fd34ae46a17b50ed3c140ff0">COMPONENT_HDLCD</a> = 1, 
+<a class="el" href="Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37a2a85691d9bb0dcf08cad423b0c17161b">COMPONENT_TOOLS</a> = 2
+ }</td></tr>
+<tr class="separator:a5ad979ef79c95ec880b3b81d9574de37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Florian Evers, <a href="#" onclick="location.href='mai'+'lto:'+'flo'+'ri'+'an-'+'ev'+'ers'+'@g'+'mx.'+'de'; return false;">flori<span style="display: none;">.nosp@m.</span>an-e<span style="display: none;">.nosp@m.</span>vers@<span style="display: none;">.nosp@m.</span>gmx.<span style="display: none;">.nosp@m.</span>de</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License version 3.</dd></dl>
@@ -132,13 +139,36 @@ Include dependency graph for HdlcdClientHandler.cpp:</div>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
-<p>Definition in file <a class="el" href="HdlcdClientHandler_8cpp_source.html">HdlcdClientHandler.cpp</a>.</p>
-</div></div><!-- contents -->
+<p>Definition in file <a class="el" href="Component_8h_source.html">Component.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a5ad979ef79c95ec880b3b81d9574de37"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37">E_COMPONENT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a5ad979ef79c95ec880b3b81d9574de37ae0dd59d6c62e8979ad03d614b7508de4"></a>COMPONENT_UNKNOWN&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a5ad979ef79c95ec880b3b81d9574de37a530afda0fd34ae46a17b50ed3c140ff0"></a>COMPONENT_HDLCD&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a5ad979ef79c95ec880b3b81d9574de37a2a85691d9bb0dcf08cad423b0c17161b"></a>COMPONENT_TOOLS&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="Component_8h_source.html#l00027">27</a> of file <a class="el" href="Component_8h_source.html">Component.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_55915ffdf197e3fb3fdce2b1bb5b1385.html">HdlcdClient</a></li><li class="navelem"><a class="el" href="HdlcdClientHandler_8cpp.html">HdlcdClientHandler.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f1351ff619b7f604af24a04dadb46451.html">Routing</a></li><li class="navelem"><a class="el" href="Component_8h.html">Component.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
