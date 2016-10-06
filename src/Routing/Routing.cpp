@@ -40,9 +40,9 @@ void Routing::SystemShutdown() {
     m_HdlcdClientHandlerCollection.reset();
 }
 
-void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPONENT a_eSourceComponent) const {
-    auto l_eDestination = PerformRouting(a_eSourceComponent, a_SnetServiceMessage.GetSrcSSA(), a_SnetServiceMessage.GetDstSSA());
-    if (l_eDestination == COMPONENT_HDLCD) {
+void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPONENT a_eSrcComponent) const {
+    auto l_eDstComponent = PerformRouting(a_eSrcComponent, a_SnetServiceMessage.GetSrcSSA(), a_SnetServiceMessage.GetDstSSA());
+    if (l_eDstComponent == COMPONENT_HDLCD) {
         // To the HDLCd
         if (m_bReliable) {
             // Explicitely demand for OnAirARQ for all outgoing s-net packets
@@ -56,7 +56,7 @@ void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPON
         if (m_HdlcdClientHandlerCollection) {
             m_HdlcdClientHandlerCollection->Send(HdlcdPacketData::CreatePacket(a_SnetServiceMessage.Serialize(), true));
         } // if
-    } else if (l_eDestination == COMPONENT_TOOLS) {
+    } else if (l_eDstComponent == COMPONENT_TOOLS) {
         // To the tools
         if (m_bTrace) {
             std::cout << "To clients:   " << a_SnetServiceMessage.Dissect() << std::endl;
@@ -70,15 +70,17 @@ void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPON
     } // else
 }
 
-E_COMPONENT Routing::PerformRouting(E_COMPONENT a_eSourceComponent, uint16_t a_SrcSSA, uint16_t a_DstSSA) const {
+E_COMPONENT Routing::PerformRouting(E_COMPONENT a_eSrcComponent, uint16_t a_SrcSSA, uint16_t a_DstSSA) const {
+    E_COMPONENT l_eDstComponent(COMPONENT_UNKNOWN);
     if ((a_DstSSA == 0x3FFc) || ((a_DstSSA == 0x4000) && (a_SrcSSA >= 0x4000))) {
         // Not caught (yet)
-        return COMPONENT_UNKNOWN;
-    } else if ((a_DstSSA < 0x4000) || ((a_DstSSA == 0xFFFE) && (a_eSourceComponent == COMPONENT_TOOLS))) {
+    } else if ((a_DstSSA < 0x4000) || ((a_DstSSA == 0xFFFE) && (a_eSrcComponent == COMPONENT_TOOLS))) {
         // Deliver to the HDLCd
-        return COMPONENT_HDLCD;
+        l_eDstComponent = COMPONENT_HDLCD;
     } else {
         // Deliver to the tools
-        return COMPONENT_TOOLS;
+        l_eDstComponent = COMPONENT_TOOLS;
     } // else
+    
+    return l_eDstComponent;
 }

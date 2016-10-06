@@ -37,11 +37,11 @@ public:
     Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable);
     void SystemShutdown();
 
-    void RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPONENT a_eSourceComponent) const;
+    void RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPONENT a_eSrcComponent) const;
 
 private:
     // Internal helpers
-    E_COMPONENT PerformRouting(E_COMPONENT a_eSourceComponent, uint16_t a_SrcSSA, uint16_t a_DstSSA) const;
+    E_COMPONENT PerformRouting(E_COMPONENT a_eSrcComponent, uint16_t a_SrcSSA, uint16_t a_DstSSA) const;
     
     // Members
     std::shared_ptr<ToolHandlerCollection>        m_ToolHandlerCollection;
