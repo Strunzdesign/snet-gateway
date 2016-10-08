@@ -85,10 +85,8 @@ bool ToolHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
         return false;
     } // if
         
-    // Create a copy and change the destination address
-    auto l_SnetServiceMessage(a_SnetServiceMessage);
-    l_SnetServiceMessage.SetDstSSA(m_AddressLease->GetAddress());
-    return SendHelper(l_SnetServiceMessage);
+    // Deliver
+    return SendHelper(a_SnetServiceMessage);
 }
 
 bool ToolHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
