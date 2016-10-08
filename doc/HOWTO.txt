@@ -11,4 +11,4 @@ cd build/src/snet-gateway
 Example (Microsoft Windows):
 
 cd build\src\snet-gateway
-snet-dissector.exe --port 5000 --connect //./COM1@example.com:10000 --connect //./COM2@example.com:10000
+snet-gateway.exe --port 5000 --connect //./COM1@example.com:10000 --connect //./COM2@example.com:10000
