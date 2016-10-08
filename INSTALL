@@ -2,7 +2,7 @@
 How to install the s-net(r) gateway for the HDLC Daemon
 ===
 
-For GNU/Linux:
+Initial download and setup on GNU/Linux:
 ---
 Preparations:
 - Install the "GCC toolchain"
@@ -10,7 +10,7 @@ Preparations:
 - Install the "CMake" build system
 
 To compile and install the s-net(r) gateway, just follow these steps:
-1.) git clone https://github.com/Strunzdesign/snet-gateway.git
+1.) git clone --recursive https://github.com/Strunzdesign/snet-gateway.git
 2.) cd snet-gateway
 3.) mkdir build
 4.) cd build
@@ -22,7 +22,7 @@ The binary will be installed to "/usr/local/bin/".
 
 
 
-For Microsoft Windows 7:
+Initial download and setup on Microsoft Windows 7:
 ---
 Preparations:
 - Download the latest "nuwen MinGW" distribution from https://nuwen.net/mingw.html
@@ -33,7 +33,7 @@ Preparations:
 
 To compile and install the s-net(r) gateway, just follow these steps:
 1.) Go to your projects' folder and open a shell there
-2.) git clone https://github.com/Strunzdesign/snet-gateway.git
+2.) git clone --recursive https://github.com/Strunzdesign/snet-gateway.git
 3.) cd snet-gateway
 4.) mkdir build
 5.) cd build
@@ -44,5 +44,16 @@ To compile and install the s-net(r) gateway, just follow these steps:
 10.) make install
 
 The snet-gateway binary will be installed to "C:\snet-gateway\bin\" if not specified differently.
+
+
+
+Update and reompile your local repository (same for all OS):
+---
+1.) cd snet-devel
+2.) git pull
+3.) git submodule update
+4.) cd build
+5.) make
+6.) make install
 
 Have fun :-)
