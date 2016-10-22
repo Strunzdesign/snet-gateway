@@ -1,5 +1,5 @@
 <map id="libs/hdlcd&#45;devel/src/HdlcdSessionDescriptor.h" name="libs/hdlcd&#45;devel/src/HdlcdSessionDescriptor.h">
-<area shape="rect" id="node2" href="$HdlcdSessionHeader_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="17,95,187,136"/>
-<area shape="rect" id="node3" href="$HdlcdClient_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="31,184,173,225"/>
+<area shape="rect" id="node2" href="$HdlcdSessionHeader_8h.html" title="This file contains the header declaration of class HdlcdSessionHeader. " alt="" coords="17,95,187,136"/>
+<area shape="rect" id="node3" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="31,184,173,225"/>
 <area shape="rect" id="node4" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="5,273,199,315"/>
 </map>

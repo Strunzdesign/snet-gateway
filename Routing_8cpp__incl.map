@@ -7,6 +7,6 @@
 <area shape="rect" id="node7" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="16,229,161,256"/>
 <area shape="rect" id="node8" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="351,304,456,331"/>
 <area shape="rect" id="node17" href="$HdlcdPacketData_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="605,155,748,181"/>
-<area shape="rect" id="node18" href="$HdlcdPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="633,229,745,256"/>
-<area shape="rect" id="node19" href="$Frame_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="875,304,948,331"/>
+<area shape="rect" id="node18" href="$HdlcdPacket_8h.html" title="This file contains the header declaration of class HdlcdPacket. " alt="" coords="633,229,745,256"/>
+<area shape="rect" id="node19" href="$Frame_8h.html" title="This file contains the header declaration of class Frame. " alt="" coords="875,304,948,331"/>
 </map>

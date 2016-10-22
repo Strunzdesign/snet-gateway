@@ -1,9 +1,9 @@
 <map id="libs/framing/src/Frame.h" name="libs/framing/src/Frame.h">
-<area shape="rect" id="node2" href="$FrameEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="615,177,841,203"/>
-<area shape="rect" id="node6" href="$HdlcdPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="449,80,591,121"/>
-<area shape="rect" id="node14" href="$HdlcdSessionHeader_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="779,80,949,121"/>
+<area shape="rect" id="node2" href="$FrameEndpoint_8h.html" title="This file contains the header declaration of class FrameEndpoint. " alt="" coords="615,177,841,203"/>
+<area shape="rect" id="node6" href="$HdlcdPacket_8h.html" title="This file contains the header declaration of class HdlcdPacket. " alt="" coords="449,80,591,121"/>
+<area shape="rect" id="node14" href="$HdlcdSessionHeader_8h.html" title="This file contains the header declaration of class HdlcdSessionHeader. " alt="" coords="779,80,949,121"/>
 <area shape="rect" id="node3" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="558,259,730,300"/>
-<area shape="rect" id="node4" href="$HdlcdClient_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="652,348,793,389"/>
+<area shape="rect" id="node4" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="652,348,793,389"/>
 <area shape="rect" id="node5" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="258,437,451,479"/>
 <area shape="rect" id="node7" href="$HdlcdPacketData_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="279,169,425,211"/>
 <area shape="rect" id="node13" href="$HdlcdPacketCtrl_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="449,169,591,211"/>
