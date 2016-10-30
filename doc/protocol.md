@@ -16,12 +16,12 @@ source code, such "client" software is referred to as a "tool".
         +----+    +--+                                                  +--------+
         
                        I----------I        I---------I          I-------I
-                           HDLC             HDLCd                gateway
-                                            access               client
-                                            protocol             protocol
+                           HDLC             HDLCd                Gateway
+                           via              access               client
+                           serial           protocol             protocol
                                             
           I------------------------------------------------------------------I
-                                exchange of s-net packets
+                                Exchange of s-net packets
 
 
 The gateway opens a port and allows tools to connect to it. The amount of tools that are allowed to
@@ -118,6 +118,7 @@ byte of such a frame **MUST NEVER** become the HDLC frame delimiter `0x7E`, whic
     ++-------------+------------+--------------------++----------------------++-----------------
 
 This frame format has the following properties:
+- The added overhead is two bytes per frame.
 - As bit 7 of the first byte of a frame is always set, it is impossible that the first byte of a frame becomes `0x7E`.
   This allows coexistence with the *escaping-based framing mode*.
 - The length field consists of 12 bits allowing payloads from 0 to 4191 bytes. Thus, the MTU is 4191. Sending empty frames
@@ -126,8 +127,9 @@ This frame format has the following properties:
   to consider a reserved bit that was set as a violation of the protocol.
 
 Mode of operation:
+- This frame format is the same for frames sent to and received from the gateway.
 - On any error or protocol violation, the TCP socket is closed.
-- Theoretically it is possible to mix escaped frames and legth-based frames on the same socket. You *SHOULD NOT* do that,
+- Theoretically it is possible to mix escaped frames and legth-based frames on the same socket. You **SHOULD NOT** do that,
   however, it is allowed.
 - A protocol entity may safely stop reading from the TCP socket in cases of congestions. TCP intrinsically takes care of
   propagating the congestion to the peer entity. There, trying to send subsequent data causes temporary blocks, which is
