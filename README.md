@@ -17,11 +17,13 @@ Stable releases of the s-net(r) gateway software:
 Current state:
 - v1.1pre (git master branch)
 
-Required libraries and tools:
+## Required libraries and tools:
 - GCC, the only tested compiler collection thus far (tested: GCC 4.9.3, GCC 6.1)
 - Boost, a platform-independent toolkit for development of C++ applications
 - CMake, the build system
 - Doxygen, for development
 - nuwen MinGW, to compile the software on Microsoft Windows (tested: 13.4, 14.0)
 
-See online doxygen documentation at http://strunzdesign.github.io/snet-gateway/
+## Documentation
+- See *online doxygen documentation* at http://strunzdesign.github.io/snet-gateway/
+- Read the specification of the *gateway client protocol* at https://github.com/Strunzdesign/snet-gateway/blob/master/doc/protocol.md
