@@ -55,13 +55,13 @@ private:
     }
 
     // Methods
-    E_GWCLIENT_FRAME GetGwClientFrameType() const { return GWCLIENT_FRAME_LENGTH; }
+    E_GWCLIENT_FRAME GetGwClientFrameType() const { return GWCLIENT_FRAME_ESCAPED; }
 
     // Serializer
     const std::vector<unsigned char> Serialize() const {
         assert(m_eDeserialize == DESERIALIZE_FULL);
         // Obtain required amount of memory for the fully escaped frame
-        size_t l_NbrOfBytesToEscapeMax = 2; // Space for two frame delimiters
+        size_t l_NbrOfBytesToEscapeMax = 2; // Space for the two frame delimiters
         for (size_t l_Index = 0; l_Index < m_Buffer.size(); ++l_Index) {
             if ((m_Buffer[l_Index] == 0x7D) || (m_Buffer[l_Index] == 0x7E)) {
                 ++l_NbrOfBytesToEscapeMax;
