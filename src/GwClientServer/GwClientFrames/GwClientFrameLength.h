@@ -75,13 +75,19 @@ private:
         case DESERIALIZE_HEADER: {
             // Deserialize the header
             assert(m_Buffer.size() == 2);
-            m_BytesRemaining = (uint16_t(m_Buffer[0] & 0x0F) + m_Buffer[1]);
-            m_Buffer.clear();
-            m_eDeserialize = DESERIALIZE_DATA;
-            if (m_BytesRemaining == 0) {
-                // An empty data frame?!... Ok...
-                m_eDeserialize = DESERIALIZE_FULL;
-            } // if
+            if ((m_Buffer[0] & GWCLIENT_FRAME_MASK) != GWCLIENT_FRAME_LENGTH) {
+                // Error!
+                m_eDeserialize = DESERIALIZE_ERROR;
+                return false;
+            } else {
+                m_BytesRemaining = (uint16_t(m_Buffer[0] & 0x0F) + m_Buffer[1]);
+                m_Buffer.clear();
+                m_eDeserialize = DESERIALIZE_DATA;
+                if (m_BytesRemaining == 0) {
+                    // An empty data frame?!... Ok...
+                    m_eDeserialize = DESERIALIZE_FULL;
+                } // if
+            } // else
 
             break;
         }
