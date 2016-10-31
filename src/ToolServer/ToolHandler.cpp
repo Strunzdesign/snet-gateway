@@ -23,6 +23,10 @@
 
 #include "ToolHandler.h"
 #include "ToolFrameGenerator.h"
+#include "CommandResponseFrame0101.h"
+#include "CommandResponseFrame0111.h"
+#include "CommandResponseFrame0301.h"
+#include "CommandResponseFrame0302.h"
 #include "Routing.h"
 #include "SnetServiceMessage.h"
 #include "AddressLease.h"
@@ -91,18 +95,18 @@ bool ToolHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
 
 bool ToolHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
     // Queue for transmission :-)
-    ToolFrame0302 l_ToolFrame0302;
-    l_ToolFrame0302.m_Payload = a_SnetServiceMessage.Serialize();
-    return Send(l_ToolFrame0302);
+    CommandResponseFrame0302 l_CommandResponseFrame0302;
+    l_CommandResponseFrame0302.m_Payload = a_SnetServiceMessage.Serialize();
+    return Send(l_CommandResponseFrame0302);
 }
 
-bool ToolHandler::Send(const ToolFrame& a_ToolFrame) {
+bool ToolHandler::Send(const CommandResponseFrame& a_CommandResponseFrame) {
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
     if (m_SendQueue.size() >= 100) {
         return false;
     } // if
     
-    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_ToolFrame.SerializeFrame()));
+    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_CommandResponseFrame.SerializeFrame()));
     if ((!m_bWriteInProgress) && (!m_SendQueue.empty())) {
         DoWrite();
     } // if
@@ -124,28 +128,28 @@ void ToolHandler::ReadChunkFromSocket() {
     }); // async_read
 }
 
-void ToolHandler::InterpretDeserializedToolFrame(const std::shared_ptr<ToolFrame> a_ToolFrame) {
-    if (!a_ToolFrame) { return; }
-    if (a_ToolFrame->GetRequestId() == 0x0100) {
+void ToolHandler::InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame) {
+    if (!a_CommandResponseFrame) { return; }
+    if (a_CommandResponseFrame->GetRequestId() == 0x0100) {
         // We have to send a respose now
-        ToolFrame0101 l_ToolFrame0101;
-        Send(l_ToolFrame0101);
+        CommandResponseFrame0101 l_CommandResponseFrame0101;
+        Send(l_CommandResponseFrame0101);
     } // if
     
-    if (a_ToolFrame->GetRequestId() == 0x0110) {
+    if (a_CommandResponseFrame->GetRequestId() == 0x0110) {
         // We have to send a respose now
-        ToolFrame0111 l_ToolFrame0111;
-        Send(l_ToolFrame0111);
+        CommandResponseFrame0111 l_CommandResponseFrame0111;
+        Send(l_CommandResponseFrame0111);
     } // if
     
-    if (a_ToolFrame->GetRequestId() == 0x0300) {
+    if (a_CommandResponseFrame->GetRequestId() == 0x0300) {
         // We have to send a respose now
-        ToolFrame0301 l_ToolFrame0301;
-        Send(l_ToolFrame0301);
+        CommandResponseFrame0301 l_CommandResponseFrame0301;
+        Send(l_CommandResponseFrame0301);
         
         // Relay the payload
         SnetServiceMessage l_ServiceMessage;
-        if (l_ServiceMessage.Deserialize(a_ToolFrame->GetPayload())) {
+        if (l_ServiceMessage.Deserialize(a_CommandResponseFrame->GetPayload())) {
             // Check if it is directed to the address service
             if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
                 auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);

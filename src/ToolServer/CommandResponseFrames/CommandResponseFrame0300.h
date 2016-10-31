@@ -1,5 +1,5 @@
 /**
- * \file      ToolFrameParser.h
+ * \file      CommandResponseFrame0300.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,33 +21,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_FRAME_PARSER_H
-#define TOOL_FRAME_PARSER_H
+#ifndef COMMAND_RESPONSE_FRAME_0300_H
+#define COMMAND_RESPONSE_FRAME_0300_H
 
-#include <memory>
-#include <vector>
-class CommandResponseFrame;
-class ToolHandler;
+#include "CommandResponseFrame.h"
 
-class ToolFrameParser {
+class CommandResponseFrame0300: public CommandResponseFrame {
 public:
-    ToolFrameParser(ToolHandler& a_ToolHandler);
-    void Reset();
-    void AddReceivedRawBytes(const unsigned char* a_Buffer, size_t a_Bytes);
+    CommandResponseFrame0300(): CommandResponseFrame(0x0300) {}
+    const std::vector<unsigned char> GetPayload() const { return m_Payload; }
     
-private:
-    // Interal helpers
-    size_t AddChunk(const unsigned char* a_Buffer, size_t a_Bytes);
-    bool RemoveEscapeCharacters();
-    std::shared_ptr<CommandResponseFrame> DeserializeToolFrame(const std::vector<unsigned char> &a_UnescapedBuffer) const;
-    
-    // Members
-    ToolHandler& m_ToolHandler;
-
-    enum { max_length = 1024 };
-    std::vector<unsigned char> m_Buffer;
-    bool m_bStartTokenSeen;
+    std::vector<unsigned char> m_Payload;
 };
 
-#endif // TOOL_FRAME_PARSER_H
-
+#endif // COMMAND_RESPONSE_FRAME_0300_H

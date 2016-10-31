@@ -9,10 +9,9 @@ include_directories(
     "ToolServer"
     "ToolServer/AddressService"
     "ToolServer/PublishSubscribeService"
-    "ToolServer/ToolFrames"
+    "ToolServer/CommandResponseFrames"
 )
     
-
 find_package(Threads)
 
 add_executable(snet-gateway

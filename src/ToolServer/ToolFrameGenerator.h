@@ -25,7 +25,6 @@
 #define TOOL_FRAME_GENERATOR_H
 
 #include <vector>
-#include "ToolFrame.h"
 
 class ToolFrameGenerator {
 public:

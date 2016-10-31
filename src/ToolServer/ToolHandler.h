@@ -31,6 +31,7 @@
 #include <boost/asio.hpp>
 #include "ToolHandlerCollection.h"
 #include "ToolFrameParser.h"
+#include "CommandResponseFrame.h"
 #include "PublishSubscribeService.h"
 #include "SnetServiceMessage.h"
 class Routing;
@@ -45,12 +46,12 @@ public:
     void Close();
 
     bool Send(const SnetServiceMessage& a_SnetServiceMessage);
-    void InterpretDeserializedToolFrame(const std::shared_ptr<ToolFrame> a_ToolFrame);
+    void InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame);
     
 private:
     // Internal helpers
     bool SendHelper(const SnetServiceMessage& a_SnetServiceMessage);
-    bool Send(const ToolFrame& a_ToolFrame);
+    bool Send(const CommandResponseFrame& a_CommandResponseFrame);
     void ReadChunkFromSocket();
     void DoWrite();
 

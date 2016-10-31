@@ -23,6 +23,10 @@
 
 #include "ToolFrameParser.h"
 #include "ToolHandler.h"
+#include "CommandResponseFrame.h"
+#include "CommandResponseFrame0100.h"
+#include "CommandResponseFrame0110.h"
+#include "CommandResponseFrame0300.h"
 
 ToolFrameParser::ToolFrameParser(ToolHandler& a_ToolHandler): m_ToolHandler(a_ToolHandler) {
     Reset();
@@ -151,22 +155,20 @@ bool ToolFrameParser::RemoveEscapeCharacters() {
     return (l_bMessageInvalid == false);
 }
 
-std::shared_ptr<ToolFrame> ToolFrameParser::DeserializeToolFrame(const std::vector<unsigned char> &a_UnescapedBuffer) const {
+std::shared_ptr<CommandResponseFrame> ToolFrameParser::DeserializeToolFrame(const std::vector<unsigned char> &a_UnescapedBuffer) const {
     // Parse byte buffer to get the tool frame
-    std::shared_ptr<ToolFrame> l_ToolFrame;
+    std::shared_ptr<CommandResponseFrame> l_CommandResponseFrame;
     uint16_t l_RequestId = ((uint16_t(a_UnescapedBuffer[1]) << 8) + a_UnescapedBuffer[2]);
     if (l_RequestId == 0x0100) {
-        l_ToolFrame = std::make_shared<ToolFrame0100>();
+        l_CommandResponseFrame = std::make_shared<CommandResponseFrame0100>();
     } else if (l_RequestId == 0x0110) {
-        l_ToolFrame = std::make_shared<ToolFrame0110>();
+        l_CommandResponseFrame = std::make_shared<CommandResponseFrame0110>();
     } else if (l_RequestId == 0x0300) {
-        auto l_ToolFrame0300 = std::make_shared<ToolFrame0300>();
-        l_ToolFrame0300->m_Payload.clear();
-        l_ToolFrame0300->m_Payload.insert(l_ToolFrame0300->m_Payload.end(), a_UnescapedBuffer.begin() + 3, a_UnescapedBuffer.end() - 1);
-        l_ToolFrame = l_ToolFrame0300;
-        
+        auto l_CommandResponseFrame0300 = std::make_shared<CommandResponseFrame0300>();
+        l_CommandResponseFrame0300->m_Payload.clear();
+        l_CommandResponseFrame0300->m_Payload.insert(l_CommandResponseFrame0300->m_Payload.end(), a_UnescapedBuffer.begin() + 3, a_UnescapedBuffer.end() - 1);
+        l_CommandResponseFrame = l_CommandResponseFrame0300;
     } // else if
     
-    return l_ToolFrame;
+    return l_CommandResponseFrame;
 }
-

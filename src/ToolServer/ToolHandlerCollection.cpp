@@ -23,7 +23,6 @@
 
 #include "ToolHandlerCollection.h"
 #include "ToolHandler.h"
-#include "ToolFrame.h"
 #include "SnetServiceMessage.h"
 #include "AddressPool.h"
 #include <assert.h>

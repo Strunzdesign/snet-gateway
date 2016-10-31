@@ -25,20 +25,20 @@
 #include <assert.h>
 #include <iostream>
 
-std::vector<unsigned char> ToolFrameGenerator::EscapeFrame(const std::vector<unsigned char> &a_ToolFrame) {
+std::vector<unsigned char> ToolFrameGenerator::EscapeFrame(const std::vector<unsigned char> &a_CommandResponseFrame) {
     // Obtain required amount of memory for the fully escaped HDLC frame
     size_t l_NbrOfBytesToEscapeMax = 0;
-    for (size_t l_Index = 1; l_Index < (a_ToolFrame.size() - 1); ++l_Index) {
-        if ((a_ToolFrame[l_Index] == 0x7D) || (a_ToolFrame[l_Index] == 0x7E)) {
+    for (size_t l_Index = 1; l_Index < (a_CommandResponseFrame.size() - 1); ++l_Index) {
+        if ((a_CommandResponseFrame[l_Index] == 0x7D) || (a_CommandResponseFrame[l_Index] == 0x7E)) {
             ++l_NbrOfBytesToEscapeMax;
         } // if
     } // for
 
     // Prepare return buffer
     std::vector<unsigned char> l_EscapedToolFrame;
-    l_EscapedToolFrame.reserve(a_ToolFrame.size() + l_NbrOfBytesToEscapeMax);
+    l_EscapedToolFrame.reserve(a_CommandResponseFrame.size() + l_NbrOfBytesToEscapeMax);
     l_EscapedToolFrame.emplace_back(0x7E);
-    for (std::vector<unsigned char>::const_iterator it = (a_ToolFrame.begin() + 1); it < (a_ToolFrame.end() - 1); ++it) {
+    for (std::vector<unsigned char>::const_iterator it = (a_CommandResponseFrame.begin() + 1); it < (a_CommandResponseFrame.end() - 1); ++it) {
         if (*it == 0x7D) {
             l_EscapedToolFrame.emplace_back(0x7D);
             l_EscapedToolFrame.emplace_back(0x5D);
@@ -51,6 +51,6 @@ std::vector<unsigned char> ToolFrameGenerator::EscapeFrame(const std::vector<uns
     } // for
     
     l_EscapedToolFrame.emplace_back(0x7E);
-    return std::move(l_EscapedToolFrame);
+    return l_EscapedToolFrame;
 }
 
