@@ -4,13 +4,13 @@
 <area shape="rect" id="node4" href="$classSnetAppMessage.html#a5207caab009484a3f3d718102c2c7c3b" title="SnetAppMessage::GetSrcServiceId" alt="" coords="1028,5,1271,32"/>
 <area shape="rect" id="node5" href="$classSnetServiceMessage.html#aeb1983c322915642b6043bb57c646e9c" title="SnetServiceMessage\l::Serialize" alt="" coords="225,626,381,667"/>
 <area shape="rect" id="node8" href="$classToolFrameGenerator.html#a381a0e3745476789d888d3b497015614" title="ToolFrameGenerator\l::EscapeFrame" alt="" coords="226,691,381,733"/>
-<area shape="rect" id="node9" href="$classToolFrame.html#ae7a1852c306d9ac3b4f49f998127a436" title="ToolFrame::SerializeFrame" alt="" coords="208,757,399,784"/>
+<area shape="rect" id="node9" href="$classCommandResponseFrame.html#a29944086cddea16ba814c693fcad804c" title="CommandResponseFrame\l::SerializeFrame" alt="" coords="208,757,399,798"/>
 <area shape="rect" id="node11" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="192,335,415,377"/>
 <area shape="rect" id="node24" href="$classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165" title="ToolHandler::Close" alt="" coords="793,459,936,485"/>
 <area shape="rect" id="node6" href="$classSnetAppMessage.html#ae17d90b06081556f8fe4361f25705282" title="SnetAppMessage::Serialize" alt="" coords="485,633,679,660"/>
 <area shape="rect" id="node7" href="$classSnetPacket.html#a194b1bdf7f976c39b36882f30eb94a7a" title="SnetPacket::Serialize" alt="" coords="787,633,942,660"/>
-<area shape="rect" id="node10" href="$classToolFrame.html#ac10c79f12b8a4c69a047bacdeb826dce" title="ToolFrame::GetPayload" alt="" coords="497,757,667,784"/>
-<area shape="rect" id="node12" href="$classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="463,334,701,375"/>
+<area shape="rect" id="node10" href="$classCommandResponseFrame.html#a09b1f2fa31e566a41e9d4af2c78611bf" title="CommandResponseFrame\l::GetPayload" alt="" coords="487,757,677,798"/>
+<area shape="rect" id="node12" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="463,334,701,375"/>
 <area shape="rect" id="node13" href="$classSnetServiceMessage.html#a09ef19df55558c530638bd8e492bd16d" title="SnetServiceMessage\l::Deserialize" alt="" coords="787,393,943,434"/>
 <area shape="rect" id="node16" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="749,123,980,149"/>
 <area shape="rect" id="node17" href="$classSnetPacket.html#a270da13b159d9c81c37e4d9f3d35f429" title="SnetPacket::GetSrcSSA" alt="" coords="1064,291,1235,317"/>

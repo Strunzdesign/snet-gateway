@@ -1,9 +1,9 @@
-<map id="src/ToolServer/ToolHandler.h" name="src/ToolServer/ToolHandler.h">
-<area shape="rect" id="node7" href="$ToolHandlerCollection_8h.html" title="ToolHandlerCollection.h" alt="" coords="87,80,261,107"/>
-<area shape="rect" id="node9" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="224,155,391,181"/>
-<area shape="rect" id="node15" href="$ToolFrameParser_8h.html" title="ToolFrameParser.h" alt="" coords="472,80,615,107"/>
-<area shape="rect" id="node17" href="$PublishSubscribeService_8h.html" title="PublishSubscribeService.h" alt="" coords="690,80,874,107"/>
-<area shape="rect" id="node10" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="243,229,388,256"/>
-<area shape="rect" id="node11" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="281,304,387,331"/>
-<area shape="rect" id="node16" href="$ToolFrame_8h.html" title="ToolFrame.h" alt="" coords="471,304,573,331"/>
+<map id="src/GwClientServer/ToolHandler.h" name="src/GwClientServer/ToolHandler.h">
+<area shape="rect" id="node7" href="$ToolHandlerCollection_8h.html" title="ToolHandlerCollection.h" alt="" coords="115,95,288,121"/>
+<area shape="rect" id="node9" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="243,169,410,196"/>
+<area shape="rect" id="node15" href="$ToolFrameParser_8h.html" title="ToolFrameParser.h" alt="" coords="622,95,765,121"/>
+<area shape="rect" id="node16" href="$CommandResponseFrame_8h.html" title="CommandResponseFrame.h" alt="" coords="661,244,862,271"/>
+<area shape="rect" id="node17" href="$PublishSubscribeService_8h.html" title="PublishSubscribeService.h" alt="" coords="363,95,547,121"/>
+<area shape="rect" id="node10" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="254,244,399,271"/>
+<area shape="rect" id="node11" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="274,319,379,345"/>
 </map>

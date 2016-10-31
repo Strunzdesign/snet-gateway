@@ -1,7 +1,7 @@
 <map id="SnetServiceMessage::SetPayload" name="SnetServiceMessage::SetPayload">
 <area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="209,13,440,39"/>
 <area shape="rect" id="node6" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="238,64,411,105"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="488,35,727,76"/>
+<area shape="rect" id="node3" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="488,35,727,76"/>
 <area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="775,5,997,47"/>
 <area shape="rect" id="node5" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="1045,42,1184,69"/>
 </map>

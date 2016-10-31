@@ -1,0 +1,6 @@
+<map id="CommandResponseFrame::GetPayload" name="CommandResponseFrame::GetPayload">
+<area shape="rect" id="node2" href="$classCommandResponseFrame.html#a29944086cddea16ba814c693fcad804c" title="CommandResponseFrame\l::SerializeFrame" alt="" coords="244,35,435,76"/>
+<area shape="rect" id="node3" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="483,42,621,69"/>
+<area shape="rect" id="node4" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="669,5,908,47"/>
+<area shape="rect" id="node5" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="956,35,1179,76"/>
+</map>

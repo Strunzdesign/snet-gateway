@@ -1,8 +1,8 @@
-<map id="src/ToolServer/ToolHandlerCollection.h" name="src/ToolServer/ToolHandlerCollection.h">
-<area shape="rect" id="node2" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="5,95,195,121"/>
-<area shape="rect" id="node3" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="219,95,389,121"/>
-<area shape="rect" id="node4" href="$ToolHandler_8h.html" title="src/ToolServer/ToolHandler.h" alt="" coords="413,95,621,121"/>
-<area shape="rect" id="node7" href="$ToolHandlerCollection_8cpp.html" title="src/ToolServer/ToolHandler\lCollection.cpp" alt="" coords="629,169,827,211"/>
-<area shape="rect" id="node5" href="$ToolFrameParser_8cpp.html" title="src/ToolServer/ToolFrame\lParser.cpp" alt="" coords="171,169,357,211"/>
-<area shape="rect" id="node6" href="$ToolHandler_8cpp.html" title="src/ToolServer/ToolHandler.cpp" alt="" coords="382,177,605,203"/>
+<map id="src/GwClientServer/ToolHandlerCollection.h" name="src/GwClientServer/ToolHandlerCollection.h">
+<area shape="rect" id="node2" href="$ToolHandler_8h.html" title="src/GwClientServer\l/ToolHandler.h" alt="" coords="212,95,356,136"/>
+<area shape="rect" id="node5" href="$ToolHandlerCollection_8cpp.html" title="src/GwClientServer\l/ToolHandlerCollection.cpp" alt="" coords="360,184,552,225"/>
+<area shape="rect" id="node6" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="472,102,661,129"/>
+<area shape="rect" id="node7" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="685,102,856,129"/>
+<area shape="rect" id="node3" href="$ToolFrameParser_8cpp.html" title="src/GwClientServer\l/ToolFrameParser.cpp" alt="" coords="5,184,168,225"/>
+<area shape="rect" id="node4" href="$ToolHandler_8cpp.html" title="src/GwClientServer\l/ToolHandler.cpp" alt="" coords="192,184,336,225"/>
 </map>

@@ -1,3 +1,10 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classHdlcdClient.html" title="Class HdlcdClient. " alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node1" href="$classFrame.html" title="Class Frame. " alt="" coords="5,107,68,133"/>
+<area shape="rect" id="node2" href="$classGwClientFrame.html" title="GwClientFrame" alt="" coords="134,56,253,83"/>
+<area shape="rect" id="node5" href="$classHdlcdPacket.html" title="Class HdlcdPacket. " alt="" coords="143,107,244,133"/>
+<area shape="rect" id="node8" href="$classHdlcdSessionHeader.html" title="Class HdlcdSessionHeader. " alt="" coords="116,157,271,184"/>
+<area shape="rect" id="node3" href="$classGwClientFrameEscaped.html" title="GwClientFrameEscaped" alt="" coords="319,5,493,32"/>
+<area shape="rect" id="node4" href="$classGwClientFrameLength.html" title="GwClientFrameLength" alt="" coords="325,56,487,83"/>
+<area shape="rect" id="node6" href="$classHdlcdPacketCtrl.html" title="HdlcdPacketCtrl" alt="" coords="345,107,467,133"/>
+<area shape="rect" id="node7" href="$classHdlcdPacketData.html" title="HdlcdPacketData" alt="" coords="341,157,471,184"/>
 </map>

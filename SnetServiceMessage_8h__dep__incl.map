@@ -1,14 +1,14 @@
 <map id="libs/snet&#45;devel/src/SnetServiceMessage.h" name="libs/snet&#45;devel/src/SnetServiceMessage.h">
-<area shape="rect" id="node2" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="5,95,199,136"/>
-<area shape="rect" id="node3" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="1074,191,1245,218"/>
-<area shape="rect" id="node4" href="$AddressService_8h.html" title="src/ToolServer/AddressService\l/AddressService.h" alt="" coords="325,95,543,136"/>
-<area shape="rect" id="node6" href="$ToolHandler_8cpp.html" title="src/ToolServer/ToolHandler.cpp" alt="" coords="176,281,399,307"/>
-<area shape="rect" id="node7" href="$PublishSubscribeService_8h.html" title="src/ToolServer/PublishSubscribe\lService/PublishSubscribeService.h" alt="" coords="674,95,909,136"/>
-<area shape="rect" id="node9" href="$ToolHandler_8h.html" title="src/ToolServer/ToolHandler.h" alt="" coords="842,191,1050,218"/>
-<area shape="rect" id="node11" href="$ToolHandlerCollection_8cpp.html" title="src/ToolServer/ToolHandler\lCollection.cpp" alt="" coords="1397,273,1594,315"/>
-<area shape="rect" id="node12" href="$ToolHandlerCollection_8h.html" title="src/ToolServer/ToolHandler\lCollection.h" alt="" coords="1061,95,1258,136"/>
-<area shape="rect" id="node5" href="$AddressService_8cpp.html" title="src/ToolServer/AddressService\l/AddressService.cpp" alt="" coords="325,184,543,225"/>
-<area shape="rect" id="node8" href="$PublishSubscribeService_8cpp.html" title="src/ToolServer/PublishSubscribe\lService/PublishSubscribeService.cpp" alt="" coords="567,184,818,225"/>
-<area shape="rect" id="node10" href="$ToolFrameParser_8cpp.html" title="src/ToolServer/ToolFrame\lParser.cpp" alt="" coords="853,273,1039,315"/>
-<area shape="rect" id="node13" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="1269,191,1458,218"/>
+<area shape="rect" id="node2" href="$AddressService_8h.html" title="src/GwClientServer\l/AddressService/AddressService.h" alt="" coords="201,102,439,143"/>
+<area shape="rect" id="node4" href="$ToolHandler_8cpp.html" title="src/GwClientServer\l/ToolHandler.cpp" alt="" coords="248,303,392,344"/>
+<area shape="rect" id="node5" href="$PublishSubscribeService_8h.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.h" alt="" coords="503,95,691,151"/>
+<area shape="rect" id="node7" href="$ToolHandler_8h.html" title="src/GwClientServer\l/ToolHandler.h" alt="" coords="584,206,728,247"/>
+<area shape="rect" id="node9" href="$ToolHandlerCollection_8cpp.html" title="src/GwClientServer\l/ToolHandlerCollection.cpp" alt="" coords="715,303,907,344"/>
+<area shape="rect" id="node10" href="$ToolHandlerCollection_8h.html" title="src/GwClientServer\l/ToolHandlerCollection.h" alt="" coords="767,102,945,143"/>
+<area shape="rect" id="node12" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="1016,213,1187,240"/>
+<area shape="rect" id="node13" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="1262,102,1455,143"/>
+<area shape="rect" id="node3" href="$AddressService_8cpp.html" title="src/GwClientServer\l/AddressService/AddressService.cpp" alt="" coords="27,206,282,247"/>
+<area shape="rect" id="node6" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="357,199,560,255"/>
+<area shape="rect" id="node8" href="$ToolFrameParser_8cpp.html" title="src/GwClientServer\l/ToolFrameParser.cpp" alt="" coords="528,303,691,344"/>
+<area shape="rect" id="node11" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="803,213,992,240"/>
 </map>

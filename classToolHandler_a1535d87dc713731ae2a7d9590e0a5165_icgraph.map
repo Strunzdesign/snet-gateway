@@ -1,5 +1,5 @@
 <map id="ToolHandler::Close" name="ToolHandler::Close">
 <area shape="rect" id="node2" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="196,63,335,90"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#a6e3072bd463c8dd035307049bc389af6" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="383,5,621,47"/>
+<area shape="rect" id="node3" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="383,5,621,47"/>
 <area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="669,35,892,76"/>
 </map>

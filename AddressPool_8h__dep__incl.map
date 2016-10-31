@@ -1,5 +1,5 @@
-<map id="src/ToolServer/AddressService/AddressPool.h" name="src/ToolServer/AddressService/AddressPool.h">
-<area shape="rect" id="node2" href="$AddressLease_8cpp.html" title="src/ToolServer/AddressService\l/AddressLease.cpp" alt="" coords="5,95,224,136"/>
-<area shape="rect" id="node3" href="$AddressPool_8cpp.html" title="src/ToolServer/AddressService\l/AddressPool.cpp" alt="" coords="248,95,467,136"/>
-<area shape="rect" id="node4" href="$ToolHandlerCollection_8cpp.html" title="src/ToolServer/ToolHandler\lCollection.cpp" alt="" coords="491,95,688,136"/>
+<map id="src/GwClientServer/AddressService/AddressPool.h" name="src/GwClientServer/AddressService/AddressPool.h">
+<area shape="rect" id="node2" href="$AddressLease_8cpp.html" title="src/GwClientServer\l/AddressService/AddressLease.cpp" alt="" coords="5,95,252,136"/>
+<area shape="rect" id="node3" href="$AddressPool_8cpp.html" title="src/GwClientServer\l/AddressService/AddressPool.cpp" alt="" coords="275,95,510,136"/>
+<area shape="rect" id="node4" href="$ToolHandlerCollection_8cpp.html" title="src/GwClientServer\l/ToolHandlerCollection.cpp" alt="" coords="534,95,726,136"/>
 </map>

@@ -2,6 +2,15 @@ var hierarchy =
 [
     [ "AddressLease", "classAddressLease.html", null ],
     [ "AddressService", "classAddressService.html", null ],
+    [ "CommandResponseFrame", "classCommandResponseFrame.html", [
+      [ "CommandResponseFrame0100", "classCommandResponseFrame0100.html", null ],
+      [ "CommandResponseFrame0101", "classCommandResponseFrame0101.html", null ],
+      [ "CommandResponseFrame0110", "classCommandResponseFrame0110.html", null ],
+      [ "CommandResponseFrame0111", "classCommandResponseFrame0111.html", null ],
+      [ "CommandResponseFrame0300", "classCommandResponseFrame0300.html", null ],
+      [ "CommandResponseFrame0301", "classCommandResponseFrame0301.html", null ],
+      [ "CommandResponseFrame0302", "classCommandResponseFrame0302.html", null ]
+    ] ],
     [ "enable_shared_from_this", null, [
       [ "AddressPool", "classAddressPool.html", null ],
       [ "FrameEndpoint", "classFrameEndpoint.html", null ],
@@ -10,6 +19,10 @@ var hierarchy =
       [ "ToolHandlerCollection", "classToolHandlerCollection.html", null ]
     ] ],
     [ "Frame", "classFrame.html", [
+      [ "GwClientFrame", "classGwClientFrame.html", [
+        [ "GwClientFrameEscaped", "classGwClientFrameEscaped.html", null ],
+        [ "GwClientFrameLength", "classGwClientFrameLength.html", null ]
+      ] ],
       [ "HdlcdPacket", "classHdlcdPacket.html", [
         [ "HdlcdPacketCtrl", "classHdlcdPacketCtrl.html", null ],
         [ "HdlcdPacketData", "classHdlcdPacketData.html", null ]
@@ -26,15 +39,6 @@ var hierarchy =
       [ "SnetAppMessage", "classSnetAppMessage.html", [
         [ "SnetServiceMessage", "classSnetServiceMessage.html", null ]
       ] ]
-    ] ],
-    [ "ToolFrame", "classToolFrame.html", [
-      [ "ToolFrame0100", "classToolFrame0100.html", null ],
-      [ "ToolFrame0101", "classToolFrame0101.html", null ],
-      [ "ToolFrame0110", "classToolFrame0110.html", null ],
-      [ "ToolFrame0111", "classToolFrame0111.html", null ],
-      [ "ToolFrame0300", "classToolFrame0300.html", null ],
-      [ "ToolFrame0301", "classToolFrame0301.html", null ],
-      [ "ToolFrame0302", "classToolFrame0302.html", null ]
     ] ],
     [ "ToolFrameGenerator", "classToolFrameGenerator.html", null ],
     [ "ToolFrameParser", "classToolFrameParser.html", null ]
