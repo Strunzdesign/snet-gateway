@@ -113,7 +113,7 @@ byte of such a frame **MUST NEVER** become the HDLC frame delimiter `0x7E`, whic
     ++-----------------------------------------------++----------------------++---------------------------++
     || Frame identifier                              || Frame length, contd. || Frame payload (variable)  || 
     ++-------------+------------+--------------------++----------------------++---------------------------++
-    || Bit 7       | Bits 6...4 | Bits 3...0         || Bits 7...0           || 0...4191 bytes            ||
+    || Bit 7       | Bits 6...4 | Bits 3...0         || Bits 7...0           || 0...4095 bytes            ||
     || Must be "1" | Reserved   | Upper length field || Lower length field   || Payload: one s-net packet ||
     ++-------------+------------+--------------------++----------------------++---------------------------++
 
@@ -121,7 +121,7 @@ This frame format has the following properties:
 - The added overhead is two bytes per frame.
 - As bit 7 of the first byte of a frame is always set, it is impossible that the first byte of a frame becomes `0x7E`.
   This allows coexistence with the *escaping-based framing mode*.
-- The length field consists of 12 bits allowing payloads from 0 to 4191 bytes. Thus, the MTU is 4191. Sending empty frames
+- The length field consists of 12 bits allowing payloads from 0 to 4095 bytes. Thus, the MTU is 4095. Sending empty frames
   is allowed but not recommended.
 - The reserved bits **MUST BE** set to zero as long as no specific meaning was assigned to them. A protocol entity is allowed
   to consider a reserved bit that was set by the peer as a violation of the protocol.
