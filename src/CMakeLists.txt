@@ -6,10 +6,11 @@ include_directories(${Boost_INCLUDE_DIR})
 include_directories(
     "HdlcdClient"
     "Routing"
-    "ToolServer"
-    "ToolServer/AddressService"
-    "ToolServer/PublishSubscribeService"
-    "ToolServer/CommandResponseFrames"
+    "GwClientServer"
+    "GwClientServer/AddressService"
+    "GwClientServer/PublishSubscribeService"
+    "GwClientServer/GwClientFrames"
+    "GwClientServer/GwClientFrames/CommandResponseFrames"
 )
     
 find_package(Threads)
@@ -19,14 +20,14 @@ add_executable(snet-gateway
     HdlcdClient/HdlcdClientHandler.cpp
     HdlcdClient/HdlcdClientHandlerCollection.cpp
     Routing/Routing.cpp
-    ToolServer/AddressService/AddressLease.cpp
-    ToolServer/AddressService/AddressPool.cpp
-    ToolServer/AddressService/AddressService.cpp
-    ToolServer/PublishSubscribeService/PublishSubscribeService.cpp
-    ToolServer/ToolFrameGenerator.cpp
-    ToolServer/ToolFrameParser.cpp
-    ToolServer/ToolHandler.cpp
-    ToolServer/ToolHandlerCollection.cpp
+    GwClientServer/AddressService/AddressLease.cpp
+    GwClientServer/AddressService/AddressPool.cpp
+    GwClientServer/AddressService/AddressService.cpp
+    GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp
+    GwClientServer/ToolFrameGenerator.cpp
+    GwClientServer/ToolFrameParser.cpp
+    GwClientServer/ToolHandler.cpp
+    GwClientServer/ToolHandlerCollection.cpp
 )
 
 if(WIN32)
