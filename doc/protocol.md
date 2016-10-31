@@ -110,12 +110,12 @@ each frame starts with a length field of a fixed size that denotes the amount of
 the frame ("the size of the payload"). For coexistence with the legacy mode, it must assured that the first
 byte of such a frame **MUST NEVER** become the HDLC frame delimiter `0x7E`, which would result in wrong parsing.
 
-    ++-----------------------------------------------++----------------------++---------------------------------++
-    || Frame identifier                              || Frame length, contd. || Frame payload (variable length) || 
-    ++-------------+------------+--------------------++----------------------++---------------------------------++
-    || Bit 7       | Bits 6...4 | Bits 3...0         || Bits 7...0           || 0...4191 bytes                  ||
-    || Must be "1" | Reserved   | Upper length field || Lower length field   || Payload (one s-net packet)      ||
-    ++-------------+------------+--------------------++----------------------++---------------------------------++
+    ++-----------------------------------------------++----------------------++---------------------------++
+    || Frame identifier                              || Frame length, contd. || Frame payload (variable)  || 
+    ++-------------+------------+--------------------++----------------------++---------------------------++
+    || Bit 7       | Bits 6...4 | Bits 3...0         || Bits 7...0           || 0...4191 bytes            ||
+    || Must be "1" | Reserved   | Upper length field || Lower length field   || Payload: one s-net packet ||
+    ++-------------+------------+--------------------++----------------------++---------------------------++
 
 This frame format has the following properties:
 - The added overhead is two bytes per frame.
@@ -124,7 +124,7 @@ This frame format has the following properties:
 - The length field consists of 12 bits allowing payloads from 0 to 4191 bytes. Thus, the MTU is 4191. Sending empty frames
   is allowed but not recommended.
 - The reserved bits **MUST BE** set to zero as long as no specific meaning was assigned to them. A protocol entity is allowed
-  to consider a reserved bit that was set as a violation of the protocol.
+  to consider a reserved bit that was set by the peer as a violation of the protocol.
 
 Mode of operation:
 - This frame format is the same for frames sent to and received from the gateway.
