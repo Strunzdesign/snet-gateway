@@ -103,6 +103,8 @@ private:
                 m_BytesRemaining = 1;
                 m_Buffer.pop_back();
             } // else
+            
+            break;
         }
         case DESERIALIZE_UNESCAPED: {
             if (l_LastReceivedByte == 0x7E) {
