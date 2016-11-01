@@ -211,4 +211,27 @@ keep in mind that a gateway client *MUST* use that address in order to be compat
 gateway software. Thus, it is a good advice to ***implement and follow this scheme***.
 
 ### The Publish-Subscribe Service
-T.b.d.
+T.b.d.: still just a bunch of text fragments and ideas!
+
+For all s-net packets that are sent by nodes of the sensor network that are not addressed to one of the unicast SSAs
+assigned to the gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`) and `0xFFFE` (`WIRED_ADDR`),
+but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
+to previous requests sent by one of the gateway clients. Instead, the nature of such packets is that they are sent
+without an external trigger to anybody who is interested. To avoid flooding such unsolicited packets to each of the
+gateway clients, the gateway relays them *only* to gateway clients that explicitely subscribed to them before.
+The purpose of the *publish-subscribe service* is to manage these subscriptions.
+
+    RECV: SrcSSA=0x4001, DstSSA=0x4000, ARQ=0, SrcSrv=0x00, DstSrv=0xb0, Token=0x10, with   1 bytes payload: ae
+    00 00 40 01 40 00 00 00 b0 00 10 ae 
+    SENT: SrcSSA=0x4000, DstSSA=0x4001, ARQ=0, SrcSrv=0xb0, DstSrv=0xb0, Token=0x11, with   2 bytes payload: ae 00
+    00 00 40 00 40 01 00 b0 b0 00 11 ae 00 
+    RECV: SrcSSA=0x4001, DstSSA=0x4000, ARQ=0, SrcSrv=0x00, DstSrv=0xb0, Token=0x10, with   1 bytes payload: 10
+    00 00 40 01 40 00 00 00 b0 00 10 10 
+    SENT: SrcSSA=0x4000, DstSSA=0x4001, ARQ=0, SrcSrv=0xb0, DstSrv=0xb0, Token=0x11, with   2 bytes payload: 10 00
+    00 00 40 00 40 01 00 b0 b0 00 11 10 00
+
+- 255 service IDs: 0x00 to 0xFE. 0xFF is a wildcard to subscribe to all services.
+- One subscription exchange per service ID, multiple subscriptions are possible.
+- To revoke a subscription subscribe to 0xFF. After this, rebuild the database by sending the reduced set of
+  subscriptions again. If all subscriptions were already set, a subscription will trigger a reset of the database
+  before this new subscription is applied.
