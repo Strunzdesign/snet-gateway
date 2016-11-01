@@ -1,16 +1,14 @@
-Issues to be resolved before a first release:
+// Open issues
+- All data transmission paths within the gateway should be asynchronous
+- The queue in GwClient.cpp has to be removed to allow congestion control (PARTLY)
 - Doxygen (STARTED)
 - Fix all the TODOs in the source code
-- Add a big warning somewhere that the "tool protocol" breaks during congestion and should not be used for any future project
-
-
-
-Issues to be resolved after the first release:
-- The ToolFrame.h file looks very quick and dirty... requires a cleanup
-- All data transmission paths within the gateway should be asynchronous
-- The queue in ToolHandler.cpp has to be removed to allow congestion control
 
 
 
 // DONE
+- Added support for the length-based framing mode
+- Port the escaping-based framing mode to the framing framework
+- The ToolFrame.h file looks very quick and dirty... requires a cleanup (DONE)
+- Add a big warning somewhere that the legacy "escaping-based framing" breaks during congestion and should not be used for any future project (DONE)
 - Add command line switches and online help ("-h --help") to the gateway (DONE)
