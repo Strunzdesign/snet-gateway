@@ -28,13 +28,13 @@
 #include <vector>
 #include "Component.h"
 class SnetServiceMessage;
-class ToolHandlerCollection;
+class GwClientHandlerCollection;
 class HdlcdClientHandlerCollection;
 
 class Routing {
 public:
     // CTOR and resetter
-    Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable);
+    Routing(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable);
     void SystemShutdown();
 
     void RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPONENT a_eSrcComponent) const;
@@ -44,7 +44,7 @@ private:
     E_COMPONENT PerformRouting(E_COMPONENT a_eSrcComponent, uint16_t a_SrcSSA, uint16_t a_DstSSA) const;
     
     // Members
-    std::shared_ptr<ToolHandlerCollection>        m_ToolHandlerCollection;
+    std::shared_ptr<GwClientHandlerCollection>    m_GwClientHandlerCollection;
     std::shared_ptr<HdlcdClientHandlerCollection> m_HdlcdClientHandlerCollection;
     bool m_bTrace;
     bool m_bReliable;

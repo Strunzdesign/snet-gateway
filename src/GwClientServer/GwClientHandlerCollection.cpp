@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandlerCollection.cpp
+ * \file      GwClientHandlerCollection.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,18 +21,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ToolHandlerCollection.h"
-#include "ToolHandler.h"
+#include "GwClientHandlerCollection.h"
+#include "GwClientHandler.h"
 #include "SnetServiceMessage.h"
 #include "AddressPool.h"
 #include <assert.h>
 using boost::asio::ip::tcp;
 
-ToolHandlerCollection::ToolHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService)  {
+GwClientHandlerCollection::GwClientHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService) {
     m_AddressPool = std::make_shared<AddressPool>();
 }
 
-void ToolHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
+void GwClientHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
     assert(a_RoutingEntity);
     m_RoutingEntity = a_RoutingEntity;
     
@@ -40,42 +40,42 @@ void ToolHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity)
     DoAccept();
 }
 
-void ToolHandlerCollection::SystemShutdown() {
+void GwClientHandlerCollection::SystemShutdown() {
     // Stop accepting subsequent TCP connections
     m_TcpAcceptor.close();
 
     // Drop all shared pointers
     m_RoutingEntity.reset();
-    while (!m_ToolHandlerList.empty()) {
-        (*m_ToolHandlerList.begin())->Close();
+    while (!m_GwClientHandlerList.empty()) {
+        (*m_GwClientHandlerList.begin())->Close();
     } // while
 }
 
-std::shared_ptr<AddressLease> ToolHandlerCollection::RegisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
+std::shared_ptr<AddressLease> GwClientHandlerCollection::RegisterGwClientHandler(std::shared_ptr<GwClientHandler> a_GwClientHandler) {
     assert(m_RoutingEntity);
     auto l_AddressLease = m_AddressPool->ObtainAddressLease();
-    a_ToolHandler->RegisterRoutingEntity(m_RoutingEntity);
-    m_ToolHandlerList.emplace_back(std::move(a_ToolHandler));
+    a_GwClientHandler->RegisterRoutingEntity(m_RoutingEntity);
+    m_GwClientHandlerList.emplace_back(std::move(a_GwClientHandler));
     assert(l_AddressLease);
     return l_AddressLease;
 }
 
-void ToolHandlerCollection::DeregisterToolHandler(std::shared_ptr<ToolHandler> a_ToolHandler) {
-    m_ToolHandlerList.remove(a_ToolHandler);
+void GwClientHandlerCollection::DeregisterGwClientHandler(std::shared_ptr<GwClientHandler> a_GwClientHandler) {
+    m_GwClientHandlerList.remove(a_GwClientHandler);
 }
 
-void ToolHandlerCollection::Send(const SnetServiceMessage& a_SnetServiceMessage) {
-    for (auto l_It = m_ToolHandlerList.begin(); l_It != m_ToolHandlerList.end(); ++l_It) {
+void GwClientHandlerCollection::Send(const SnetServiceMessage& a_SnetServiceMessage) {
+    for (auto l_It = m_GwClientHandlerList.begin(); l_It != m_GwClientHandlerList.end(); ++l_It) {
         (*l_It)->Send(a_SnetServiceMessage);
     } // for
 }
 
-void ToolHandlerCollection::DoAccept() {
+void GwClientHandlerCollection::DoAccept() {
     m_TcpAcceptor.async_accept(m_TcpSocket, [this](boost::system::error_code a_ErrorCode) {
         if (!a_ErrorCode) {
             // Create a tool handler object and start it. It registers itself to the tool handler collection
-            auto l_ToolHandler = std::make_shared<ToolHandler>(shared_from_this(), m_TcpSocket);
-            l_ToolHandler->Start();
+            auto l_GwClientHandler = std::make_shared<GwClientHandler>(shared_from_this(), m_TcpSocket);
+            l_GwClientHandler->Start();
         } // if
 
         // Wait for subsequent TCP connections

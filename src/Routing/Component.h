@@ -25,9 +25,9 @@
 #define COMPONENT_H
 
 typedef enum {
-    COMPONENT_UNKNOWN  = 0,
-    COMPONENT_HDLCD    = 1,
-    COMPONENT_TOOLS    = 2
+    COMPONENT_UNKNOWN   = 0,
+    COMPONENT_HDLCD     = 1,
+    COMPONENT_GWCLIENTS = 2
 } E_COMPONENT;
 
 #endif // COMPONENT_H

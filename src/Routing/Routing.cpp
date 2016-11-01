@@ -23,20 +23,20 @@
 
 #include "Routing.h"
 #include "SnetServiceMessage.h"
-#include "ToolHandlerCollection.h"
+#include "GwClientHandlerCollection.h"
 #include "HdlcdClientHandlerCollection.h"
 #include <assert.h>
 
-Routing::Routing(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
-    m_ToolHandlerCollection(a_ToolHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace), m_bReliable(a_bReliable) {
+Routing::Routing(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
+    m_GwClientHandlerCollection(a_GwClientHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace), m_bReliable(a_bReliable) {
     // Checks
-    assert(m_ToolHandlerCollection);
+    assert(m_GwClientHandlerCollection);
     assert(m_HdlcdClientHandlerCollection);
 }
 
 void Routing::SystemShutdown() {
     // Drop all shared pointers
-    m_ToolHandlerCollection.reset();
+    m_GwClientHandlerCollection.reset();
     m_HdlcdClientHandlerCollection.reset();
 }
 
@@ -56,14 +56,14 @@ void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPON
         if (m_HdlcdClientHandlerCollection) {
             m_HdlcdClientHandlerCollection->Send(HdlcdPacketData::CreatePacket(a_SnetServiceMessage.Serialize(), true));
         } // if
-    } else if (l_eDstComponent == COMPONENT_TOOLS) {
+    } else if (l_eDstComponent == COMPONENT_GWCLIENTS) {
         // To the tools
         if (m_bTrace) {
             std::cout << "To clients:   " << a_SnetServiceMessage.Dissect() << std::endl;
         } // if
 
-        if (m_ToolHandlerCollection) {
-            m_ToolHandlerCollection->Send(a_SnetServiceMessage);
+        if (m_GwClientHandlerCollection) {
+            m_GwClientHandlerCollection->Send(a_SnetServiceMessage);
         } // if
     } else {
         // Not caught
@@ -74,12 +74,12 @@ E_COMPONENT Routing::PerformRouting(E_COMPONENT a_eSrcComponent, uint16_t a_SrcS
     E_COMPONENT l_eDstComponent(COMPONENT_UNKNOWN);
     if ((a_DstSSA == 0x3FFc) || ((a_DstSSA == 0x4000) && (a_SrcSSA >= 0x4000))) {
         // Not caught (yet)
-    } else if ((a_DstSSA < 0x4000) || ((a_DstSSA == 0xFFFE) && (a_eSrcComponent == COMPONENT_TOOLS))) {
+    } else if ((a_DstSSA < 0x4000) || ((a_DstSSA == 0xFFFE) && (a_eSrcComponent == COMPONENT_GWCLIENTS))) {
         // Deliver to the HDLCd
         l_eDstComponent = COMPONENT_HDLCD;
     } else {
         // Deliver to the tools
-        l_eDstComponent = COMPONENT_TOOLS;
+        l_eDstComponent = COMPONENT_GWCLIENTS;
     } // else
     
     return l_eDstComponent;

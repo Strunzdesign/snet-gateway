@@ -27,7 +27,7 @@
 #include <boost/program_options.hpp>
 #include <boost/regex.hpp>
 #include "HdlcdClientHandlerCollection.h"
-#include "ToolHandlerCollection.h"
+#include "GwClientHandlerCollection.h"
 #include "Routing.h"
 
 int main(int argc, char* argv[]) {
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
             ("help,h",    "produce this help message")
             ("version,v", "show version information")
             ("port,p",    boost::program_options::value<uint16_t>(),
-                          "the TCP port to accept clients on")
+                          "the TCP port to accept gateway clients on")
             ("connect,c", boost::program_options::value<std::vector<std::string>>()->multitoken(),
                           "connect to devices via the HDLCd\n"
                           "syntax: SerialPort@IPAddess:PortNbr\n"
@@ -85,12 +85,12 @@ int main(int argc, char* argv[]) {
         l_Signals.async_wait([&l_IoService](boost::system::error_code, int){ l_IoService.stop(); });
 
         // Create main components
-        auto l_ToolHandlerCollection        = std::make_shared<ToolHandlerCollection>(l_IoService, l_VariablesMap["port"].as<uint16_t>());
+        auto l_GwClientHandlerCollection    = std::make_shared<GwClientHandlerCollection>(l_IoService, l_VariablesMap["port"].as<uint16_t>());
         auto l_HdlcdClientHandlerCollection = std::make_shared<HdlcdClientHandlerCollection>(l_IoService);
         
         // Routing entity
-        auto l_RoutingEntity = std::make_shared<Routing>(l_ToolHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"), l_VariablesMap.count("reliable"));
-        l_ToolHandlerCollection->Initialize(l_RoutingEntity);
+        auto l_RoutingEntity = std::make_shared<Routing>(l_GwClientHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"), l_VariablesMap.count("reliable"));
+        l_GwClientHandlerCollection->Initialize(l_RoutingEntity);
         l_HdlcdClientHandlerCollection->Initialize(l_RoutingEntity);
         
         // Create HDLCd client entities
@@ -111,7 +111,7 @@ int main(int argc, char* argv[]) {
         
         // Shutdown
         l_HdlcdClientHandlerCollection->SystemShutdown();
-        l_ToolHandlerCollection->SystemShutdown();
+        l_GwClientHandlerCollection->SystemShutdown();
         l_RoutingEntity->SystemShutdown();
     } catch (std::exception& a_Error) {
         std::cerr << "Exception: " << a_Error.what() << "\n";

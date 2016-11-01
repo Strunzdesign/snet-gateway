@@ -1,5 +1,5 @@
 /**
- * \file      ToolHandler.h
+ * \file      GwClientHandler.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,15 +21,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_HANDLER_H
-#define TOOL_HANDLER_H
+#ifndef GWCLIENT_HANDLER_H
+#define GWCLIENT_HANDLER_H
 
 #include <memory>
 #include <string>
 #include <vector>
 #include <deque>
 #include <boost/asio.hpp>
-#include "ToolHandlerCollection.h"
+#include "GwClientHandlerCollection.h"
 #include "ToolFrameParser.h"
 #include "CommandResponseFrame.h"
 #include "PublishSubscribeService.h"
@@ -37,9 +37,9 @@
 class Routing;
 class AddressLease;
 
-class ToolHandler: public std::enable_shared_from_this<ToolHandler> {
+class GwClientHandler: public std::enable_shared_from_this<GwClientHandler> {
 public:
-    ToolHandler(std::shared_ptr<ToolHandlerCollection> a_ToolHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
+    GwClientHandler(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
     void RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity);
     
     void Start();
@@ -57,7 +57,7 @@ private:
 
     // Members
     std::shared_ptr<Routing> m_RoutingEntity;
-    std::shared_ptr<ToolHandlerCollection> m_ToolHandlerCollection;
+    std::shared_ptr<GwClientHandlerCollection> m_GwClientHandlerCollection;
     boost::asio::ip::tcp::socket m_TCPSocket;
     std::shared_ptr<AddressLease> m_AddressLease;
     PublishSubscribeService m_PublishSubscribeService;
@@ -72,4 +72,4 @@ private:
     size_t m_SendBufferOffset; //!< To detect and handle partial writes to the TCP socket
 };
 
-#endif // TOOL_HANDLER_H
+#endif // GWCLIENT_HANDLER_H

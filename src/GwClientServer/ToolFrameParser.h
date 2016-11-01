@@ -27,11 +27,11 @@
 #include <memory>
 #include <vector>
 class CommandResponseFrame;
-class ToolHandler;
+class GwClientHandler;
 
 class ToolFrameParser {
 public:
-    ToolFrameParser(ToolHandler& a_ToolHandler);
+    ToolFrameParser(GwClientHandler& a_GwClientHandler);
     void Reset();
     void AddReceivedRawBytes(const unsigned char* a_Buffer, size_t a_Bytes);
     
@@ -42,7 +42,7 @@ private:
     std::shared_ptr<CommandResponseFrame> DeserializeToolFrame(const std::vector<unsigned char> &a_UnescapedBuffer) const;
     
     // Members
-    ToolHandler& m_ToolHandler;
+    GwClientHandler& m_GwClientHandler;
 
     enum { max_length = 1024 };
     std::vector<unsigned char> m_Buffer;
