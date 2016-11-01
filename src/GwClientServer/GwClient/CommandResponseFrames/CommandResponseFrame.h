@@ -1,5 +1,5 @@
 /**
- * \file      CommandResponseFrame0300.h
+ * \file      CommandResponseFrame.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,17 +21,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COMMAND_RESPONSE_FRAME_0300_H
-#define COMMAND_RESPONSE_FRAME_0300_H
+#ifndef COMMAND_RESPONSE_FRAME_H
+#define COMMAND_RESPONSE_FRAME_H
 
-#include "CommandResponseFrame.h"
+#include <vector>
 
-class CommandResponseFrame0300: public CommandResponseFrame {
+class CommandResponseFrame {
 public:
-    CommandResponseFrame0300(): CommandResponseFrame(0x0300) {}
-    const std::vector<unsigned char> GetPayload() const { return m_Payload; }
+    CommandResponseFrame(uint16_t a_RequestId = 0): m_RequestId(a_RequestId) {}
+    uint16_t GetRequestId() const { return m_RequestId; }
+    virtual const std::vector<unsigned char> Serialize() const {
+        std::vector<unsigned char> l_ToolFrameBuffer;
+        return l_ToolFrameBuffer;
+    }
     
-    std::vector<unsigned char> m_Payload;
+    virtual const std::vector<unsigned char> GetPayload() const = 0;
+
+private:
+    // Members
+    uint16_t m_RequestId;
 };
 
-#endif // COMMAND_RESPONSE_FRAME_0300_H
+#endif // COMMAND_RESPONSE_FRAME_H

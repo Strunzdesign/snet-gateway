@@ -22,43 +22,34 @@
  */
 
 #include "GwClientServerHandler.h"
-#include "ToolFrameGenerator.h"
-#include "CommandResponseFrame0101.h"
-#include "CommandResponseFrame0111.h"
-#include "CommandResponseFrame0301.h"
-#include "CommandResponseFrame0302.h"
 #include "Routing.h"
 #include "SnetServiceMessage.h"
 #include "AddressLease.h"
 #include "AddressService.h"
 #include "Component.h"
-#include <iostream>
 #include <assert.h>
 
-GwClientServerHandler::GwClientServerHandler(std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket):
+GwClientServerHandler::GwClientServerHandler(boost::asio::io_service& a_IOService, std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket, std::shared_ptr<Routing> a_RoutingEntity, std::shared_ptr<AddressLease> a_AddressLease):
     m_GwClientServerHandlerCollection(a_GwClientServerHandlerCollection),
-    m_TCPSocket(std::move(a_TCPSocket)),
-    m_ToolFrameParser(*this) {
+    m_RoutingEntity(a_RoutingEntity),
+    m_AddressLease(a_AddressLease),
+    m_GwClient(a_IOService, a_TCPSocket),
+    m_Registered(false) {
     // Checks
     assert(m_GwClientServerHandlerCollection);
-        
-    m_Registered = false;
-    m_bWriteInProgress = false;
-    m_SendBufferOffset = 0;
-}
-
-void GwClientServerHandler::RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity) {
-    assert(a_RoutingEntity);
-    m_RoutingEntity = a_RoutingEntity;
+    assert(m_RoutingEntity);
+    assert(m_AddressLease);
+    
+    // Register callbacks
+    m_GwClient.SetOnDataCallback([this](const std::vector<unsigned char> &a_HigherLayerPayload){ OnPayload(a_HigherLayerPayload); });
+    m_GwClient.SetOnClosedCallback([this](){ Close(); });
 }
 
 void GwClientServerHandler::Start() {
     assert(m_Registered == false);
     m_Registered = true;
-    m_SendBufferOffset = 0;
-    assert(!m_AddressLease);
-    m_AddressLease = m_GwClientServerHandlerCollection->RegisterGwClientServerHandler(shared_from_this());
-    ReadChunkFromSocket();
+    m_GwClientServerHandlerCollection->RegisterGwClientServerHandler(shared_from_this());
+    m_GwClient.Start();
 }
 
 void GwClientServerHandler::Close() {
@@ -66,8 +57,6 @@ void GwClientServerHandler::Close() {
     auto self(shared_from_this());
     if (m_Registered) {
         m_Registered = false;
-        m_TCPSocket.cancel();
-        m_TCPSocket.close();
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
         m_GwClientServerHandlerCollection->DeregisterGwClientServerHandler(self);
@@ -90,123 +79,39 @@ bool GwClientServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage)
     } // if
         
     // Deliver
-    return SendHelper(a_SnetServiceMessage);
+    return m_GwClient.Send(a_SnetServiceMessage.Serialize());
 }
 
-bool GwClientServerHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
-    // Queue for transmission :-)
-    CommandResponseFrame0302 l_CommandResponseFrame0302;
-    l_CommandResponseFrame0302.m_Payload = a_SnetServiceMessage.Serialize();
-    return Send(l_CommandResponseFrame0302);
-}
-
-bool GwClientServerHandler::Send(const CommandResponseFrame& a_CommandResponseFrame) {
-    // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
-    if (m_SendQueue.size() >= 100) {
-        return false;
-    } // if
-    
-    m_SendQueue.emplace_back(ToolFrameGenerator::EscapeFrame(a_CommandResponseFrame.SerializeFrame()));
-    if ((!m_bWriteInProgress) && (!m_SendQueue.empty())) {
-        DoWrite();
-    } // if
-    
-    return true;
-}
-    
-void GwClientServerHandler::ReadChunkFromSocket() {
-    m_TCPSocket.async_read_some(boost::asio::buffer(m_ReadBuffer, E_MAX_LENGTH),[this](boost::system::error_code a_ErrorCode, std::size_t a_ReadBytes) {
-        if (a_ErrorCode == boost::asio::error::operation_aborted) return;
-        if (!m_Registered) return;
-        if (!a_ErrorCode) {
-            m_ToolFrameParser.AddReceivedRawBytes(m_ReadBuffer, a_ReadBytes);
-            ReadChunkFromSocket();
-        } else {
-            std::cerr << "TCP read error on gateway client side, error=" << a_ErrorCode << std::endl;
-            Close();
-        } // else
-    }); // async_read
-}
-
-void GwClientServerHandler::InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame) {
-    if (!a_CommandResponseFrame) { return; }
-    if (a_CommandResponseFrame->GetRequestId() == 0x0100) {
-        // We have to send a respose now
-        CommandResponseFrame0101 l_CommandResponseFrame0101;
-        Send(l_CommandResponseFrame0101);
-    } // if
-    
-    if (a_CommandResponseFrame->GetRequestId() == 0x0110) {
-        // We have to send a respose now
-        CommandResponseFrame0111 l_CommandResponseFrame0111;
-        Send(l_CommandResponseFrame0111);
-    } // if
-    
-    if (a_CommandResponseFrame->GetRequestId() == 0x0300) {
-        // We have to send a respose now
-        CommandResponseFrame0301 l_CommandResponseFrame0301;
-        Send(l_CommandResponseFrame0301);
-        
-        // Relay the payload
-        SnetServiceMessage l_ServiceMessage;
-        if (l_ServiceMessage.Deserialize(a_CommandResponseFrame->GetPayload())) {
-            // Check if it is directed to the address service
-            if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
-                auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
-                if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
-                    SendHelper(l_AddressAssignmentReply);
-                } // if
-
-                return;
+void GwClientServerHandler::OnPayload(const std::vector<unsigned char> &a_HigherLayerPayload) {
+    // Relay the payload
+    SnetServiceMessage l_ServiceMessage;
+    if (l_ServiceMessage.Deserialize(a_HigherLayerPayload)) {
+        // Check if it is directed to the address service
+        if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
+            auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
+            if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
+                m_GwClient.Send(l_AddressAssignmentReply.Serialize());
             } // if
-            
-            // Check if it is directed to the publish / subsribe service
-            if (l_ServiceMessage.GetDstSSA() == 0x4000) {
-                auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
-                if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
-                    SendHelper(l_PublishSubscribeConfirmation);
-                } // if
 
-                return;
-            } // if
-            
-            // Remap the source address
-            if (l_ServiceMessage.GetSrcSSA() != 0xFFFE) {
-                l_ServiceMessage.SetSrcSSA(m_AddressLease->GetAddress());
-            } // if
-            
-            // Route this packet
-            m_RoutingEntity->RouteSnetPacket(l_ServiceMessage, COMPONENT_GWCLIENTS);
+            return;
         } // if
-    } // if
-}
+        
+        // Check if it is directed to the publish / subscribe service
+        if (l_ServiceMessage.GetDstSSA() == 0x4000) {
+            auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
+            if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
+                m_GwClient.Send(l_PublishSubscribeConfirmation.Serialize());
+            } // if
 
-void GwClientServerHandler::DoWrite() {
-    auto self(shared_from_this());
-    if (!m_Registered) return;
-    m_bWriteInProgress = true;
-    boost::asio::async_write(m_TCPSocket, boost::asio::buffer(&(m_SendQueue.front().data()[m_SendBufferOffset]), (m_SendQueue.front().size() - m_SendBufferOffset)),
-                                 [this, self](boost::system::error_code a_ErrorCode, std::size_t a_BytesSent) {
-        if (a_ErrorCode == boost::asio::error::operation_aborted) return;
-        if (!m_Registered) return;
-        if (!a_ErrorCode) {
-            m_SendBufferOffset += a_BytesSent;
-            if (m_SendBufferOffset == m_SendQueue.front().size()) {
-                // Completed transmission. Remove the transmitted packet
-                m_SendQueue.pop_front();
-                m_SendBufferOffset = 0;
-                if (!m_SendQueue.empty()) {
-                    DoWrite();
-                } else {
-                    m_bWriteInProgress = false;
-                } // else
-            } else {
-                // Only a partial transmission. We are not done yet.
-                DoWrite();
-            } // else
-        } else {
-            std::cerr << "TCP write error on gateway client side, error=" << a_ErrorCode << std::endl;
-            Close();
-        } // else
-    }); // async_write
+            return;
+        } // if
+        
+        // Remap the source address
+        if (l_ServiceMessage.GetSrcSSA() != 0xFFFE) {
+            l_ServiceMessage.SetSrcSSA(m_AddressLease->GetAddress());
+        } // if
+        
+        // Route this packet
+        m_RoutingEntity->RouteSnetPacket(l_ServiceMessage, COMPONENT_GWCLIENTS);
+    } // if
 }

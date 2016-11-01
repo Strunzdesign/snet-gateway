@@ -29,9 +29,8 @@
 #include <vector>
 #include <deque>
 #include <boost/asio.hpp>
+#include "GwClient.h"
 #include "GwClientServerHandlerCollection.h"
-#include "ToolFrameParser.h"
-#include "CommandResponseFrame.h"
 #include "PublishSubscribeService.h"
 #include "SnetServiceMessage.h"
 class Routing;
@@ -39,37 +38,24 @@ class AddressLease;
 
 class GwClientServerHandler: public std::enable_shared_from_this<GwClientServerHandler> {
 public:
-    GwClientServerHandler(std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
-    void RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity);
+    GwClientServerHandler(boost::asio::io_service& a_IOService, std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket, std::shared_ptr<Routing> a_RoutingEntity, std::shared_ptr<AddressLease> a_AddressLease);
     
     void Start();
     void Close();
 
+    // Called by the routing entity
     bool Send(const SnetServiceMessage& a_SnetServiceMessage);
-    void InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame);
+    
+    void OnPayload(const std::vector<unsigned char> &a_HigherLayerPayload);
     
 private:
-    // Internal helpers
-    bool SendHelper(const SnetServiceMessage& a_SnetServiceMessage);
-    bool Send(const CommandResponseFrame& a_CommandResponseFrame);
-    void ReadChunkFromSocket();
-    void DoWrite();
-
     // Members
-    std::shared_ptr<Routing> m_RoutingEntity;
     std::shared_ptr<GwClientServerHandlerCollection> m_GwClientServerHandlerCollection;
-    boost::asio::ip::tcp::socket m_TCPSocket;
+    std::shared_ptr<Routing> m_RoutingEntity;
     std::shared_ptr<AddressLease> m_AddressLease;
     PublishSubscribeService m_PublishSubscribeService;
-    
+    GwClient m_GwClient;
     bool m_Registered;
-    enum { E_MAX_LENGTH = 65535 };
-    unsigned char m_ReadBuffer[E_MAX_LENGTH];
-    ToolFrameParser m_ToolFrameParser;
-    
-    bool m_bWriteInProgress;
-    std::deque<std::vector<unsigned char>> m_SendQueue; // To be transmitted
-    size_t m_SendBufferOffset; //!< To detect and handle partial writes to the TCP socket
 };
 
 #endif // GWCLIENT_SERVER_HANDLER_H

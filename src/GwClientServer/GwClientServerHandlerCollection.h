@@ -31,7 +31,6 @@
 class GwClientServerHandler;
 class Routing;
 class AddressPool;
-class AddressLease;
 
 class GwClientServerHandlerCollection: public std::enable_shared_from_this<GwClientServerHandlerCollection> {
 public:
@@ -41,7 +40,7 @@ public:
     void SystemShutdown();
     
     // Self-registering and -deregistering of gateway client handler objects
-    std::shared_ptr<AddressLease> RegisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler);
+    void RegisterGwClientServerHandler  (std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler);
     void DeregisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler);
 
     void Send(const SnetServiceMessage& a_SnetServiceMessage);
@@ -51,6 +50,7 @@ private:
     void DoAccept();
 
     // Members
+    boost::asio::io_service& m_IOService;
     std::shared_ptr<AddressPool> m_AddressPool;
     std::list<std::shared_ptr<GwClientServerHandler>> m_GwClientServerHandlerList;
     std::shared_ptr<Routing> m_RoutingEntity;

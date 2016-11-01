@@ -1,5 +1,5 @@
 /**
- * \file      ToolFrameGenerator.h
+ * \file      CommandResponseFrame0111.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,14 +21,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_FRAME_GENERATOR_H
-#define TOOL_FRAME_GENERATOR_H
+#ifndef COMMAND_RESPONSE_FRAME_0111_H
+#define COMMAND_RESPONSE_FRAME_0111_H
 
-#include <vector>
+#include "CommandResponseFrame.h"
 
-class ToolFrameGenerator {
+class CommandResponseFrame0111: public CommandResponseFrame {
 public:
-    static std::vector<unsigned char> EscapeFrame(const std::vector<unsigned char> &a_ToolFrame);
+    CommandResponseFrame0111(): CommandResponseFrame(0x0111) {}
+    const std::vector<unsigned char> Serialize() const {
+        std::vector<unsigned char> l_ToolFrameBuffer;
+        l_ToolFrameBuffer.emplace_back(0x01);
+        l_ToolFrameBuffer.emplace_back(0x11);
+        l_ToolFrameBuffer.emplace_back(0x00);
+        l_ToolFrameBuffer.emplace_back(0x00);
+        return l_ToolFrameBuffer;
+    }
+    
+    const std::vector<unsigned char> GetPayload() const {
+        // Dummy
+        return std::vector<unsigned char>();
+    }
 };
 
-#endif // TOOL_FRAME_GENERATOR_H
+#endif // COMMAND_RESPONSE_FRAME_0111_H

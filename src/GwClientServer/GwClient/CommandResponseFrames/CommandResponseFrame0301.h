@@ -1,5 +1,5 @@
 /**
- * \file      CommandResponseFrame0101.h
+ * \file      CommandResponseFrame0301.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,22 +21,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COMMAND_RESPONSE_FRAME_0101_H
-#define COMMAND_RESPONSE_FRAME_0101_H
+#ifndef COMMAND_RESPONSE_FRAME_0301_H
+#define COMMAND_RESPONSE_FRAME_0301_H
 
 #include "CommandResponseFrame.h"
 
-class CommandResponseFrame0101: public CommandResponseFrame {
+class CommandResponseFrame0301: public CommandResponseFrame {
 public:
-    CommandResponseFrame0101(): CommandResponseFrame(0x0101) {}
-    const std::vector<unsigned char> SerializeFrame() const {
+    CommandResponseFrame0301(): CommandResponseFrame(0x0301) {}
+    const std::vector<unsigned char> Serialize() const {
         std::vector<unsigned char> l_ToolFrameBuffer;
-        l_ToolFrameBuffer.emplace_back(0x7E);
-        l_ToolFrameBuffer.emplace_back(0x01);
+        l_ToolFrameBuffer.emplace_back(0x03);
         l_ToolFrameBuffer.emplace_back(0x01);
         l_ToolFrameBuffer.emplace_back(0x00);
         l_ToolFrameBuffer.emplace_back(0x00);
-        l_ToolFrameBuffer.emplace_back(0x7E);
         return l_ToolFrameBuffer;
     }
     
@@ -46,4 +44,4 @@ public:
     }
 };
 
-#endif // COMMAND_RESPONSE_FRAME_0101_H
+#endif // COMMAND_RESPONSE_FRAME_0301_H

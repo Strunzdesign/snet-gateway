@@ -9,8 +9,9 @@ include_directories(
     "GwClientServer"
     "GwClientServer/AddressService"
     "GwClientServer/PublishSubscribeService"
-    "GwClientServer/GwClientFrames"
-    "GwClientServer/GwClientFrames/CommandResponseFrames"
+    "GwClientServer/GwClient"
+    "GwClientServer/GwClient/CommandResponseFrames"
+    "GwClientServer/GwClient/GwClientFrames"
 )
     
 find_package(Threads)
@@ -24,9 +25,7 @@ add_executable(snet-gateway
     GwClientServer/AddressService/AddressPool.cpp
     GwClientServer/AddressService/AddressService.cpp
     GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp
-    GwClientServer/ToolFrameGenerator.cpp
-    GwClientServer/ToolFrameParser.cpp
-    GwClientServer/GwClientServer.cpp
+    GwClientServer/GwClient/GwClient.cpp
     GwClientServer/GwClientServerHandler.cpp
     GwClientServer/GwClientServerHandlerCollection.cpp
 )

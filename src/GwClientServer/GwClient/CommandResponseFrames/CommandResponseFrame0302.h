@@ -1,5 +1,5 @@
 /**
- * \file      CommandResponseFrame0301.h
+ * \file      CommandResponseFrame0302.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,29 +21,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COMMAND_RESPONSE_FRAME_0301_H
-#define COMMAND_RESPONSE_FRAME_0301_H
+#ifndef COMMAND_RESPONSE_FRAME_0302_H
+#define COMMAND_RESPONSE_FRAME_0302_H
 
 #include "CommandResponseFrame.h"
 
-class CommandResponseFrame0301: public CommandResponseFrame {
+class CommandResponseFrame0302: public CommandResponseFrame {
 public:
-    CommandResponseFrame0301(): CommandResponseFrame(0x0301) {}
-    const std::vector<unsigned char> SerializeFrame() const {
+    CommandResponseFrame0302(): CommandResponseFrame(0x0302) {}
+    const std::vector<unsigned char> Serialize() const {
         std::vector<unsigned char> l_ToolFrameBuffer;
-        l_ToolFrameBuffer.emplace_back(0x7E);
         l_ToolFrameBuffer.emplace_back(0x03);
-        l_ToolFrameBuffer.emplace_back(0x01);
-        l_ToolFrameBuffer.emplace_back(0x00);
-        l_ToolFrameBuffer.emplace_back(0x00);
-        l_ToolFrameBuffer.emplace_back(0x7E);
+        l_ToolFrameBuffer.emplace_back(0x02);
+        l_ToolFrameBuffer.insert(l_ToolFrameBuffer.end(), m_Payload.begin(), m_Payload.end());
         return l_ToolFrameBuffer;
     }
-    
-    const std::vector<unsigned char> GetPayload() const {
-        // Dummy
-        return std::vector<unsigned char>();
-    }
+    const std::vector<unsigned char> GetPayload() const { return m_Payload; }
+    std::vector<unsigned char> m_Payload;
 };
 
-#endif // COMMAND_RESPONSE_FRAME_0301_H
+
+#endif // COMMAND_RESPONSE_FRAME_0302_H

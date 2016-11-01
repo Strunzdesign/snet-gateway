@@ -38,6 +38,13 @@ SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMess
         l_Payload.emplace_back(00);
         l_PublishSubscribeConfirmation.SetPayload(l_Payload);
         
+        if (m_SubscribedServiceIds.all()) {
+            // If all bits were set before, i.e., all services were subscribed, all subscriptions are released now.
+            // This is the method to revoke subscriptions: subscribe to all via the wildcard 0xFF first, then re-add
+            // your desired set of subscriptions.
+            m_SubscribedServiceIds.reset();
+        } // if
+        
         if (l_SubscribedServiceId == 0xFF) {
             // Wildcard: all service IDs are demanded for
             m_SubscribedServiceIds.set();

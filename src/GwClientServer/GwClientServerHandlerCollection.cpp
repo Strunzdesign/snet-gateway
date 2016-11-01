@@ -28,7 +28,7 @@
 #include <assert.h>
 using boost::asio::ip::tcp;
 
-GwClientServerHandlerCollection::GwClientServerHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService) {
+GwClientServerHandlerCollection::GwClientServerHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_IOService(a_IOService), m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService) {
     m_AddressPool = std::make_shared<AddressPool>();
 }
 
@@ -51,13 +51,8 @@ void GwClientServerHandlerCollection::SystemShutdown() {
     } // while
 }
 
-std::shared_ptr<AddressLease> GwClientServerHandlerCollection::RegisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler) {
-    assert(m_RoutingEntity);
-    auto l_AddressLease = m_AddressPool->ObtainAddressLease();
-    a_GwClientServerHandler->RegisterRoutingEntity(m_RoutingEntity);
+void GwClientServerHandlerCollection::RegisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler) {
     m_GwClientServerHandlerList.emplace_back(std::move(a_GwClientServerHandler));
-    assert(l_AddressLease);
-    return l_AddressLease;
 }
 
 void GwClientServerHandlerCollection::DeregisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler) {
@@ -74,7 +69,11 @@ void GwClientServerHandlerCollection::DoAccept() {
     m_TcpAcceptor.async_accept(m_TcpSocket, [this](boost::system::error_code a_ErrorCode) {
         if (!a_ErrorCode) {
             // Create a tool handler object and start it. It registers itself to the tool handler collection
-            auto l_GwClientServerHandler = std::make_shared<GwClientServerHandler>(shared_from_this(), m_TcpSocket);
+            assert(m_RoutingEntity);
+            assert(m_AddressPool);
+            auto l_AddressLease = m_AddressPool->ObtainAddressLease();
+            assert(l_AddressLease);
+            auto l_GwClientServerHandler = std::make_shared<GwClientServerHandler>(m_IOService, shared_from_this(), m_TcpSocket, m_RoutingEntity, l_AddressLease);
             l_GwClientServerHandler->Start();
         } // if
 
