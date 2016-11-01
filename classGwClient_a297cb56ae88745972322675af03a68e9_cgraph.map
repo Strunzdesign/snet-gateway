@@ -1,0 +1,10 @@
+<map id="GwClient::Send" name="GwClient::Send">
+<area shape="rect" id="node2" href="$classGwClientFrameEscaped.html#ad000d95cb528739b88f736f0dfbce1eb" title="GwClientFrameEscaped\l::Create" alt="" coords="196,5,371,47"/>
+<area shape="rect" id="node3" href="$classCommandResponseFrame0302.html#abdf857761713646e805d04b12461454c" title="CommandResponseFrame0302\l::Serialize" alt="" coords="172,71,395,112"/>
+<area shape="rect" id="node4" href="$classGwClientFrameLength.html#a77425e93e4bf3c862d31a0b965f2b4f1" title="GwClientFrameLength\l::Create" alt="" coords="202,136,365,177"/>
+<area shape="rect" id="node5" href="$classCommandResponseFrame0101.html#a5c93426f7e8344d02b6781b4bd9445ab" title="CommandResponseFrame0101\l::Serialize" alt="" coords="172,201,395,243"/>
+<area shape="rect" id="node6" href="$classCommandResponseFrame0111.html#a0d18178e9693bce1eda2ca187ed401da" title="CommandResponseFrame0111\l::Serialize" alt="" coords="172,267,395,308"/>
+<area shape="rect" id="node7" href="$classCommandResponseFrame0301.html#aa2935c9f2cbf897b2a58802c9f41caf7" title="CommandResponseFrame0301\l::Serialize" alt="" coords="172,332,395,373"/>
+<area shape="rect" id="node8" href="$classCommandResponseFrame0300.html#ab03f5b318153648a9f66a1d9d317e223" title="CommandResponseFrame0300\l::GetPayload" alt="" coords="172,397,395,439"/>
+<area shape="rect" id="node9" href="$classGwClient.html#aa22c95d8de08581f684c2e38c76a59d6" title="GwClient::Close" alt="" coords="223,463,344,490"/>
+</map>

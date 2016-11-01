@@ -1,18 +1,23 @@
 <map id="libs/framing/src/Frame.h" name="libs/framing/src/Frame.h">
-<area shape="rect" id="node2" href="$GwClientFrame_8h.html" title="src/GwClientServer\l/GwClientFrames/GwClientFrame.h" alt="" coords="254,80,497,121"/>
-<area shape="rect" id="node5" href="$FrameEndpoint_8h.html" title="This file contains the header declaration of class FrameEndpoint. " alt="" coords="851,184,1078,211"/>
-<area shape="rect" id="node9" href="$HdlcdPacket_8h.html" title="This file contains the header declaration of class HdlcdPacket. " alt="" coords="686,80,827,121"/>
-<area shape="rect" id="node17" href="$HdlcdSessionHeader_8h.html" title="This file contains the header declaration of class HdlcdSessionHeader. " alt="" coords="998,80,1169,121"/>
-<area shape="rect" id="node3" href="$GwClientFrameEscaped_8h.html" title="src/GwClientServer\l/GwClientFrames/GwClientFrame\lEscaped.h" alt="" coords="5,169,236,225"/>
-<area shape="rect" id="node4" href="$GwClientFrameLength_8h.html" title="src/GwClientServer\l/GwClientFrames/GwClientFrame\lLength.h" alt="" coords="260,169,491,225"/>
-<area shape="rect" id="node6" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="704,273,876,315"/>
-<area shape="rect" id="node7" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="849,363,990,404"/>
-<area shape="rect" id="node8" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="455,452,648,493"/>
-<area shape="rect" id="node10" href="$HdlcdPacketData_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="515,177,662,218"/>
-<area shape="rect" id="node16" href="$HdlcdPacketCtrl_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="686,177,827,218"/>
-<area shape="rect" id="node11" href="$HdlcdClientHandler_8h.html" title="src/HdlcdClient/HdlcdClient\lHandler.h" alt="" coords="217,273,411,315"/>
-<area shape="rect" id="node13" href="$HdlcdClientHandlerCollection_8h.html" title="src/HdlcdClient/HdlcdClient\lHandlerCollection.h" alt="" coords="435,273,628,315"/>
-<area shape="rect" id="node12" href="$HdlcdClientHandlerCollection_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandlerCollection.cpp" alt="" coords="223,363,416,404"/>
-<area shape="rect" id="node14" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="635,370,825,397"/>
-<area shape="rect" id="node15" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="441,370,611,397"/>
+<area shape="rect" id="node2" href="$GwClientFrame_8h.html" title="src/GwClientServer\l/GwClient/GwClientFrames\l/GwClientFrame.h" alt="" coords="197,80,388,136"/>
+<area shape="rect" id="node6" href="$FrameEndpoint_8h.html" title="This file contains the header declaration of class FrameEndpoint. " alt="" coords="607,95,834,121"/>
+<area shape="rect" id="node14" href="$HdlcdPacket_8h.html" title="This file contains the header declaration of class HdlcdPacket. " alt="" coords="858,87,999,129"/>
+<area shape="rect" id="node22" href="$HdlcdSessionHeader_8h.html" title="This file contains the header declaration of class HdlcdSessionHeader. " alt="" coords="413,87,583,129"/>
+<area shape="rect" id="node3" href="$GwClientFrameEscaped_8h.html" title="src/GwClientServer\l/GwClient/GwClientFrames\l/GwClientFrameEscaped.h" alt="" coords="5,184,196,240"/>
+<area shape="rect" id="node5" href="$GwClientFrameLength_8h.html" title="src/GwClientServer\l/GwClient/GwClientFrames\l/GwClientFrameLength.h" alt="" coords="220,184,411,240"/>
+<area shape="rect" id="node4" href="$GwClient_8cpp.html" title="src/GwClientServer\l/GwClient/GwClient.cpp" alt="" coords="227,288,398,329"/>
+<area shape="rect" id="node7" href="$GwClient_8h.html" title="src/GwClientServer\l/GwClient/GwClient.h" alt="" coords="438,191,593,233"/>
+<area shape="rect" id="node11" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="785,288,957,329"/>
+<area shape="rect" id="node12" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="739,377,881,419"/>
+<area shape="rect" id="node8" href="$GwClientServerHandler_8h.html" title="src/GwClientServer\l/GwClientServerHandler.h" alt="" coords="422,288,609,329"/>
+<area shape="rect" id="node9" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="464,377,665,419"/>
+<area shape="rect" id="node10" href="$GwClientServerHandlerCollection_8cpp.html" title="src/GwClientServer\l/GwClientServerHandlerCollection.cpp" alt="" coords="177,377,440,419"/>
+<area shape="rect" id="node13" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="788,467,981,508"/>
+<area shape="rect" id="node15" href="$HdlcdPacketData_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="962,191,1109,233"/>
+<area shape="rect" id="node21" href="$HdlcdPacketCtrl_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="797,191,938,233"/>
+<area shape="rect" id="node16" href="$HdlcdClientHandler_8h.html" title="src/HdlcdClient/HdlcdClient\lHandler.h" alt="" coords="1033,288,1227,329"/>
+<area shape="rect" id="node18" href="$HdlcdClientHandlerCollection_8h.html" title="src/HdlcdClient/HdlcdClient\lHandlerCollection.h" alt="" coords="1251,288,1444,329"/>
+<area shape="rect" id="node17" href="$HdlcdClientHandlerCollection_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandlerCollection.cpp" alt="" coords="1039,377,1232,419"/>
+<area shape="rect" id="node19" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="1454,385,1643,411"/>
+<area shape="rect" id="node20" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="1259,385,1430,411"/>
 </map>

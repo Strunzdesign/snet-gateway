@@ -1,7 +1,6 @@
 <map id="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h" name="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h">
-<area shape="rect" id="node2" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="5,109,208,165"/>
-<area shape="rect" id="node3" href="$ToolHandler_8h.html" title="src/GwClientServer\l/ToolHandler.h" alt="" coords="232,117,376,158"/>
-<area shape="rect" id="node4" href="$ToolFrameParser_8cpp.html" title="src/GwClientServer\l/ToolFrameParser.cpp" alt="" coords="45,213,208,255"/>
-<area shape="rect" id="node5" href="$ToolHandler_8cpp.html" title="src/GwClientServer\l/ToolHandler.cpp" alt="" coords="232,213,376,255"/>
-<area shape="rect" id="node6" href="$ToolHandlerCollection_8cpp.html" title="src/GwClientServer\l/ToolHandlerCollection.cpp" alt="" coords="400,213,592,255"/>
+<area shape="rect" id="node2" href="$GwClientServerHandler_8h.html" title="src/GwClientServer\l/GwClientServerHandler.h" alt="" coords="141,117,327,158"/>
+<area shape="rect" id="node5" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="351,109,554,165"/>
+<area shape="rect" id="node3" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="5,213,207,255"/>
+<area shape="rect" id="node4" href="$GwClientServerHandlerCollection_8cpp.html" title="src/GwClientServer\l/GwClientServerHandlerCollection.cpp" alt="" coords="231,213,493,255"/>
 </map>

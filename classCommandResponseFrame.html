@@ -134,8 +134,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a650f6c66cae8dcf4934647cfa3b3b546"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3634d0fe78db97b54c427f6eecbb76a3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandResponseFrame.html#a3634d0fe78db97b54c427f6eecbb76a3">GetRequestId</a> () const </td></tr>
 <tr class="separator:a3634d0fe78db97b54c427f6eecbb76a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29944086cddea16ba814c693fcad804c"><td class="memItemLeft" align="right" valign="top">virtual const std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandResponseFrame.html#a29944086cddea16ba814c693fcad804c">SerializeFrame</a> () const </td></tr>
-<tr class="separator:a29944086cddea16ba814c693fcad804c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac032c138d8b38d1e384c04fd57bb308e"><td class="memItemLeft" align="right" valign="top">virtual const std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandResponseFrame.html#ac032c138d8b38d1e384c04fd57bb308e">Serialize</a> () const </td></tr>
+<tr class="separator:ac032c138d8b38d1e384c04fd57bb308e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09b1f2fa31e566a41e9d4af2c78611bf"><td class="memItemLeft" align="right" valign="top">virtual const std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandResponseFrame.html#a09b1f2fa31e566a41e9d4af2c78611bf">GetPayload</a> () const  =0</td></tr>
 <tr class="separator:a09b1f2fa31e566a41e9d4af2c78611bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -198,10 +198,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCommandResponseFrame_a09b1f2fa31e566a41e9d4af2c78611bf_icgraph.png" border="0" usemap="#classCommandResponseFrame_a09b1f2fa31e566a41e9d4af2c78611bf_icgraph" alt=""/></div>
 <map name="classCommandResponseFrame_a09b1f2fa31e566a41e9d4af2c78611bf_icgraph" id="classCommandResponseFrame_a09b1f2fa31e566a41e9d4af2c78611bf_icgraph">
-<area shape="rect" id="node2" href="classCommandResponseFrame.html#a29944086cddea16ba814c693fcad804c" title="CommandResponseFrame\l::SerializeFrame" alt="" coords="244,35,435,76"/>
-<area shape="rect" id="node3" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="483,42,621,69"/>
-<area shape="rect" id="node4" href="classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="669,5,908,47"/>
-<area shape="rect" id="node5" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="956,35,1179,76"/>
+<area shape="rect" id="node2" href="classCommandResponseFrame.html#ac032c138d8b38d1e384c04fd57bb308e" title="CommandResponseFrame\l::Serialize" alt="" coords="244,5,435,47"/>
 </map>
 </div>
 </p>
@@ -233,7 +230,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a29944086cddea16ba814c693fcad804c"></a>
+<a class="anchor" id="ac032c138d8b38d1e384c04fd57bb308e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -241,7 +238,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual const std::vector&lt;unsigned char&gt; CommandResponseFrame::SerializeFrame </td>
+          <td class="memname">virtual const std::vector&lt;unsigned char&gt; CommandResponseFrame::Serialize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -254,28 +251,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classCommandResponseFrame0101.html#a59bd4099ddef4e0e6224829bf5cbfc2f">CommandResponseFrame0101</a>, <a class="el" href="classCommandResponseFrame0111.html#ae2d9336c2e9d60256e2e2510a3555b68">CommandResponseFrame0111</a>, <a class="el" href="classCommandResponseFrame0301.html#a5b14ad59e5afa4fae2b73ea37cc68729">CommandResponseFrame0301</a>, and <a class="el" href="classCommandResponseFrame0302.html#ab9d47be8eb637aba22748021a8c23323">CommandResponseFrame0302</a>.</p>
+<p>Reimplemented in <a class="el" href="classCommandResponseFrame0101.html#a5c93426f7e8344d02b6781b4bd9445ab">CommandResponseFrame0101</a>, <a class="el" href="classCommandResponseFrame0111.html#a0d18178e9693bce1eda2ca187ed401da">CommandResponseFrame0111</a>, <a class="el" href="classCommandResponseFrame0301.html#aa2935c9f2cbf897b2a58802c9f41caf7">CommandResponseFrame0301</a>, and <a class="el" href="classCommandResponseFrame0302.html#abdf857761713646e805d04b12461454c">CommandResponseFrame0302</a>.</p>
 
 <p>Definition at line <a class="el" href="CommandResponseFrame_8h_source.html#l00033">33</a> of file <a class="el" href="CommandResponseFrame_8h_source.html">CommandResponseFrame.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_cgraph.png" border="0" usemap="#classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_cgraph" alt=""/></div>
-<map name="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_cgraph" id="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_cgraph">
+<div class="center"><img src="classCommandResponseFrame_ac032c138d8b38d1e384c04fd57bb308e_cgraph.png" border="0" usemap="#classCommandResponseFrame_ac032c138d8b38d1e384c04fd57bb308e_cgraph" alt=""/></div>
+<map name="classCommandResponseFrame_ac032c138d8b38d1e384c04fd57bb308e_cgraph" id="classCommandResponseFrame_ac032c138d8b38d1e384c04fd57bb308e_cgraph">
 <area shape="rect" id="node2" href="classCommandResponseFrame.html#a09b1f2fa31e566a41e9d4af2c78611bf" title="CommandResponseFrame\l::GetPayload" alt="" coords="244,5,435,47"/>
-</map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_icgraph.png" border="0" usemap="#classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_icgraph" alt=""/></div>
-<map name="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_icgraph" id="classCommandResponseFrame_a29944086cddea16ba814c693fcad804c_icgraph">
-<area shape="rect" id="node2" href="classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="244,42,383,69"/>
-<area shape="rect" id="node3" href="classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="431,5,669,47"/>
-<area shape="rect" id="node4" href="classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="717,35,940,76"/>
 </map>
 </div>
 </p>
@@ -283,7 +268,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/GwClientServer/GwClientFrames/CommandResponseFrames/<a class="el" href="CommandResponseFrame_8h_source.html">CommandResponseFrame.h</a></li>
+<li>src/GwClientServer/GwClient/CommandResponseFrames/<a class="el" href="CommandResponseFrame_8h_source.html">CommandResponseFrame.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

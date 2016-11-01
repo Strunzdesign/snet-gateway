@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['close',['Close',['../classToolHandler.html#a1535d87dc713731ae2a7d9590e0a5165',1,'ToolHandler::Close()'],['../classHdlcdClientHandler.html#a734b8282d4d622f5199197afbc41a826',1,'HdlcdClientHandler::Close()'],['../classFrameEndpoint.html#ad7eea9fd66860006653b3173c06eab23',1,'FrameEndpoint::Close()'],['../classHdlcdClient.html#a6432392d6eeb5321cb2d13e24e09f52d',1,'HdlcdClient::Close()'],['../classHdlcdPacketEndpoint.html#a60e33a54cbd58a29fb22240688b91202',1,'HdlcdPacketEndpoint::Close()']]],
+  ['close',['Close',['../classGwClient.html#aa22c95d8de08581f684c2e38c76a59d6',1,'GwClient::Close()'],['../classGwClientServerHandler.html#add313d870ff59d7cc7aa45902eaea611',1,'GwClientServerHandler::Close()'],['../classHdlcdClientHandler.html#a734b8282d4d622f5199197afbc41a826',1,'HdlcdClientHandler::Close()'],['../classFrameEndpoint.html#ad7eea9fd66860006653b3173c06eab23',1,'FrameEndpoint::Close()'],['../classHdlcdClient.html#a6432392d6eeb5321cb2d13e24e09f52d',1,'HdlcdClient::Close()'],['../classHdlcdPacketEndpoint.html#a60e33a54cbd58a29fb22240688b91202',1,'HdlcdPacketEndpoint::Close()']]],
   ['cmakelists_2etxt',['CMakeLists.txt',['../src_2CMakeLists_8txt.html',1,'']]],
   ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2framing_2src_2CMakeLists_8txt.html',1,'']]],
   ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2hdlcd-devel_2src_2CMakeLists_8txt.html',1,'']]],
@@ -22,8 +22,8 @@ var searchData=
   ['commandresponseframe0302',['CommandResponseFrame0302',['../classCommandResponseFrame0302.html',1,'CommandResponseFrame0302'],['../classCommandResponseFrame0302.html#a30f6f9c5b85bc788cc836e93bd61cb17',1,'CommandResponseFrame0302::CommandResponseFrame0302()']]],
   ['commandresponseframe0302_2eh',['CommandResponseFrame0302.h',['../CommandResponseFrame0302_8h.html',1,'']]],
   ['component_2eh',['Component.h',['../Component_8h.html',1,'']]],
+  ['component_5fgwclients',['COMPONENT_GWCLIENTS',['../Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37ab7bfa19e07959debc4d29492f8f155b1',1,'Component.h']]],
   ['component_5fhdlcd',['COMPONENT_HDLCD',['../Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37a530afda0fd34ae46a17b50ed3c140ff0',1,'Component.h']]],
-  ['component_5ftools',['COMPONENT_TOOLS',['../Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37a2a85691d9bb0dcf08cad423b0c17161b',1,'Component.h']]],
   ['component_5funknown',['COMPONENT_UNKNOWN',['../Component_8h.html#a5ad979ef79c95ec880b3b81d9574de37ae0dd59d6c62e8979ad03d614b7508de4',1,'Component.h']]],
   ['create',['Create',['../classGwClientFrameEscaped.html#ad000d95cb528739b88f736f0dfbce1eb',1,'GwClientFrameEscaped::Create()'],['../classGwClientFrameLength.html#a77425e93e4bf3c862d31a0b965f2b4f1',1,'GwClientFrameLength::Create()'],['../classHdlcdSessionHeader.html#ac552cce3f56b8ff5ae6f9aa715b83396',1,'HdlcdSessionHeader::Create()']]],
   ['createdeserializedframe',['CreateDeserializedFrame',['../classGwClientFrameEscaped.html#ae267d8ba251b15c6245bcb50be86d1e4',1,'GwClientFrameEscaped::CreateDeserializedFrame()'],['../classGwClientFrameLength.html#a3c50cb7ca57be6a68997900d5254e160',1,'GwClientFrameLength::CreateDeserializedFrame()'],['../classHdlcdSessionHeader.html#ae1d1128bf1236d60a043255ffc9fc98e',1,'HdlcdSessionHeader::CreateDeserializedFrame()']]],

@@ -1,0 +1,12 @@
+<map id="src/GwClientServer/GwClientServerHandlerCollection.cpp" name="src/GwClientServer/GwClientServerHandlerCollection.cpp">
+<area shape="rect" id="node2" href="$GwClientServerHandlerCollection_8h.html" title="GwClientServerHandlerCollection.h" alt="" coords="227,169,471,196"/>
+<area shape="rect" id="node6" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="392,244,559,271"/>
+<area shape="rect" id="node14" href="$GwClientServerHandler_8h.html" title="GwClientServerHandler.h" alt="" coords="733,95,916,121"/>
+<area shape="rect" id="node24" href="$AddressPool_8h.html" title="AddressPool.h" alt="" coords="1123,244,1236,271"/>
+<area shape="rect" id="node7" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="5,319,151,345"/>
+<area shape="rect" id="node8" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="615,393,720,420"/>
+<area shape="rect" id="node16" href="$GwClient_8h.html" title="GwClient.h" alt="" coords="698,169,789,196"/>
+<area shape="rect" id="node22" href="$PublishSubscribeService_8h.html" title="PublishSubscribeService.h" alt="" coords="813,169,997,196"/>
+<area shape="rect" id="node17" href="$FrameEndpoint_8h.html" title="This file contains the header declaration of class FrameEndpoint. " alt="" coords="685,244,815,271"/>
+<area shape="rect" id="node20" href="$Frame_8h.html" title="This file contains the header declaration of class Frame. " alt="" coords="849,319,923,345"/>
+</map>

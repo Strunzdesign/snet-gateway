@@ -1,5 +1,4 @@
 <map id="AddressService::ProcessRequest" name="AddressService::ProcessRequest">
-<area shape="rect" id="node2" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="284,35,523,76"/>
-<area shape="rect" id="node3" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="571,5,793,47"/>
-<area shape="rect" id="node4" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="841,42,980,69"/>
+<area shape="rect" id="node2" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="284,5,455,47"/>
+<area shape="rect" id="node3" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="503,5,680,47"/>
 </map>

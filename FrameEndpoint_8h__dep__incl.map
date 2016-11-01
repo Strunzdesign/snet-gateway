@@ -1,5 +1,10 @@
 <map id="libs/framing/src/FrameEndpoint.h" name="libs/framing/src/FrameEndpoint.h">
-<area shape="rect" id="node2" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="5,80,177,121"/>
-<area shape="rect" id="node3" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="82,169,223,211"/>
-<area shape="rect" id="node4" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="56,259,249,300"/>
+<area shape="rect" id="node2" href="$GwClient_8h.html" title="src/GwClientServer\l/GwClient/GwClient.h" alt="" coords="262,80,417,121"/>
+<area shape="rect" id="node7" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="441,80,613,121"/>
+<area shape="rect" id="node8" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="551,169,693,211"/>
+<area shape="rect" id="node3" href="$GwClient_8cpp.html" title="src/GwClientServer\l/GwClient/GwClient.cpp" alt="" coords="66,169,237,211"/>
+<area shape="rect" id="node4" href="$GwClientServerHandler_8h.html" title="src/GwClientServer\l/GwClientServerHandler.h" alt="" coords="261,169,447,211"/>
+<area shape="rect" id="node5" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="5,259,207,300"/>
+<area shape="rect" id="node6" href="$GwClientServerHandlerCollection_8cpp.html" title="src/GwClientServer\l/GwClientServerHandlerCollection.cpp" alt="" coords="231,259,493,300"/>
+<area shape="rect" id="node9" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="525,259,719,300"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="SnetPacket::GetDstSSA" name="SnetPacket::GetDstSSA">
 <area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="224,5,455,32"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="503,53,741,94"/>
-<area shape="rect" id="node5" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="1060,119,1199,145"/>
-<area shape="rect" id="node6" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="253,107,426,149"/>
-<area shape="rect" id="node7" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="247,224,432,251"/>
-<area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="789,53,1012,94"/>
+<area shape="rect" id="node3" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="503,49,673,90"/>
+<area shape="rect" id="node5" href="$classGwClientServerHandler.html#a43ecfdef97a808c5eaf70a64ba4a5568" title="GwClientServerHandler\l::Send" alt="" coords="254,107,425,149"/>
+<area shape="rect" id="node6" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="253,173,426,214"/>
+<area shape="rect" id="node7" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="247,239,432,265"/>
+<area shape="rect" id="node4" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="721,49,899,90"/>
 </map>

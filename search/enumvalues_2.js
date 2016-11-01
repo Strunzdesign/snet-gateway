@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['hdlcd_5fpacket_5fctrl',['HDLCD_PACKET_CTRL',['../HdlcdPacket_8h.html#a44d5fa9a9bbd09e18ff61da83989ce6aa967d1e22d417c0e4cd849a6d4ac8ee5a',1,'HdlcdPacket.h']]],
-  ['hdlcd_5fpacket_5fdata',['HDLCD_PACKET_DATA',['../HdlcdPacket_8h.html#a44d5fa9a9bbd09e18ff61da83989ce6aad26b3dd1b8f9105a68d6dbac6e3887a1',1,'HdlcdPacket.h']]],
-  ['hdlcd_5fpacket_5funknown',['HDLCD_PACKET_UNKNOWN',['../HdlcdPacket_8h.html#a44d5fa9a9bbd09e18ff61da83989ce6aa1d1a4befca2de20ff8ec815f3556b24b',1,'HdlcdPacket.h']]]
+  ['gwclient_5fframe_5fescaped',['GWCLIENT_FRAME_ESCAPED',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2aa9fc2b17df7cd216f64255288bd9c631',1,'GwClientFrame.h']]],
+  ['gwclient_5fframe_5flength',['GWCLIENT_FRAME_LENGTH',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2a88eb207d88d3ca64b722febeceecf23f',1,'GwClientFrame.h']]],
+  ['gwclient_5fframe_5fmask',['GWCLIENT_FRAME_MASK',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2ac46a65bbbef54bc69f8c3f5db8b2b91c',1,'GwClientFrame.h']]],
+  ['gwclient_5fframe_5funknown',['GWCLIENT_FRAME_UNKNOWN',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2aa573796dfd8fc0db8c18c289a7ca43fa',1,'GwClientFrame.h']]]
 ];

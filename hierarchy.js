@@ -14,9 +14,9 @@ var hierarchy =
     [ "enable_shared_from_this", null, [
       [ "AddressPool", "classAddressPool.html", null ],
       [ "FrameEndpoint", "classFrameEndpoint.html", null ],
-      [ "HdlcdPacketEndpoint", "classHdlcdPacketEndpoint.html", null ],
-      [ "ToolHandler", "classToolHandler.html", null ],
-      [ "ToolHandlerCollection", "classToolHandlerCollection.html", null ]
+      [ "GwClientServerHandler", "classGwClientServerHandler.html", null ],
+      [ "GwClientServerHandlerCollection", "classGwClientServerHandlerCollection.html", null ],
+      [ "HdlcdPacketEndpoint", "classHdlcdPacketEndpoint.html", null ]
     ] ],
     [ "Frame", "classFrame.html", [
       [ "GwClientFrame", "classGwClientFrame.html", [
@@ -29,6 +29,7 @@ var hierarchy =
       ] ],
       [ "HdlcdSessionHeader", "classHdlcdSessionHeader.html", null ]
     ] ],
+    [ "GwClient", "classGwClient.html", null ],
     [ "HdlcdClient", "classHdlcdClient.html", null ],
     [ "HdlcdClientHandler", "classHdlcdClientHandler.html", null ],
     [ "HdlcdClientHandlerCollection", "classHdlcdClientHandlerCollection.html", null ],
@@ -39,7 +40,5 @@ var hierarchy =
       [ "SnetAppMessage", "classSnetAppMessage.html", [
         [ "SnetServiceMessage", "classSnetServiceMessage.html", null ]
       ] ]
-    ] ],
-    [ "ToolFrameGenerator", "classToolFrameGenerator.html", null ],
-    [ "ToolFrameParser", "classToolFrameParser.html", null ]
+    ] ]
 ];

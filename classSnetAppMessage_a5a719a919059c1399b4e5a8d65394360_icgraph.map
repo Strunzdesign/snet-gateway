@@ -1,7 +1,6 @@
 <map id="SnetAppMessage::GetDstServiceId" name="SnetAppMessage::GetDstServiceId">
-<area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="296,13,527,39"/>
-<area shape="rect" id="node6" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="325,64,498,105"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="575,35,813,76"/>
-<area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="861,5,1084,47"/>
-<area shape="rect" id="node5" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="1132,42,1271,69"/>
+<area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="296,5,527,32"/>
+<area shape="rect" id="node5" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="325,57,498,98"/>
+<area shape="rect" id="node3" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="575,27,745,69"/>
+<area shape="rect" id="node4" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="793,27,971,69"/>
 </map>

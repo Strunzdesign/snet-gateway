@@ -1,0 +1,7 @@
+<map id="GwClientFrameEscaped::Create" name="GwClientFrameEscaped::Create">
+<area shape="rect" id="node2" href="$classGwClient.html#a297cb56ae88745972322675af03a68e9" title="GwClient::Send" alt="" coords="228,64,347,91"/>
+<area shape="rect" id="node3" href="$classGwClient.html#a40b5a58b0f9711b653258280bb61e093" title="GwClient::SetOnClosedCallback" alt="" coords="395,5,617,32"/>
+<area shape="rect" id="node5" href="$classGwClientServerHandler.html#a43ecfdef97a808c5eaf70a64ba4a5568" title="GwClientServerHandler\l::Send" alt="" coords="421,57,591,98"/>
+<area shape="rect" id="node6" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="421,122,591,163"/>
+<area shape="rect" id="node4" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="665,61,843,102"/>
+</map>

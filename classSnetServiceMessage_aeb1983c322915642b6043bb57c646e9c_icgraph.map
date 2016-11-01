@@ -1,6 +1,4 @@
 <map id="SnetServiceMessage::Serialize" name="SnetServiceMessage::Serialize">
-<area shape="rect" id="node2" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="233,42,371,69"/>
-<area shape="rect" id="node5" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="209,93,395,119"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="443,5,681,47"/>
-<area shape="rect" id="node4" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="729,35,952,76"/>
+<area shape="rect" id="node2" href="$classGwClientServerHandler.html#a43ecfdef97a808c5eaf70a64ba4a5568" title="GwClientServerHandler\l::Send" alt="" coords="217,5,387,47"/>
+<area shape="rect" id="node3" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="209,71,395,98"/>
 </map>

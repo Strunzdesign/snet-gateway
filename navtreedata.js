@@ -29,7 +29,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AddressLease_8cpp.html",
-"classHdlcdPacketEndpoint.html#a67e27ed4bdeef0afcc347981cf47e0df"
+"classHdlcdPacketCtrl.html#a8f4d35576f4ed5163ef49f8eb5f4d37d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

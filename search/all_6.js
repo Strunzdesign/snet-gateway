@@ -25,6 +25,9 @@ var searchData=
   ['gettoken',['GetToken',['../classSnetAppMessage.html#ae34f61cad009908da9db9ff0db319cca',1,'SnetAppMessage']]],
   ['getwassent',['GetWasSent',['../classHdlcdPacketData.html#a3e3ed17e50f5689f9f044c62582f3194',1,'HdlcdPacketData']]],
   ['getwasstarted',['GetWasStarted',['../classFrameEndpoint.html#a9e2f8f8f92f8f2dd56b43788ff32326b',1,'FrameEndpoint']]],
+  ['gwclient',['GwClient',['../classGwClient.html',1,'GwClient'],['../classGwClient.html#a2783324ee9bf42739f4302259b267542',1,'GwClient::GwClient()']]],
+  ['gwclient_2ecpp',['GwClient.cpp',['../GwClient_8cpp.html',1,'']]],
+  ['gwclient_2eh',['GwClient.h',['../GwClient_8h.html',1,'']]],
   ['gwclient_5fframe_5fescaped',['GWCLIENT_FRAME_ESCAPED',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2aa9fc2b17df7cd216f64255288bd9c631',1,'GwClientFrame.h']]],
   ['gwclient_5fframe_5flength',['GWCLIENT_FRAME_LENGTH',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2a88eb207d88d3ca64b722febeceecf23f',1,'GwClientFrame.h']]],
   ['gwclient_5fframe_5fmask',['GWCLIENT_FRAME_MASK',['../GwClientFrame_8h.html#a59013c70fb4ea4ac611b94705980c8a2ac46a65bbbef54bc69f8c3f5db8b2b91c',1,'GwClientFrame.h']]],
@@ -34,5 +37,11 @@ var searchData=
   ['gwclientframeescaped',['GwClientFrameEscaped',['../classGwClientFrameEscaped.html',1,'']]],
   ['gwclientframeescaped_2eh',['GwClientFrameEscaped.h',['../GwClientFrameEscaped_8h.html',1,'']]],
   ['gwclientframelength',['GwClientFrameLength',['../classGwClientFrameLength.html',1,'']]],
-  ['gwclientframelength_2eh',['GwClientFrameLength.h',['../GwClientFrameLength_8h.html',1,'']]]
+  ['gwclientframelength_2eh',['GwClientFrameLength.h',['../GwClientFrameLength_8h.html',1,'']]],
+  ['gwclientserverhandler',['GwClientServerHandler',['../classGwClientServerHandler.html',1,'GwClientServerHandler'],['../classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f',1,'GwClientServerHandler::GwClientServerHandler()']]],
+  ['gwclientserverhandler_2ecpp',['GwClientServerHandler.cpp',['../GwClientServerHandler_8cpp.html',1,'']]],
+  ['gwclientserverhandler_2eh',['GwClientServerHandler.h',['../GwClientServerHandler_8h.html',1,'']]],
+  ['gwclientserverhandlercollection',['GwClientServerHandlerCollection',['../classGwClientServerHandlerCollection.html',1,'GwClientServerHandlerCollection'],['../classGwClientServerHandlerCollection.html#ae1d905e842006909052a402dea063d2d',1,'GwClientServerHandlerCollection::GwClientServerHandlerCollection()']]],
+  ['gwclientserverhandlercollection_2ecpp',['GwClientServerHandlerCollection.cpp',['../GwClientServerHandlerCollection_8cpp.html',1,'']]],
+  ['gwclientserverhandlercollection_2eh',['GwClientServerHandlerCollection.h',['../GwClientServerHandlerCollection_8h.html',1,'']]]
 ];

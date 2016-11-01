@@ -13,9 +13,12 @@ var annotated_dup =
     [ "CommandResponseFrame0302", "classCommandResponseFrame0302.html", "classCommandResponseFrame0302" ],
     [ "Frame", "classFrame.html", "classFrame" ],
     [ "FrameEndpoint", "classFrameEndpoint.html", "classFrameEndpoint" ],
+    [ "GwClient", "classGwClient.html", "classGwClient" ],
     [ "GwClientFrame", "classGwClientFrame.html", "classGwClientFrame" ],
     [ "GwClientFrameEscaped", "classGwClientFrameEscaped.html", "classGwClientFrameEscaped" ],
     [ "GwClientFrameLength", "classGwClientFrameLength.html", "classGwClientFrameLength" ],
+    [ "GwClientServerHandler", "classGwClientServerHandler.html", "classGwClientServerHandler" ],
+    [ "GwClientServerHandlerCollection", "classGwClientServerHandlerCollection.html", "classGwClientServerHandlerCollection" ],
     [ "HdlcdClient", "classHdlcdClient.html", "classHdlcdClient" ],
     [ "HdlcdClientHandler", "classHdlcdClientHandler.html", "classHdlcdClientHandler" ],
     [ "HdlcdClientHandlerCollection", "classHdlcdClientHandlerCollection.html", "classHdlcdClientHandlerCollection" ],
@@ -29,9 +32,5 @@ var annotated_dup =
     [ "Routing", "classRouting.html", "classRouting" ],
     [ "SnetAppMessage", "classSnetAppMessage.html", "classSnetAppMessage" ],
     [ "SnetPacket", "classSnetPacket.html", "classSnetPacket" ],
-    [ "SnetServiceMessage", "classSnetServiceMessage.html", "classSnetServiceMessage" ],
-    [ "ToolFrameGenerator", "classToolFrameGenerator.html", null ],
-    [ "ToolFrameParser", "classToolFrameParser.html", "classToolFrameParser" ],
-    [ "ToolHandler", "classToolHandler.html", "classToolHandler" ],
-    [ "ToolHandlerCollection", "classToolHandlerCollection.html", "classToolHandlerCollection" ]
+    [ "SnetServiceMessage", "classSnetServiceMessage.html", "classSnetServiceMessage" ]
 ];

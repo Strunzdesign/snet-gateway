@@ -1,7 +1,5 @@
 <map id="SnetAppMessage::Serialize" name="SnetAppMessage::Serialize">
-<area shape="rect" id="node2" href="$classSnetServiceMessage.html#aeb1983c322915642b6043bb57c646e9c" title="SnetServiceMessage\l::Serialize" alt="" coords="248,60,404,101"/>
-<area shape="rect" id="node3" href="$classToolHandler.html#a3cf52e949538c48e7efee4e00c8323e9" title="ToolHandler::Send" alt="" coords="475,42,614,69"/>
-<area shape="rect" id="node6" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="452,93,637,119"/>
-<area shape="rect" id="node4" href="$classToolHandler.html#ae4c2caa75ead12db299290887595c58a" title="ToolHandler::InterpretDeserialized\lToolFrame" alt="" coords="685,5,924,47"/>
-<area shape="rect" id="node5" href="$classToolFrameParser.html#aeb778e28ad06f290b67da0b3118ff1d6" title="ToolFrameParser::AddReceived\lRawBytes" alt="" coords="972,35,1195,76"/>
+<area shape="rect" id="node2" href="$classSnetServiceMessage.html#aeb1983c322915642b6043bb57c646e9c" title="SnetServiceMessage\l::Serialize" alt="" coords="248,35,404,76"/>
+<area shape="rect" id="node3" href="$classGwClientServerHandler.html#a43ecfdef97a808c5eaf70a64ba4a5568" title="GwClientServerHandler\l::Send" alt="" coords="459,5,630,47"/>
+<area shape="rect" id="node4" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="452,71,637,98"/>
 </map>

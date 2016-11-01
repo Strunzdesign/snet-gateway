@@ -2,6 +2,6 @@
 <area shape="rect" id="node2" href="$AddressLease_8cpp.html" title="src/GwClientServer\l/AddressService/AddressLease.cpp" alt="" coords="5,102,252,143"/>
 <area shape="rect" id="node3" href="$AddressPool_8cpp.html" title="src/GwClientServer\l/AddressService/AddressPool.cpp" alt="" coords="275,102,510,143"/>
 <area shape="rect" id="node4" href="$AddressService_8cpp.html" title="src/GwClientServer\l/AddressService/AddressService.cpp" alt="" coords="535,102,789,143"/>
-<area shape="rect" id="node5" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="814,95,1017,151"/>
-<area shape="rect" id="node6" href="$ToolHandler_8cpp.html" title="src/GwClientServer\l/ToolHandler.cpp" alt="" coords="1041,102,1185,143"/>
+<area shape="rect" id="node5" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="813,102,1015,143"/>
+<area shape="rect" id="node6" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="1039,95,1242,151"/>
 </map>

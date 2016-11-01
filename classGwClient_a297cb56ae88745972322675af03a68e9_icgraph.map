@@ -1,0 +1,6 @@
+<map id="GwClient::Send" name="GwClient::Send">
+<area shape="rect" id="node2" href="$classGwClient.html#a40b5a58b0f9711b653258280bb61e093" title="GwClient::SetOnClosedCallback" alt="" coords="172,5,395,32"/>
+<area shape="rect" id="node4" href="$classGwClientServerHandler.html#a43ecfdef97a808c5eaf70a64ba4a5568" title="GwClientServerHandler\l::Send" alt="" coords="198,57,369,98"/>
+<area shape="rect" id="node5" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="198,122,369,163"/>
+<area shape="rect" id="node3" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="443,61,620,102"/>
+</map>
