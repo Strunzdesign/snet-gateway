@@ -136,3 +136,79 @@ Mode of operation:
 - A protocol entity may safely stop reading from the TCP socket in cases of congestions. TCP intrinsically takes care of
   propagating the congestion to the peer entity. There, trying to send subsequent data causes temporary blocks, which is
   the desired behavior.
+
+## Services of the gateway software at the level of s-net service messages
+Independent of the framing format chosen to exchange s-net packets among the gateway and the gateway clients, the
+gateway performs routing of s-net packets and offers two services. These services are the *address assignment service* and
+the *publish subscribe service*. Both services can be used be each of the gateway clients.
+
+### The Address Assignment Service
+The Java-based gateway software implemented an *address assignment service* that a gateway client had to talk to
+in order to obtain a valid "s-net short address" (SSA). Here, the very first exchange of s-net packets was tailored
+to obtaining a temporary address before any further message exchange was possible. Each gateway client possesses a uniquely
+assigned  SSA that it has to use as the source address for all outgoing request messages sent towards the sensor network.
+That unique unicast SSA is used by the addressed sensor node in order to create response messages that are addressed exactly
+to the gateway client that created the respective request. As a consequence, gateway clients do only receive response
+message related to request messages that they sent before; response messages sent to the unicast SSA of a different
+gateway client are never delivered.
+
+The C++-based gateway software implements a similar *address assignment service* that is compatible to all legacy gateway clients
+that already exist. However, there are some minor differences in terms of handling:
+- It is not explicitely required anymore that a gateway client talks to the *address assignment service* at the gateway.
+- The address database at the gateway automatically assigns a unique SSA to each gateway client. This does not need any external
+  trigger. The *address assignment service* can only be used to query that address, and multiple queries will always result in the
+  same SSA.
+- The source address of outgoing s-net packets is automatically changed to this unique SSA while passing the gateway (masquerading).
+  This assures that response packets sent by sensor nodes will always be routed back to the originating gateway client even if the
+  gateway client chose to use a wrong source SSA.
+- Thus, a gateway client *may* use a "junk address" for the source SSA of outgoing packets without causing any trouble.
+- The only benefit of using the *address assignment service* is to query the SSA that was assigned to a gateway client.
+  This step is optional.
+- ***WARNING*** If a new gateway client is created that should be able to talk to the legacy Java-based gateway, it **MUST** obtain
+  an address as the very first step and then **MUST** use it correctly!
+
+The messages of the *address assignment service* were reverse-engineered by evaluation of the messages exchanged between the
+Java-based gateway software and all existing legacy gateway clients. The address assignment scheme involves a two-way-handshake
+consisting of an *address assignment request* followed by an *address assignment reply*.
+
+#### The Address Assignment Request
+The *address assignment request* is sent by a gateway client to the gateway. An exemplary byte stream of such an *address assignment
+request* is depicted in the following. It is safe to always use exactly these bytes. It has a UUID field set to zeros which is okay:
+
+    00 00 3f ff 3f fc 00 af ae 00 10 25 00 00 00 00 00 00
+
+Besides some other fields specific to s-net the following parameters are relevant:
+- The source SSA must be set to `0x3FFF` (`UNASSIGNED_ADDR`)
+- The destination SSA must be set to `0x3FFC` (`MULTICAST_ADDRESS_DATABASE`)
+- The source service ID must be set to `0xAF`
+- The destination service ID must be set to `0xAE`
+- The application-layer token must be set `0x10`
+- The application-layer payload contains 7 bytes:
+  - `0x25`: bit 5 set = from NON-WSN node, lower nibble = size of the UUID minus 1 -> 6 Bytes UUID. Use `0x25`!
+  - Six bytes UUID of the gateway client, e.g., a random number or zeros
+
+#### The Address Assignment Reply
+An exemplary byte stream of an *address assignment reply* sent back by the gateway:
+
+    00 00 40 00 3f f8 00 ae af 00 20 05 00 00 00 00 00 00 00 40 01
+
+The relevant fields contain these values:
+- The source SSA will always be `0x4000` (`MULTICAST_GATEWAY`)
+- The destination SSA will always be 0x3FF8 (unknown meaning)
+- The source service ID will always be `0xAE`
+- The destination service ID will always be `0xAF`
+- The application-layer token will always be `0x20`
+- The application-payload always contains 10 bytes:
+  - `0x05`: lower nibble = size of the UUID minus 1 -> 6 Bytes UUID (expect nothing else)
+  - The six bytes of the UUID copied from the address request message, all zeros here
+  - `0x00`: the status code (0x00 means OK, expect nothing else)
+  - Two bytes containing the unique SSA assigned to the gateway client (> 0x4000)
+
+A gateway client just needs to parse the last two bytes in order to obtain the assigned SSA. In the above mentioned
+example the assigned SSA is `0x4001`, which is the lower bound of the address space assigned to gateway clients.
+Feel free to use that SSA as the source address for all s-net packets sent towards the sensor network. However,
+keep in mind that a gateway client *MUST* use that address in order to be compatible with the deprecated Java-based
+gateway software. Thus, it is a good advice to ***implement and follow this scheme***.
+
+### The Publish-Subscribe Service
+T.b.d.
