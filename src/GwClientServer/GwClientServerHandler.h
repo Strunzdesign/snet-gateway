@@ -1,5 +1,5 @@
 /**
- * \file      GwClientHandler.h
+ * \file      GwClientServerHandler.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,15 +21,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_HANDLER_H
-#define GWCLIENT_HANDLER_H
+#ifndef GWCLIENT_SERVER_HANDLER_H
+#define GWCLIENT_SERVER_HANDLER_H
 
 #include <memory>
 #include <string>
 #include <vector>
 #include <deque>
 #include <boost/asio.hpp>
-#include "GwClientHandlerCollection.h"
+#include "GwClientServerHandlerCollection.h"
 #include "ToolFrameParser.h"
 #include "CommandResponseFrame.h"
 #include "PublishSubscribeService.h"
@@ -37,9 +37,9 @@
 class Routing;
 class AddressLease;
 
-class GwClientHandler: public std::enable_shared_from_this<GwClientHandler> {
+class GwClientServerHandler: public std::enable_shared_from_this<GwClientServerHandler> {
 public:
-    GwClientHandler(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
+    GwClientServerHandler(std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket);
     void RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity);
     
     void Start();
@@ -57,7 +57,7 @@ private:
 
     // Members
     std::shared_ptr<Routing> m_RoutingEntity;
-    std::shared_ptr<GwClientHandlerCollection> m_GwClientHandlerCollection;
+    std::shared_ptr<GwClientServerHandlerCollection> m_GwClientServerHandlerCollection;
     boost::asio::ip::tcp::socket m_TCPSocket;
     std::shared_ptr<AddressLease> m_AddressLease;
     PublishSubscribeService m_PublishSubscribeService;
@@ -72,4 +72,4 @@ private:
     size_t m_SendBufferOffset; //!< To detect and handle partial writes to the TCP socket
 };
 
-#endif // GWCLIENT_HANDLER_H
+#endif // GWCLIENT_SERVER_HANDLER_H

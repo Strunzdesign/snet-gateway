@@ -1,5 +1,5 @@
 /**
- * \file      ToolFrameParser.h
+ * \file      GwClientServer.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,33 +21,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOL_FRAME_PARSER_H
-#define TOOL_FRAME_PARSER_H
+#ifndef GWCLIENT_SERVER_H
+#define GWCLIENT_SERVER_H
 
 #include <memory>
-#include <vector>
-class CommandResponseFrame;
-class GwClientServerHandler;
+#include <boost/asio.hpp>
+#include "FrameEndpoint.h"
 
-class ToolFrameParser {
+class GwClientServer {
 public:
-    ToolFrameParser(GwClientServerHandler& a_GwClientServerHandler);
-    void Reset();
-    void AddReceivedRawBytes(const unsigned char* a_Buffer, size_t a_Bytes);
+    // CTOR, initializer, and resetter
+    GwClientServer(boost::asio::io_service& a_IOService, boost::asio::ip::tcp::tcp::socket& a_TcpSocket);
+    void SetOnClosedCallback(std::function<void()> a_OnClosedCallback) {
+        m_OnClosedCallback = a_OnClosedCallback;
+    }
     
+    void Start()
+    void Close();
+    
+    // Methods to be called by a gateway client entity
+
 private:
-    // Interal helpers
-    size_t AddChunk(const unsigned char* a_Buffer, size_t a_Bytes);
-    bool RemoveEscapeCharacters();
-    std::shared_ptr<CommandResponseFrame> DeserializeToolFrame(const std::vector<unsigned char> &a_UnescapedBuffer) const;
+    // Internal helpers
+    bool OnFrame(std::shared_ptr<Frame> a_Frame);
+    void OnClosed();
     
     // Members
-    GwClientServerHandler& m_GwClientServerHandler;
+    boost::asio::io_service& m_IOService;
 
-    enum { max_length = 1024 };
-    std::vector<unsigned char> m_Buffer;
-    bool m_bStartTokenSeen;
+    // The communication end point
+    std::shared_ptr<FrameEndpoint> m_FrameEndpoint;
+    std::function<void()> m_OnClosedCallback;
 };
 
-#endif // TOOL_FRAME_PARSER_H
-
+#endif // GWCLIENT_SERVER_H

@@ -1,5 +1,5 @@
 /**
- * \file      GwClientHandler.cpp
+ * \file      GwClientServerHandler.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GwClientHandler.h"
+#include "GwClientServerHandler.h"
 #include "ToolFrameGenerator.h"
 #include "CommandResponseFrame0101.h"
 #include "CommandResponseFrame0111.h"
@@ -35,33 +35,33 @@
 #include <iostream>
 #include <assert.h>
 
-GwClientHandler::GwClientHandler(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket):
-    m_GwClientHandlerCollection(a_GwClientHandlerCollection),
+GwClientServerHandler::GwClientServerHandler(std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket):
+    m_GwClientServerHandlerCollection(a_GwClientServerHandlerCollection),
     m_TCPSocket(std::move(a_TCPSocket)),
     m_ToolFrameParser(*this) {
     // Checks
-    assert(m_GwClientHandlerCollection);
+    assert(m_GwClientServerHandlerCollection);
         
     m_Registered = false;
     m_bWriteInProgress = false;
     m_SendBufferOffset = 0;
 }
 
-void GwClientHandler::RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity) {
+void GwClientServerHandler::RegisterRoutingEntity(std::shared_ptr<Routing> a_RoutingEntity) {
     assert(a_RoutingEntity);
     m_RoutingEntity = a_RoutingEntity;
 }
 
-void GwClientHandler::Start() {
+void GwClientServerHandler::Start() {
     assert(m_Registered == false);
     m_Registered = true;
     m_SendBufferOffset = 0;
     assert(!m_AddressLease);
-    m_AddressLease = m_GwClientHandlerCollection->RegisterGwClientHandler(shared_from_this());
+    m_AddressLease = m_GwClientServerHandlerCollection->RegisterGwClientServerHandler(shared_from_this());
     ReadChunkFromSocket();
 }
 
-void GwClientHandler::Close() {
+void GwClientServerHandler::Close() {
     // Keep this object alive
     auto self(shared_from_this());
     if (m_Registered) {
@@ -70,12 +70,12 @@ void GwClientHandler::Close() {
         m_TCPSocket.close();
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
-        m_GwClientHandlerCollection->DeregisterGwClientHandler(self);
-        m_GwClientHandlerCollection.reset();
+        m_GwClientServerHandlerCollection->DeregisterGwClientServerHandler(self);
+        m_GwClientServerHandlerCollection.reset();
     } // if
 }
 
-bool GwClientHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
+bool GwClientServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     // Check destination address
     if (((a_SnetServiceMessage.GetDstSSA() > 0x4000) && (a_SnetServiceMessage.GetDstSSA() < 0xFFF0)) && (a_SnetServiceMessage.GetDstSSA() != m_AddressLease->GetAddress())) {
         // Not for this tool!
@@ -93,14 +93,14 @@ bool GwClientHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     return SendHelper(a_SnetServiceMessage);
 }
 
-bool GwClientHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
+bool GwClientServerHandler::SendHelper(const SnetServiceMessage& a_SnetServiceMessage) {
     // Queue for transmission :-)
     CommandResponseFrame0302 l_CommandResponseFrame0302;
     l_CommandResponseFrame0302.m_Payload = a_SnetServiceMessage.Serialize();
     return Send(l_CommandResponseFrame0302);
 }
 
-bool GwClientHandler::Send(const CommandResponseFrame& a_CommandResponseFrame) {
+bool GwClientServerHandler::Send(const CommandResponseFrame& a_CommandResponseFrame) {
     // TODO: check size of the queue. If it reaches a specific limit: kill the socket to prevent DoS attacks
     if (m_SendQueue.size() >= 100) {
         return false;
@@ -114,7 +114,7 @@ bool GwClientHandler::Send(const CommandResponseFrame& a_CommandResponseFrame) {
     return true;
 }
     
-void GwClientHandler::ReadChunkFromSocket() {
+void GwClientServerHandler::ReadChunkFromSocket() {
     m_TCPSocket.async_read_some(boost::asio::buffer(m_ReadBuffer, E_MAX_LENGTH),[this](boost::system::error_code a_ErrorCode, std::size_t a_ReadBytes) {
         if (a_ErrorCode == boost::asio::error::operation_aborted) return;
         if (!m_Registered) return;
@@ -128,7 +128,7 @@ void GwClientHandler::ReadChunkFromSocket() {
     }); // async_read
 }
 
-void GwClientHandler::InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame) {
+void GwClientServerHandler::InterpretDeserializedToolFrame(const std::shared_ptr<CommandResponseFrame> a_CommandResponseFrame) {
     if (!a_CommandResponseFrame) { return; }
     if (a_CommandResponseFrame->GetRequestId() == 0x0100) {
         // We have to send a respose now
@@ -181,7 +181,7 @@ void GwClientHandler::InterpretDeserializedToolFrame(const std::shared_ptr<Comma
     } // if
 }
 
-void GwClientHandler::DoWrite() {
+void GwClientServerHandler::DoWrite() {
     auto self(shared_from_this());
     if (!m_Registered) return;
     m_bWriteInProgress = true;

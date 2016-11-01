@@ -26,9 +26,9 @@ add_executable(snet-gateway
     GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp
     GwClientServer/ToolFrameGenerator.cpp
     GwClientServer/ToolFrameParser.cpp
-    GwClientServer/GwClient.cpp
-    GwClientServer/GwClientHandler.cpp
-    GwClientServer/GwClientHandlerCollection.cpp
+    GwClientServer/GwClientServer.cpp
+    GwClientServer/GwClientServerHandler.cpp
+    GwClientServer/GwClientServerHandlerCollection.cpp
 )
 
 if(WIN32)

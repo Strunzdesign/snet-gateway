@@ -23,20 +23,20 @@
 
 #include "Routing.h"
 #include "SnetServiceMessage.h"
-#include "GwClientHandlerCollection.h"
+#include "GwClientServerHandlerCollection.h"
 #include "HdlcdClientHandlerCollection.h"
 #include <assert.h>
 
-Routing::Routing(std::shared_ptr<GwClientHandlerCollection> a_GwClientHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
-    m_GwClientHandlerCollection(a_GwClientHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace), m_bReliable(a_bReliable) {
+Routing::Routing(std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, std::shared_ptr<HdlcdClientHandlerCollection> a_HdlcdClientHandlerCollection, bool a_bTrace, bool a_bReliable):
+    m_GwClientServerHandlerCollection(a_GwClientServerHandlerCollection), m_HdlcdClientHandlerCollection(a_HdlcdClientHandlerCollection), m_bTrace(a_bTrace), m_bReliable(a_bReliable) {
     // Checks
-    assert(m_GwClientHandlerCollection);
+    assert(m_GwClientServerHandlerCollection);
     assert(m_HdlcdClientHandlerCollection);
 }
 
 void Routing::SystemShutdown() {
     // Drop all shared pointers
-    m_GwClientHandlerCollection.reset();
+    m_GwClientServerHandlerCollection.reset();
     m_HdlcdClientHandlerCollection.reset();
 }
 
@@ -62,8 +62,8 @@ void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPON
             std::cout << "To clients:   " << a_SnetServiceMessage.Dissect() << std::endl;
         } // if
 
-        if (m_GwClientHandlerCollection) {
-            m_GwClientHandlerCollection->Send(a_SnetServiceMessage);
+        if (m_GwClientServerHandlerCollection) {
+            m_GwClientServerHandlerCollection->Send(a_SnetServiceMessage);
         } // if
     } else {
         // Not caught

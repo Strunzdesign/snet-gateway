@@ -22,13 +22,13 @@
  */
 
 #include "ToolFrameParser.h"
-#include "GwClientHandler.h"
+#include "GwClientServerHandler.h"
 #include "CommandResponseFrame.h"
 #include "CommandResponseFrame0100.h"
 #include "CommandResponseFrame0110.h"
 #include "CommandResponseFrame0300.h"
 
-ToolFrameParser::ToolFrameParser(GwClientHandler& a_GwClientHandler): m_GwClientHandler(a_GwClientHandler) {
+ToolFrameParser::ToolFrameParser(GwClientServerHandler& a_GwClientServerHandler): m_GwClientServerHandler(a_GwClientServerHandler) {
     Reset();
 }
 
@@ -149,7 +149,7 @@ bool ToolFrameParser::RemoveEscapeCharacters() {
     } // if
 
     if (l_bMessageInvalid == false) {
-        m_GwClientHandler.InterpretDeserializedToolFrame(DeserializeToolFrame(m_Buffer));
+        m_GwClientServerHandler.InterpretDeserializedToolFrame(DeserializeToolFrame(m_Buffer));
     } // if
 
     return (l_bMessageInvalid == false);

@@ -1,5 +1,5 @@
 /**
- * \file      GwClientHandlerCollection.cpp
+ * \file      GwClientServerHandlerCollection.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,18 +21,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GwClientHandlerCollection.h"
-#include "GwClientHandler.h"
+#include "GwClientServerHandlerCollection.h"
+#include "GwClientServerHandler.h"
 #include "SnetServiceMessage.h"
 #include "AddressPool.h"
 #include <assert.h>
 using boost::asio::ip::tcp;
 
-GwClientHandlerCollection::GwClientHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService) {
+GwClientServerHandlerCollection::GwClientServerHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr): m_TcpAcceptor(a_IOService, tcp::endpoint(tcp::v4(), a_TcpPortNbr)), m_TcpSocket(a_IOService) {
     m_AddressPool = std::make_shared<AddressPool>();
 }
 
-void GwClientHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
+void GwClientServerHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEntity) {
     assert(a_RoutingEntity);
     m_RoutingEntity = a_RoutingEntity;
     
@@ -40,42 +40,42 @@ void GwClientHandlerCollection::Initialize(std::shared_ptr<Routing> a_RoutingEnt
     DoAccept();
 }
 
-void GwClientHandlerCollection::SystemShutdown() {
+void GwClientServerHandlerCollection::SystemShutdown() {
     // Stop accepting subsequent TCP connections
     m_TcpAcceptor.close();
 
     // Drop all shared pointers
     m_RoutingEntity.reset();
-    while (!m_GwClientHandlerList.empty()) {
-        (*m_GwClientHandlerList.begin())->Close();
+    while (!m_GwClientServerHandlerList.empty()) {
+        (*m_GwClientServerHandlerList.begin())->Close();
     } // while
 }
 
-std::shared_ptr<AddressLease> GwClientHandlerCollection::RegisterGwClientHandler(std::shared_ptr<GwClientHandler> a_GwClientHandler) {
+std::shared_ptr<AddressLease> GwClientServerHandlerCollection::RegisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler) {
     assert(m_RoutingEntity);
     auto l_AddressLease = m_AddressPool->ObtainAddressLease();
-    a_GwClientHandler->RegisterRoutingEntity(m_RoutingEntity);
-    m_GwClientHandlerList.emplace_back(std::move(a_GwClientHandler));
+    a_GwClientServerHandler->RegisterRoutingEntity(m_RoutingEntity);
+    m_GwClientServerHandlerList.emplace_back(std::move(a_GwClientServerHandler));
     assert(l_AddressLease);
     return l_AddressLease;
 }
 
-void GwClientHandlerCollection::DeregisterGwClientHandler(std::shared_ptr<GwClientHandler> a_GwClientHandler) {
-    m_GwClientHandlerList.remove(a_GwClientHandler);
+void GwClientServerHandlerCollection::DeregisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler) {
+    m_GwClientServerHandlerList.remove(a_GwClientServerHandler);
 }
 
-void GwClientHandlerCollection::Send(const SnetServiceMessage& a_SnetServiceMessage) {
-    for (auto l_It = m_GwClientHandlerList.begin(); l_It != m_GwClientHandlerList.end(); ++l_It) {
+void GwClientServerHandlerCollection::Send(const SnetServiceMessage& a_SnetServiceMessage) {
+    for (auto l_It = m_GwClientServerHandlerList.begin(); l_It != m_GwClientServerHandlerList.end(); ++l_It) {
         (*l_It)->Send(a_SnetServiceMessage);
     } // for
 }
 
-void GwClientHandlerCollection::DoAccept() {
+void GwClientServerHandlerCollection::DoAccept() {
     m_TcpAcceptor.async_accept(m_TcpSocket, [this](boost::system::error_code a_ErrorCode) {
         if (!a_ErrorCode) {
             // Create a tool handler object and start it. It registers itself to the tool handler collection
-            auto l_GwClientHandler = std::make_shared<GwClientHandler>(shared_from_this(), m_TcpSocket);
-            l_GwClientHandler->Start();
+            auto l_GwClientServerHandler = std::make_shared<GwClientServerHandler>(shared_from_this(), m_TcpSocket);
+            l_GwClientServerHandler->Start();
         } // if
 
         // Wait for subsequent TCP connections
