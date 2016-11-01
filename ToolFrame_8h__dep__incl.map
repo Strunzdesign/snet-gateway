@@ -1,9 +1,0 @@
-<map id="src/ToolServer/ToolFrames/ToolFrame.h" name="src/ToolServer/ToolFrames/ToolFrame.h">
-<area shape="rect" id="node2" href="$ToolFrameGenerator_8h.html" title="src/ToolServer/ToolFrame\lGenerator.h" alt="" coords="93,95,279,136"/>
-<area shape="rect" id="node5" href="$ToolFrameParser_8h.html" title="src/ToolServer/ToolFrame\lParser.h" alt="" coords="350,95,537,136"/>
-<area shape="rect" id="node8" href="$ToolHandlerCollection_8cpp.html" title="src/ToolServer/ToolHandler\lCollection.cpp" alt="" coords="518,273,715,315"/>
-<area shape="rect" id="node3" href="$ToolFrameGenerator_8cpp.html" title="src/ToolServer/ToolFrame\lGenerator.cpp" alt="" coords="93,184,279,225"/>
-<area shape="rect" id="node4" href="$ToolHandler_8cpp.html" title="src/ToolServer/ToolHandler.cpp" alt="" coords="5,281,228,307"/>
-<area shape="rect" id="node6" href="$ToolFrameParser_8cpp.html" title="src/ToolServer/ToolFrame\lParser.cpp" alt="" coords="307,273,494,315"/>
-<area shape="rect" id="node7" href="$ToolHandler_8h.html" title="src/ToolServer/ToolHandler.h" alt="" coords="303,191,511,218"/>
-</map>
