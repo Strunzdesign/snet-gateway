@@ -66,7 +66,7 @@ bool GwClient::Send(const std::vector<unsigned char> &a_HigherLayerPayload, std:
         // Send the provided payload via an escaping-based frame
         if (m_FrameEndpoint) {
             CommandResponseFrame0302 l_CommandResponseFrame0302;
-            l_CommandResponseFrame0302.m_Payload = std::move(a_HigherLayerPayload);
+            l_CommandResponseFrame0302.m_Payload = a_HigherLayerPayload;
             l_bRetVal = m_FrameEndpoint->SendFrame(GwClientFrameEscaped::Create(l_CommandResponseFrame0302.Serialize()), a_OnSendDoneCallback);
         } else {
             l_bRetVal = true;
