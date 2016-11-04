@@ -50,7 +50,7 @@ For this purpose, the s-net gateway offers two modes of framing, which are descr
 
 ## Framing modes
 The C++-based gateway software offers two framing modes:
-- the legacy *escaping-based framin mode*, that involves a HDLC-like framing and escaping, and
+- the legacy *escaping-based framing mode*, that involves a HDLC-like framing and escaping, and
 - the preferred *length-based framing mode*, that preceeds each payload with a length field.
 
 Both framing modes are explained in the following. Both use the same TCP port of the gateway.
