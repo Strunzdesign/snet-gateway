@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['framing_5fmode_5fescaping',['FRAMING_MODE_ESCAPING',['../classGwClient.html#a84e121e9b12aab51596bc80db73c836fafd9484146d79a0726fc052e67fe5bbe2',1,'GwClient']]],
-  ['framing_5fmode_5flength',['FRAMING_MODE_LENGTH',['../classGwClient.html#a84e121e9b12aab51596bc80db73c836fa197187513ce42ddf861223493d34f053',1,'GwClient']]],
-  ['framing_5fmode_5funknown',['FRAMING_MODE_UNKNOWN',['../classGwClient.html#a84e121e9b12aab51596bc80db73c836fa70c7c5574323a266040652ea7f50cf98',1,'GwClient']]]
+  ['framing_5fmode_5fescaping',['FRAMING_MODE_ESCAPING',['../classGatewayAccessProtocol.html#acb79daa3a67028421dbd14e3076617f5a28fea7888194197621760bfd412baccf',1,'GatewayAccessProtocol']]],
+  ['framing_5fmode_5flength',['FRAMING_MODE_LENGTH',['../classGatewayAccessProtocol.html#acb79daa3a67028421dbd14e3076617f5af1ecbfd28d5dc4b0195e12729c5c15d1',1,'GatewayAccessProtocol']]],
+  ['framing_5fmode_5funknown',['FRAMING_MODE_UNKNOWN',['../classGatewayAccessProtocol.html#acb79daa3a67028421dbd14e3076617f5aea9a66b71948a50e9c59512b7a73e0a4',1,'GatewayAccessProtocol']]]
 ];

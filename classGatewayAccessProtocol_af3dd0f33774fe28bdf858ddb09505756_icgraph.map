@@ -1,0 +1,6 @@
+<map id="GatewayAccessProtocol::Send" name="GatewayAccessProtocol::Send">
+<area shape="rect" id="node2" href="$classGatewayAccessProtocol.html#a4e37be0be0b61ecb2c797a53d1f3d765" title="GatewayAccessProtocol\l::SetOnClosedCallback" alt="" coords="248,5,423,47"/>
+<area shape="rect" id="node4" href="$classGatewayAccessServerHandler.html#a9529e2888edbc1307a8bed3880ffded7" title="GatewayAccessServerHandler\l::Send" alt="" coords="228,71,443,112"/>
+<area shape="rect" id="node5" href="$classGatewayAccessServerHandler.html#ac413f18a5dfbd46a7977190ae2b38d2b" title="GatewayAccessServerHandler\l::OnPayload" alt="" coords="228,136,443,177"/>
+<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="491,71,712,112"/>
+</map>

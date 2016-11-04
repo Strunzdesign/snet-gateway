@@ -1,4 +1,4 @@
-<map id="src/GwClientServer/AddressService/AddressService.h" name="src/GwClientServer/AddressService/AddressService.h">
-<area shape="rect" id="node2" href="$AddressService_8cpp.html" title="src/GwClientServer\l/AddressService/AddressService.cpp" alt="" coords="5,95,260,136"/>
-<area shape="rect" id="node3" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="284,95,485,136"/>
+<map id="src/GatewayAccessServer/AddressService/AddressService.h" name="src/GatewayAccessServer/AddressService/AddressService.h">
+<area shape="rect" id="node2" href="$AddressService_8cpp.html" title="src/GatewayAccessServer\l/AddressService/AddressService.cpp" alt="" coords="5,95,260,136"/>
+<area shape="rect" id="node3" href="$GatewayAccessServerHandler_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.cpp" alt="" coords="285,95,530,136"/>
 </map>

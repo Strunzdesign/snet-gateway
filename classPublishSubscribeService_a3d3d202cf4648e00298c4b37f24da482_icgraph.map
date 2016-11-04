@@ -1,4 +1,4 @@
 <map id="PublishSubscribeService::ProcessRequest" name="PublishSubscribeService::ProcessRequest">
-<area shape="rect" id="node2" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="227,5,397,47"/>
-<area shape="rect" id="node3" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="445,5,623,47"/>
+<area shape="rect" id="node2" href="$classGatewayAccessServerHandler.html#ac413f18a5dfbd46a7977190ae2b38d2b" title="GatewayAccessServerHandler\l::OnPayload" alt="" coords="227,5,441,47"/>
+<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="489,5,711,47"/>
 </map>

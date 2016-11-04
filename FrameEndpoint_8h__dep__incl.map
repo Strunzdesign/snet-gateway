@@ -1,10 +1,10 @@
 <map id="libs/framing/src/FrameEndpoint.h" name="libs/framing/src/FrameEndpoint.h">
-<area shape="rect" id="node2" href="$GwClient_8h.html" title="src/GwClientServer\l/GwClient/GwClient.h" alt="" coords="262,80,417,121"/>
-<area shape="rect" id="node7" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="441,80,613,121"/>
-<area shape="rect" id="node8" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="551,169,693,211"/>
-<area shape="rect" id="node3" href="$GwClient_8cpp.html" title="src/GwClientServer\l/GwClient/GwClient.cpp" alt="" coords="66,169,237,211"/>
-<area shape="rect" id="node4" href="$GwClientServerHandler_8h.html" title="src/GwClientServer\l/GwClientServerHandler.h" alt="" coords="261,169,447,211"/>
-<area shape="rect" id="node5" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="5,259,207,300"/>
-<area shape="rect" id="node6" href="$GwClientServerHandlerCollection_8cpp.html" title="src/GwClientServer\l/GwClientServerHandlerCollection.cpp" alt="" coords="231,259,493,300"/>
-<area shape="rect" id="node9" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="525,259,719,300"/>
+<area shape="rect" id="node2" href="$GatewayAccessProtocol_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/GatewayAccessProtocol.h" alt="" coords="311,80,502,136"/>
+<area shape="rect" id="node7" href="$HdlcdPacketEndpoint_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="526,87,698,129"/>
+<area shape="rect" id="node8" href="$HdlcdClient_8h.html" title="This file contains the header declaration of class HdlcdClient. " alt="" coords="639,191,780,233"/>
+<area shape="rect" id="node3" href="$GatewayAccessProtocol_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/GatewayAccessProtocol.cpp" alt="" coords="75,184,280,240"/>
+<area shape="rect" id="node4" href="$GatewayAccessServerHandler_8h.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.h" alt="" coords="305,191,535,233"/>
+<area shape="rect" id="node5" href="$GatewayAccessServerHandler_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.cpp" alt="" coords="5,288,251,329"/>
+<area shape="rect" id="node6" href="$GatewayAccessServerHandlerCollection_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandlerCollection.cpp" alt="" coords="275,288,581,329"/>
+<area shape="rect" id="node9" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="613,288,806,329"/>
 </map>

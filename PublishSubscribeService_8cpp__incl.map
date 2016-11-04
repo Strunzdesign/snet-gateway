@@ -1,4 +1,4 @@
-<map id="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp" name="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp">
+<map id="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.cpp" name="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.cpp">
 <area shape="rect" id="node2" href="$PublishSubscribeService_8h.html" title="PublishSubscribeService.h" alt="" coords="263,109,447,136"/>
 <area shape="rect" id="node13" href="$AddressLease_8h.html" title="AddressLease.h" alt="" coords="472,109,596,136"/>
 <area shape="rect" id="node3" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="137,184,304,211"/>

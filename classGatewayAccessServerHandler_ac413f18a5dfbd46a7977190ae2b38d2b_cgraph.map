@@ -1,0 +1,23 @@
+<map id="GatewayAccessServerHandler::OnPayload" name="GatewayAccessServerHandler::OnPayload">
+<area shape="rect" id="node2" href="$classSnetServiceMessage.html#a09ef19df55558c530638bd8e492bd16d" title="SnetServiceMessage\l::Deserialize" alt="" coords="305,5,461,47"/>
+<area shape="rect" id="node5" href="$classSnetPacket.html#a67d0ce6bf9075c15ca1c4853e80b37e8" title="SnetPacket::GetDstSSA" alt="" coords="583,118,753,145"/>
+<area shape="rect" id="node6" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="268,239,499,266"/>
+<area shape="rect" id="node7" href="$classSnetPacket.html#a270da13b159d9c81c37e4d9f3d35f429" title="SnetPacket::GetSrcSSA" alt="" coords="583,67,753,94"/>
+<area shape="rect" id="node13" href="$classGatewayAccessProtocol.html#af3dd0f33774fe28bdf858ddb09505756" title="GatewayAccessProtocol\l::Send" alt="" coords="296,584,471,625"/>
+<area shape="rect" id="node21" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="297,173,470,215"/>
+<area shape="rect" id="node22" href="$classSnetPacket.html#a795d2818ac1add8843ba76c759ff0b4c" title="SnetPacket::SetSrcSSA" alt="" coords="299,650,468,677"/>
+<area shape="rect" id="node3" href="$classSnetAppMessage.html#a124176eff2a043a9680ac7717e60c6b9" title="SnetAppMessage::Deserialize" alt="" coords="563,13,773,39"/>
+<area shape="rect" id="node4" href="$classSnetPacket.html#af6a6cff7f3afcbc8e75139965e6e2f38" title="SnetPacket::Deserialize" alt="" coords="837,13,1008,39"/>
+<area shape="rect" id="node8" href="$classSnetAppMessage.html#a5207caab009484a3f3d718102c2c7c3b" title="SnetAppMessage::GetSrcServiceId" alt="" coords="547,235,789,262"/>
+<area shape="rect" id="node9" href="$classSnetAppMessage.html#a5a719a919059c1399b4e5a8d65394360" title="SnetAppMessage::GetDstServiceId" alt="" coords="547,286,789,313"/>
+<area shape="rect" id="node10" href="$classSnetAppMessage.html#ae34f61cad009908da9db9ff0db319cca" title="SnetAppMessage::GetToken" alt="" coords="567,337,769,363"/>
+<area shape="rect" id="node11" href="$classSnetServiceMessage.html#a4eac6bda00745d1b196bfa11cae2fc0b" title="SnetServiceMessage\l::GetPayload" alt="" coords="590,388,746,429"/>
+<area shape="rect" id="node12" href="$classSnetServiceMessage.html#af6105527d3c7724cb57b551367a19aef" title="SnetServiceMessage\l::SetPayload" alt="" coords="590,169,746,211"/>
+<area shape="rect" id="node14" href="$classGatewayAccessFrameEscaped.html#a656a9b87759b8cc556dd7e370f070c62" title="GatewayAccessFrameEscaped\l::Create" alt="" coords="559,649,777,691"/>
+<area shape="rect" id="node15" href="$classCommandResponseFrame0302.html#abdf857761713646e805d04b12461454c" title="CommandResponseFrame0302\l::Serialize" alt="" coords="557,715,779,756"/>
+<area shape="rect" id="node16" href="$classCommandResponseFrame0101.html#a5c93426f7e8344d02b6781b4bd9445ab" title="CommandResponseFrame0101\l::Serialize" alt="" coords="557,780,779,821"/>
+<area shape="rect" id="node17" href="$classCommandResponseFrame0111.html#a0d18178e9693bce1eda2ca187ed401da" title="CommandResponseFrame0111\l::Serialize" alt="" coords="557,845,779,887"/>
+<area shape="rect" id="node18" href="$classCommandResponseFrame0301.html#aa2935c9f2cbf897b2a58802c9f41caf7" title="CommandResponseFrame0301\l::Serialize" alt="" coords="557,453,779,495"/>
+<area shape="rect" id="node19" href="$classCommandResponseFrame0300.html#ab03f5b318153648a9f66a1d9d317e223" title="CommandResponseFrame0300\l::GetPayload" alt="" coords="557,519,779,560"/>
+<area shape="rect" id="node20" href="$classGatewayAccessProtocol.html#a21ab766925b4b9a4fd491bfb361313af" title="GatewayAccessProtocol\l::Close" alt="" coords="581,584,755,625"/>
+</map>

@@ -1,6 +1,6 @@
 <map id="SnetServiceMessage::SetPayload" name="SnetServiceMessage::SetPayload">
 <area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="209,5,440,32"/>
 <area shape="rect" id="node5" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="238,57,411,98"/>
-<area shape="rect" id="node3" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="488,27,659,69"/>
-<area shape="rect" id="node4" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="707,27,884,69"/>
+<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#ac413f18a5dfbd46a7977190ae2b38d2b" title="GatewayAccessServerHandler\l::OnPayload" alt="" coords="488,27,703,69"/>
+<area shape="rect" id="node4" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="751,27,972,69"/>
 </map>

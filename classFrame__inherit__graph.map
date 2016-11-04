@@ -1,9 +1,9 @@
 <map id="Frame" name="Frame">
-<area shape="rect" id="node2" href="$classGwClientFrame.html" title="GwClientFrame" alt="" coords="227,80,345,107"/>
-<area shape="rect" id="node5" href="$classHdlcdPacket.html" title="Class HdlcdPacket. " alt="" coords="402,80,503,107"/>
-<area shape="rect" id="node8" href="$classHdlcdSessionHeader.html" title="Class HdlcdSessionHeader. " alt="" coords="527,80,682,107"/>
-<area shape="rect" id="node3" href="$classGwClientFrameEscaped.html" title="GwClientFrameEscaped" alt="" coords="5,155,180,181"/>
-<area shape="rect" id="node4" href="$classGwClientFrameLength.html" title="GwClientFrameLength" alt="" coords="205,155,367,181"/>
-<area shape="rect" id="node6" href="$classHdlcdPacketCtrl.html" title="HdlcdPacketCtrl" alt="" coords="391,155,514,181"/>
-<area shape="rect" id="node7" href="$classHdlcdPacketData.html" title="HdlcdPacketData" alt="" coords="538,155,669,181"/>
+<area shape="rect" id="node2" href="$classGatewayAccessFrame.html" title="GatewayAccessFrame" alt="" coords="271,80,433,107"/>
+<area shape="rect" id="node5" href="$classHdlcdPacket.html" title="Class HdlcdPacket. " alt="" coords="491,80,592,107"/>
+<area shape="rect" id="node8" href="$classHdlcdSessionHeader.html" title="Class HdlcdSessionHeader. " alt="" coords="616,80,771,107"/>
+<area shape="rect" id="node3" href="$classGatewayAccessFrameEscaped.html" title="GatewayAccessFrameEscaped" alt="" coords="5,155,224,181"/>
+<area shape="rect" id="node4" href="$classGatewayAccessFrameLength.html" title="GatewayAccessFrameLength" alt="" coords="249,155,455,181"/>
+<area shape="rect" id="node6" href="$classHdlcdPacketCtrl.html" title="HdlcdPacketCtrl" alt="" coords="480,155,603,181"/>
+<area shape="rect" id="node7" href="$classHdlcdPacketData.html" title="HdlcdPacketData" alt="" coords="627,155,757,181"/>
 </map>

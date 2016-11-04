@@ -1,0 +1,12 @@
+<map id="src/GatewayAccessServer/GatewayAccessServerHandlerCollection.cpp" name="src/GatewayAccessServer/GatewayAccessServerHandlerCollection.cpp">
+<area shape="rect" id="node2" href="$GatewayAccessServerHandlerCollection_8h.html" title="GatewayAccessServerHandler\lCollection.h" alt="" coords="227,169,441,211"/>
+<area shape="rect" id="node6" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="392,259,559,285"/>
+<area shape="rect" id="node14" href="$GatewayAccessServerHandler_8h.html" title="GatewayAccessServerHandler.h" alt="" coords="702,95,929,121"/>
+<area shape="rect" id="node24" href="$AddressPool_8h.html" title="AddressPool.h" alt="" coords="1125,259,1239,285"/>
+<area shape="rect" id="node7" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="5,333,151,360"/>
+<area shape="rect" id="node8" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="617,408,723,435"/>
+<area shape="rect" id="node16" href="$GatewayAccessProtocol_8h.html" title="GatewayAccessProtocol.h" alt="" coords="618,177,805,203"/>
+<area shape="rect" id="node22" href="$PublishSubscribeService_8h.html" title="PublishSubscribeService.h" alt="" coords="829,177,1013,203"/>
+<area shape="rect" id="node17" href="$FrameEndpoint_8h.html" title="This file contains the header declaration of class FrameEndpoint. " alt="" coords="688,259,817,285"/>
+<area shape="rect" id="node20" href="$Frame_8h.html" title="This file contains the header declaration of class Frame. " alt="" coords="852,333,925,360"/>
+</map>

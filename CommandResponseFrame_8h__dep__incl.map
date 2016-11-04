@@ -1,10 +1,10 @@
-<map id="src/GwClientServer/GwClient/CommandResponseFrames/CommandResponseFrame.h" name="src/GwClientServer/GwClient/CommandResponseFrames/CommandResponseFrame.h">
-<area shape="rect" id="node2" href="$CommandResponseFrame0100_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0100.h" alt="" coords="5,109,268,165"/>
-<area shape="rect" id="node3" href="$CommandResponseFrame0101_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0101.h" alt="" coords="292,109,555,165"/>
-<area shape="rect" id="node5" href="$CommandResponseFrame0110_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0110.h" alt="" coords="579,109,841,165"/>
-<area shape="rect" id="node6" href="$CommandResponseFrame0111_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0111.h" alt="" coords="865,109,1128,165"/>
-<area shape="rect" id="node7" href="$CommandResponseFrame0300_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0300.h" alt="" coords="1152,109,1415,165"/>
-<area shape="rect" id="node8" href="$CommandResponseFrame0301_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0301.h" alt="" coords="1439,109,1701,165"/>
-<area shape="rect" id="node9" href="$CommandResponseFrame0302_8h.html" title="src/GwClientServer\l/GwClient/CommandResponseFrames\l/CommandResponseFrame0302.h" alt="" coords="1725,109,1988,165"/>
-<area shape="rect" id="node4" href="$GwClient_8cpp.html" title="src/GwClientServer\l/GwClient/GwClient.cpp" alt="" coords="1198,213,1369,255"/>
+<map id="src/GatewayAccessServer/GatewayAccessProtocol/CommandResponseFrames/CommandResponseFrame.h" name="src/GatewayAccessServer/GatewayAccessProtocol/CommandResponseFrames/CommandResponseFrame.h">
+<area shape="rect" id="node2" href="$CommandResponseFrame0100_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0100.h" alt="" coords="5,124,243,195"/>
+<area shape="rect" id="node3" href="$CommandResponseFrame0101_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0101.h" alt="" coords="267,124,504,195"/>
+<area shape="rect" id="node5" href="$CommandResponseFrame0110_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0110.h" alt="" coords="528,124,765,195"/>
+<area shape="rect" id="node6" href="$CommandResponseFrame0111_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0111.h" alt="" coords="789,124,1027,195"/>
+<area shape="rect" id="node7" href="$CommandResponseFrame0300_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0300.h" alt="" coords="1051,124,1288,195"/>
+<area shape="rect" id="node8" href="$CommandResponseFrame0301_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0301.h" alt="" coords="1312,124,1549,195"/>
+<area shape="rect" id="node9" href="$CommandResponseFrame0302_8h.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/CommandResponseFrames\l/CommandResponseFrame0302.h" alt="" coords="1573,124,1811,195"/>
+<area shape="rect" id="node4" href="$GatewayAccessProtocol_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessProtocol\l/GatewayAccessProtocol.cpp" alt="" coords="1067,243,1272,299"/>
 </map>

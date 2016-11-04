@@ -1,7 +1,7 @@
 <map id="src/Routing/Component.h" name="src/Routing/Component.h">
-<area shape="rect" id="node2" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="5,155,207,196"/>
-<area shape="rect" id="node3" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="231,155,424,196"/>
-<area shape="rect" id="node4" href="$Routing_8h.html" title="src/Routing/Routing.h" alt="" coords="307,80,463,107"/>
-<area shape="rect" id="node5" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="449,162,638,189"/>
-<area shape="rect" id="node6" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="662,162,833,189"/>
+<area shape="rect" id="node2" href="$GatewayAccessServerHandler_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.cpp" alt="" coords="5,155,251,196"/>
+<area shape="rect" id="node3" href="$HdlcdClientHandler_8cpp.html" title="src/HdlcdClient/HdlcdClient\lHandler.cpp" alt="" coords="275,155,469,196"/>
+<area shape="rect" id="node4" href="$Routing_8h.html" title="src/Routing/Routing.h" alt="" coords="351,80,507,107"/>
+<area shape="rect" id="node5" href="$main-snet-gateway_8cpp.html" title="src/main&#45;snet&#45;gateway.cpp" alt="" coords="493,162,683,189"/>
+<area shape="rect" id="node6" href="$Routing_8cpp.html" title="src/Routing/Routing.cpp" alt="" coords="707,162,877,189"/>
 </map>

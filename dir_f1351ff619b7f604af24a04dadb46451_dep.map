@@ -1,14 +1,14 @@
 <map id="src/Routing" name="src/Routing">
-<area shape="rect" id="node1" href="dir_f1351ff619b7f604af24a04dadb46451.html" title="Routing" alt="" coords="27,83,99,131"/>
-<area shape="rect" id="node2" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html" title="libs" alt="" coords="148,179,220,227"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000015_000000.html" title="1" alt="" coords="140,154,150,169"/>
-<area shape="rect" id="node3" href="dir_9b8456200e6dd243cece4ca2e94b1bed.html" title="GwClientServer" alt="" coords="123,83,245,131"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000015_000008.html" title="1" alt="" coords="100,91,109,106"/>
-<area shape="rect" id="node4" href="dir_55915ffdf197e3fb3fdce2b1bb5b1385.html" title="HdlcdClient" alt="" coords="269,83,363,131"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000015_000014.html" title="1" alt="" coords="296,56,306,70"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000008_000015.html" title="2" alt="" coords="112,108,121,123"/>
-<area shape="rect" id="edge5-headlabel" href="dir_000008_000000.html" title="8" alt="" coords="188,154,197,168"/>
-<area shape="rect" id="edge6-headlabel" href="dir_000014_000015.html" title="2" alt="" coords="84,64,93,78"/>
-<area shape="rect" id="edge7-headlabel" href="dir_000014_000000.html" title="4" alt="" coords="231,168,241,183"/>
-<area shape="rect" id="clust1" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" title="src" alt="" coords="16,47,109,142"/>
+<area shape="rect" id="node1" href="dir_f1351ff619b7f604af24a04dadb46451.html" title="Routing" alt="" coords="27,77,99,125"/>
+<area shape="rect" id="node2" href="dir_e39b24ed45724aecc8f8c37532498e5b.html" title="GatewayAccessServer" alt="" coords="123,77,288,125"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000015_000008.html" title="1" alt="" coords="100,86,109,100"/>
+<area shape="rect" id="node3" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html" title="libs" alt="" coords="169,173,241,221"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000015_000000.html" title="1" alt="" coords="154,150,163,164"/>
+<area shape="rect" id="node4" href="dir_55915ffdf197e3fb3fdce2b1bb5b1385.html" title="HdlcdClient" alt="" coords="313,77,407,125"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000015_000014.html" title="1" alt="" coords="340,50,349,65"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000008_000015.html" title="2" alt="" coords="112,103,122,117"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000008_000000.html" title="8" alt="" coords="209,148,218,163"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000014_000015.html" title="2" alt="" coords="83,58,93,72"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000014_000000.html" title="4" alt="" coords="257,165,266,179"/>
+<area shape="rect" id="clust1" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" title="src" alt="" coords="16,41,109,136"/>
 </map>

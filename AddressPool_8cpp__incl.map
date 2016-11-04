@@ -1,4 +1,4 @@
-<map id="src/GwClientServer/AddressService/AddressPool.cpp" name="src/GwClientServer/AddressService/AddressPool.cpp">
+<map id="src/GatewayAccessServer/AddressService/AddressPool.cpp" name="src/GatewayAccessServer/AddressService/AddressPool.cpp">
 <area shape="rect" id="node2" href="$AddressPool_8h.html" title="AddressPool.h" alt="" coords="153,95,267,121"/>
 <area shape="rect" id="node6" href="$AddressLease_8h.html" title="AddressLease.h" alt="" coords="5,95,129,121"/>
 </map>

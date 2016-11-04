@@ -14,14 +14,14 @@ var hierarchy =
     [ "enable_shared_from_this", null, [
       [ "AddressPool", "classAddressPool.html", null ],
       [ "FrameEndpoint", "classFrameEndpoint.html", null ],
-      [ "GwClientServerHandler", "classGwClientServerHandler.html", null ],
-      [ "GwClientServerHandlerCollection", "classGwClientServerHandlerCollection.html", null ],
+      [ "GatewayAccessServerHandler", "classGatewayAccessServerHandler.html", null ],
+      [ "GatewayAccessServerHandlerCollection", "classGatewayAccessServerHandlerCollection.html", null ],
       [ "HdlcdPacketEndpoint", "classHdlcdPacketEndpoint.html", null ]
     ] ],
     [ "Frame", "classFrame.html", [
-      [ "GwClientFrame", "classGwClientFrame.html", [
-        [ "GwClientFrameEscaped", "classGwClientFrameEscaped.html", null ],
-        [ "GwClientFrameLength", "classGwClientFrameLength.html", null ]
+      [ "GatewayAccessFrame", "classGatewayAccessFrame.html", [
+        [ "GatewayAccessFrameEscaped", "classGatewayAccessFrameEscaped.html", null ],
+        [ "GatewayAccessFrameLength", "classGatewayAccessFrameLength.html", null ]
       ] ],
       [ "HdlcdPacket", "classHdlcdPacket.html", [
         [ "HdlcdPacketCtrl", "classHdlcdPacketCtrl.html", null ],
@@ -29,7 +29,7 @@ var hierarchy =
       ] ],
       [ "HdlcdSessionHeader", "classHdlcdSessionHeader.html", null ]
     ] ],
-    [ "GwClient", "classGwClient.html", null ],
+    [ "GatewayAccessProtocol", "classGatewayAccessProtocol.html", null ],
     [ "HdlcdClient", "classHdlcdClient.html", null ],
     [ "HdlcdClientHandler", "classHdlcdClientHandler.html", null ],
     [ "HdlcdClientHandlerCollection", "classHdlcdClientHandlerCollection.html", null ],

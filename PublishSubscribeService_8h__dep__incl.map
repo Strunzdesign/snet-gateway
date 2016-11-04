@@ -1,6 +1,6 @@
-<map id="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h" name="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h">
-<area shape="rect" id="node2" href="$GwClientServerHandler_8h.html" title="src/GwClientServer\l/GwClientServerHandler.h" alt="" coords="141,117,327,158"/>
-<area shape="rect" id="node5" href="$PublishSubscribeService_8cpp.html" title="src/GwClientServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="351,109,554,165"/>
-<area shape="rect" id="node3" href="$GwClientServerHandler_8cpp.html" title="src/GwClientServer\l/GwClientServerHandler.cpp" alt="" coords="5,213,207,255"/>
-<area shape="rect" id="node4" href="$GwClientServerHandlerCollection_8cpp.html" title="src/GwClientServer\l/GwClientServerHandlerCollection.cpp" alt="" coords="231,213,493,255"/>
+<map id="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.h" name="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.h">
+<area shape="rect" id="node2" href="$GatewayAccessServerHandler_8h.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.h" alt="" coords="162,117,393,158"/>
+<area shape="rect" id="node5" href="$PublishSubscribeService_8cpp.html" title="src/GatewayAccessServer\l/PublishSubscribeService\l/PublishSubscribeService.cpp" alt="" coords="417,109,620,165"/>
+<area shape="rect" id="node3" href="$GatewayAccessServerHandler_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandler.cpp" alt="" coords="5,213,251,255"/>
+<area shape="rect" id="node4" href="$GatewayAccessServerHandlerCollection_8cpp.html" title="src/GatewayAccessServer\l/GatewayAccessServerHandlerCollection.cpp" alt="" coords="275,213,581,255"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="SnetPacket::Deserialize" name="SnetPacket::Deserialize">
 <area shape="rect" id="node2" href="$classSnetAppMessage.html#a124176eff2a043a9680ac7717e60c6b9" title="SnetAppMessage::Deserialize" alt="" coords="224,46,435,73"/>
 <area shape="rect" id="node3" href="$classSnetServiceMessage.html#a09ef19df55558c530638bd8e492bd16d" title="SnetServiceMessage\l::Deserialize" alt="" coords="483,39,639,80"/>
-<area shape="rect" id="node4" href="$classGwClientServerHandler.html#accc97eacb56a9a5098b616961ffe6186" title="GwClientServerHandler\l::OnPayload" alt="" coords="687,5,857,47"/>
-<area shape="rect" id="node6" href="$classHdlcdClientHandler.html#a1a9285b31e43a30abebb809d9daec220" title="HdlcdClientHandler\l::Send" alt="" coords="700,71,844,112"/>
-<area shape="rect" id="node5" href="$classGwClientServerHandler.html#a39c83634530d0ceef23b476aa622745f" title="GwClientServerHandler\l::GwClientServerHandler" alt="" coords="905,5,1083,47"/>
+<area shape="rect" id="node4" href="$classGatewayAccessServerHandler.html#ac413f18a5dfbd46a7977190ae2b38d2b" title="GatewayAccessServerHandler\l::OnPayload" alt="" coords="687,5,901,47"/>
+<area shape="rect" id="node6" href="$classHdlcdClientHandler.html#a1a9285b31e43a30abebb809d9daec220" title="HdlcdClientHandler\l::Send" alt="" coords="722,71,866,112"/>
+<area shape="rect" id="node5" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="949,5,1171,47"/>
 </map>

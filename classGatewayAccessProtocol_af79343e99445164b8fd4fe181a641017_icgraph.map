@@ -1,0 +1,5 @@
+<map id="GatewayAccessProtocol::Start" name="GatewayAccessProtocol::Start">
+<area shape="rect" id="node2" href="$classGatewayAccessProtocol.html#a4e37be0be0b61ecb2c797a53d1f3d765" title="GatewayAccessProtocol\l::SetOnClosedCallback" alt="" coords="248,5,423,47"/>
+<area shape="rect" id="node4" href="$classGatewayAccessServerHandler.html#ab39cf7169dc3593cf3fc4ef5630d22ce" title="GatewayAccessServerHandler\l::Start" alt="" coords="228,71,443,112"/>
+<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="491,5,712,47"/>
+</map>

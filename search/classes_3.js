@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['gwclient',['GwClient',['../classGwClient.html',1,'']]],
-  ['gwclientframe',['GwClientFrame',['../classGwClientFrame.html',1,'']]],
-  ['gwclientframeescaped',['GwClientFrameEscaped',['../classGwClientFrameEscaped.html',1,'']]],
-  ['gwclientframelength',['GwClientFrameLength',['../classGwClientFrameLength.html',1,'']]],
-  ['gwclientserverhandler',['GwClientServerHandler',['../classGwClientServerHandler.html',1,'']]],
-  ['gwclientserverhandlercollection',['GwClientServerHandlerCollection',['../classGwClientServerHandlerCollection.html',1,'']]]
+  ['gatewayaccessframe',['GatewayAccessFrame',['../classGatewayAccessFrame.html',1,'']]],
+  ['gatewayaccessframeescaped',['GatewayAccessFrameEscaped',['../classGatewayAccessFrameEscaped.html',1,'']]],
+  ['gatewayaccessframelength',['GatewayAccessFrameLength',['../classGatewayAccessFrameLength.html',1,'']]],
+  ['gatewayaccessprotocol',['GatewayAccessProtocol',['../classGatewayAccessProtocol.html',1,'']]],
+  ['gatewayaccessserverhandler',['GatewayAccessServerHandler',['../classGatewayAccessServerHandler.html',1,'']]],
+  ['gatewayaccessserverhandlercollection',['GatewayAccessServerHandlerCollection',['../classGatewayAccessServerHandlerCollection.html',1,'']]]
 ];

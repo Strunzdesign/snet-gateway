@@ -1,4 +1,4 @@
-<map id="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h" name="src/GwClientServer/PublishSubscribeService/PublishSubscribeService.h">
+<map id="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.h" name="src/GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.h">
 <area shape="rect" id="node2" href="$SnetServiceMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="137,109,304,136"/>
 <area shape="rect" id="node3" href="$SnetAppMessage_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="148,184,293,211"/>
 <area shape="rect" id="node4" href="$SnetPacket_8h.html" title="Copyright (c) 2016, Florian Evers, florian&#45;evers@gmx.de All rights reserved. " alt="" coords="168,259,273,285"/>
