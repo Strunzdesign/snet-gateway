@@ -80,7 +80,7 @@ private:
                 m_eDeserialize = DESERIALIZE_ERROR;
                 return false;
             } else {
-                m_BytesRemaining = (uint16_t(m_Buffer[0] & 0x0F) + m_Buffer[1]);
+                m_BytesRemaining = ((uint16_t(m_Buffer[0] & 0x0F) << 8) + m_Buffer[1]);
                 m_Buffer.clear();
                 m_eDeserialize = DESERIALIZE_DATA;
                 if (m_BytesRemaining == 0) {
