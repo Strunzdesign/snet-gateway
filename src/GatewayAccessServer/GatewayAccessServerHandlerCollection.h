@@ -1,5 +1,5 @@
 /**
- * \file      GwClientServerHandlerCollection.h
+ * \file      GatewayAccessServerHandlerCollection.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,27 +21,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_SERVER_HANDLER_COLLECTION_H
-#define GWCLIENT_SERVER_HANDLER_COLLECTION_H
+#ifndef GATEWAY_ACCESS_SERVER_HANDLER_COLLECTION_H
+#define GATEWAY_ACCESS_SERVER_HANDLER_COLLECTION_H
 
 #include <memory>
 #include <list>
 #include <boost/asio.hpp>
 #include "SnetServiceMessage.h"
-class GwClientServerHandler;
+class GatewayAccessServerHandler;
 class Routing;
 class AddressPool;
 
-class GwClientServerHandlerCollection: public std::enable_shared_from_this<GwClientServerHandlerCollection> {
+class GatewayAccessServerHandlerCollection: public std::enable_shared_from_this<GatewayAccessServerHandlerCollection> {
 public:
     // CTOR, initializer, and resetter
-    GwClientServerHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr);
+    GatewayAccessServerHandlerCollection(boost::asio::io_service& a_IOService, uint16_t a_TcpPortNbr);
     void Initialize(std::shared_ptr<Routing> a_RoutingEntity);
     void SystemShutdown();
     
     // Self-registering and -deregistering of gateway client handler objects
-    void RegisterGwClientServerHandler  (std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler);
-    void DeregisterGwClientServerHandler(std::shared_ptr<GwClientServerHandler> a_GwClientServerHandler);
+    void RegisterGatewayAccessServerHandler  (std::shared_ptr<GatewayAccessServerHandler> a_GatewayAccessServerHandler);
+    void DeregisterGatewayAccessServerHandler(std::shared_ptr<GatewayAccessServerHandler> a_GatewayAccessServerHandler);
 
     void Send(const SnetServiceMessage& a_SnetServiceMessage);
     
@@ -52,7 +52,7 @@ private:
     // Members
     boost::asio::io_service& m_IOService;
     std::shared_ptr<AddressPool> m_AddressPool;
-    std::list<std::shared_ptr<GwClientServerHandler>> m_GwClientServerHandlerList;
+    std::list<std::shared_ptr<GatewayAccessServerHandler>> m_GatewayAccessServerHandlerList;
     std::shared_ptr<Routing> m_RoutingEntity;
     
     // Accept incoming TCP connections
@@ -60,4 +60,4 @@ private:
     boost::asio::ip::tcp::tcp::socket   m_TcpSocket; //!< One incoming TCP socket
 };
 
-#endif // GWCLIENT_SERVER_HANDLER_COLLECTION_H
+#endif // GATEWAY_ACCESS_SERVER_HANDLER_COLLECTION_H

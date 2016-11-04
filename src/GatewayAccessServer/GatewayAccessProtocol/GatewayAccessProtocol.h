@@ -1,5 +1,5 @@
 /**
- * \file      GwClient.h
+ * \file      GatewayAccessProtocol.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,14 +21,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_H
-#define GWCLIENT_H
+#ifndef GATEWAY_ACCESS_PROTOCOL_H
+#define GATEWAY_ACCESS_PROTOCOL_H
 
 #include <memory>
 #include <boost/asio.hpp>
 #include "FrameEndpoint.h"
 
-class GwClient {
+class GatewayAccessProtocol {
 public:
     // Supported framing modes
     typedef enum {
@@ -37,8 +37,8 @@ public:
         FRAMING_MODE_LENGTH   = 2
     } E_FRAMING_MODE;
 
-    // CTOR, initializer, and resetter
-    GwClient(boost::asio::io_service& a_IOService, boost::asio::ip::tcp::tcp::socket& a_TcpSocket, E_FRAMING_MODE a_eFramingMode = FRAMING_MODE_UNKNOWN);
+    // CTOR and DTOR
+    GatewayAccessProtocol(boost::asio::io_service& a_IOService, boost::asio::ip::tcp::tcp::socket& a_TcpSocket, E_FRAMING_MODE a_eFramingMode = FRAMING_MODE_UNKNOWN);
     
     void SetOnDataCallback(std::function<void(const std::vector<unsigned char> &)> a_OnDataCallback = nullptr) {
         m_OnDataCallback = a_OnDataCallback;
@@ -67,4 +67,4 @@ private:
     E_FRAMING_MODE m_eFramingMode;
 };
 
-#endif // GWCLIENT_H
+#endif // GATEWAY_ACCESS_PROTOCOL_H

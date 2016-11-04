@@ -1,4 +1,4 @@
-# [DRAFT] Description of the gateway client protocol
+# [DRAFT] Description of the gateway access protocol
 This document describes the protocol to talk to an s-net gateway entity. In this document and in the
 source code, such software is referred to as a "gateway client".
 
@@ -17,10 +17,10 @@ source code, such software is referred to as a "gateway client".
         
                        I----------I        I---------I          I-------I
                            HDLC             HDLCd                Gateway
-                           via              access               client
+                           via              access               access
                            serial           protocol             protocol
                                             
-          I------------------------------------------------------------------I
+          I------------------------------------------------I-----------------I
                                 Exchange of s-net packets
 
 
@@ -50,15 +50,15 @@ For this purpose, the s-net gateway offers two modes of framing, which are descr
 
 ## Framing modes
 The C++-based gateway software offers two framing modes:
-- the legacy *escaping-based mode*, that involves a HDLC-like framing and escaping, and
-- the preferred *length-based mode*, that preceeds each payload with a length field.
+- the legacy *escaping-based framin mode*, that involves a HDLC-like framing and escaping, and
+- the preferred *length-based framing mode*, that preceeds each payload with a length field.
 
-Both modes are explained in the following. Both use the same TCP port of the gateway.
+Both framing modes are explained in the following. Both use the same TCP port of the gateway.
 
 ### Deprecated: the escaping-based framing mode
-The *escaping-based* mode is the legacy mode that existed before the C++-based gateway software
-was created. It is still the only protocol offered by its predecessor, a Java-based gateway software. Before
-having a deeper look into the details of this protocol, have in mind that it is **DEPRECATED** and that you
+The *escaping-based framing mode* is the legacy mode that existed before the C++-based gateway software
+was created. It is still the only framing mode offered by its predecessor, a Java-based gateway software. Before
+having a deeper look into the details of this framing mode, have in mind that it is **DEPRECATED** and that you
 **SHOULD NOT** use it for any new gateway client! It has some severe design issues as depicted in the following.
 
 The idea of how to assemble frames from a stream of bytes was borrowed from the "High-level Data-Link
@@ -77,22 +77,21 @@ a two-byte field indicating the frame type. There are frame types for session ma
 transmission and to acknowledge received data frames.
 
 This scheme has some serious design issues:
-- Using HDLC-based framing above of TCP adds minimal benefit but lots of unnecessary complexity. The main
+- Using HDLC-based framing above of TCP adds no benefit but unnecessary complexity. The main
   feature of the escaping scheme of HDLC is the ability to synchronize on a given stream of bytes. As TCP
   operates in a connection-oriented way, such a synchronization is not necessary as the receiver is
   automatically synchronized.
 - The escaping scheme requires both the sender and the receiver to have a look of each byte in order to
   escape and deescape it properly. This adds complexity to the handling of the byte stream.
-- The worst point to mention is the introduced command/response scheme: for each data frame sent to the
-  gateway the gateway must immediately reply with an acknowledgement frame. This acknowledgement frame
+- The worst point to mention is the introduced command/response scheme: for each command frame sent to the
+  gateway the gateway must immediately reply with a response frame. This response frame
   must arrive at the gateway client within two seconds in order to avoid timeout issues. Thus, it is
   **not possible** that a gateway stops reading from a TCP connection in cases of a congestion, as that
   would break the existing legacy gateway clients.
-- To summarize, the legacy protocol is **not capable of flow and congestion control**.
+- To summarize, the legacy *escaping-based framing mode* is **not capable of flow and congestion control**.
 
 ***WARNING*** The *escaping-based framing mode* is **DEPCRECATED**. Please, **DO NOT** consider it for
 any development of subsequent gateway clients! Always use the *length-based framing mode* instead!
-
 
 ### Recommended: the length-based framing mode
 The *length-based framing mode* is the successor of the *escaping-based framing mode* and is the recommended
@@ -105,7 +104,7 @@ The only service that this protocol adds to TCP is the *framing service*. The re
 - it must be able to share the same listener socket with the  *escaping-based framing mode*.
 - Last but not least, it must be capable of **flow and congestion control**.
 
-For these purposes, both the escaping scheme of HDLC and the command/response mode were dropped. Instead,
+For these purposes, both the escaping scheme of HDLC and the command/response scheme were dropped. Instead,
 each frame starts with a length field of a fixed size that denotes the amount of bytes required to complete
 the frame ("the size of the payload"). For coexistence with the legacy mode, it must assured that the first
 byte of such a frame **MUST NEVER** become the HDLC frame delimiter `0x7E`, which would result in wrong parsing.
@@ -118,7 +117,7 @@ byte of such a frame **MUST NEVER** become the HDLC frame delimiter `0x7E`, whic
     ++-------------+------------+--------------------++----------------------++---------------------------++
 
 This frame format has the following properties:
-- The added overhead is two bytes per frame.
+- The added overhead is always two bytes per payload.
 - As bit 7 of the first byte of a frame is always set, it is impossible that the first byte of a frame becomes `0x7E`.
   This allows coexistence with the *escaping-based framing mode*.
 - The length field consists of 12 bits allowing payloads from 0 to 4095 bytes. Thus, the MTU is 4095. Sending empty frames
@@ -129,7 +128,7 @@ This frame format has the following properties:
 Mode of operation:
 - This frame format is the same for frames sent to and received from the gateway.
 - On any error or protocol violation, the TCP socket is closed.
-- It is not allowed to mix escaped frames and length-based frames on the same socket. This would confuse the peer entity
+- It is not allowed to mix *escaping-based frames* and *length-based frames* on the same socket. This would confuse the peer entity
   at the gateway: the gateway observes the mode selected by each gateway client, remembers that mode, and uses it to encapsulate
   outgoing s-net packets. Thus, the first frame sent to the gateway defines the mode, and frames of a different format are
   considered as a violation of the protocol. No frames are sent to a gateway client before the framing mode was determined.
@@ -182,7 +181,7 @@ Besides some other fields specific to s-net the following parameters are relevan
 - The destination SSA must be set to `0x3FFC` (`MULTICAST_ADDRESS_DATABASE`)
 - The source service ID must be set to `0xAF`
 - The destination service ID must be set to `0xAE`
-- The application-layer token must be set `0x10`
+- The application-layer token must be set to `0x10`
 - The application-layer payload contains 7 bytes:
   - `0x25`: bit 5 set = from NON-WSN node, lower nibble = size of the UUID minus 1 -> 6 Bytes UUID. Use `0x25`!
   - Six bytes UUID of the gateway client, e.g., a random number or zeros
@@ -194,15 +193,15 @@ An exemplary byte stream of an *address assignment reply* sent back by the gatew
 
 The relevant fields contain these values:
 - The source SSA will always be `0x4000` (`MULTICAST_GATEWAY`)
-- The destination SSA will always be 0x3FF8 (unknown meaning)
+- The destination SSA will always be `0x3FF8` (`MULTICAST_DIRECT_CHILDREN`)
 - The source service ID will always be `0xAE`
 - The destination service ID will always be `0xAF`
 - The application-layer token will always be `0x20`
 - The application-payload always contains 10 bytes:
   - `0x05`: lower nibble = size of the UUID minus 1 -> 6 Bytes UUID (expect nothing else)
   - The six bytes of the UUID copied from the address request message, all zeros here
-  - `0x00`: the status code (0x00 means OK, expect nothing else)
-  - Two bytes containing the unique SSA assigned to the gateway client (> 0x4000)
+  - `0x00`: the status code (`0x00` means OK, expect nothing else)
+  - Two bytes containing the unique SSA assigned to the gateway client (> `0x4000`)
 
 A gateway client just needs to parse the last two bytes in order to obtain the assigned SSA. In the above mentioned
 example the assigned SSA is `0x4001`, which is the lower bound of the address space assigned to gateway clients.
@@ -214,8 +213,8 @@ gateway software. Thus, it is a good advice to ***implement and follow this sche
 T.b.d.: still just a bunch of text fragments and ideas!
 
 For all s-net packets that are sent by nodes of the sensor network that are not addressed to one of the unicast SSAs
-assigned to the gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`) and `0xFFFE` (`WIRED_ADDR`),
-but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
+assigned to the gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
+`0xFFFF` (???), but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
 to previous requests sent by one of the gateway clients. Instead, the nature of such packets is that they are sent
 without an external trigger to anybody who is interested. To avoid flooding such unsolicited packets to each of the
 gateway clients, the gateway relays them *only* to gateway clients that explicitely subscribed to them before.
@@ -230,8 +229,8 @@ The purpose of the *publish-subscribe service* is to manage these subscriptions.
     SENT: SrcSSA=0x4000, DstSSA=0x4001, ARQ=0, SrcSrv=0xb0, DstSrv=0xb0, Token=0x11, with   2 bytes payload: 10 00
     00 00 40 00 40 01 00 b0 b0 00 11 10 00
 
-- 255 service IDs: 0x00 to 0xFE. 0xFF is a wildcard to subscribe to all services.
+- 255 service IDs: `0x00` to `0xFE`. `0xFF` is a wildcard to subscribe to all services.
 - One subscription exchange per service ID, multiple subscriptions are possible.
-- To revoke a subscription subscribe to 0xFF. After this, rebuild the database by sending the reduced set of
+- To revoke a subscription subscribe to `0xFF`. After this, rebuild the database by sending the reduced set of
   subscriptions again. If all subscriptions were already set, a subscription will trigger a reset of the database
   before this new subscription is applied.

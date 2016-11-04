@@ -1,5 +1,5 @@
 /**
- * \file      GwClientFrameLength.h
+ * \file      GatewayAccessFrameLength.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,27 +21,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_FRAME_LENGTH_H
-#define GWCLIENT_FRAME_LENGTH_H
+#ifndef GATEWAY_ACCESS_FRAME_LENGTH_H
+#define GATEWAY_ACCESS_FRAME_LENGTH_H
 
-#include "GwClientFrame.h"
+#include "GatewayAccessFrame.h"
 #include <memory>
 #include <assert.h>
 
-class GwClientFrameLength: public GwClientFrame {
+class GatewayAccessFrameLength: public GatewayAccessFrame {
 public:
-    static GwClientFrameLength Create(const std::vector<unsigned char> &a_Payload) {
+    static GatewayAccessFrameLength Create(const std::vector<unsigned char> &a_Payload) {
         assert(a_Payload.size() < 4096);
-        GwClientFrameLength l_GwClientFrameLength;
-        l_GwClientFrameLength.m_Buffer = std::move(a_Payload);
-        return l_GwClientFrameLength;
+        GatewayAccessFrameLength l_GatewayAccessFrameLength;
+        l_GatewayAccessFrameLength.m_Buffer = a_Payload;
+        return l_GatewayAccessFrameLength;
     }
 
-    static std::shared_ptr<GwClientFrameLength> CreateDeserializedFrame() {
-        auto l_GwClientFrameLength(std::shared_ptr<GwClientFrameLength>(new GwClientFrameLength));
-        l_GwClientFrameLength->m_eDeserialize = DESERIALIZE_HEADER;
-        l_GwClientFrameLength->m_BytesRemaining = 2; // Next: consume the frame identifier and the length field
-        return l_GwClientFrameLength;
+    static std::shared_ptr<GatewayAccessFrameLength> CreateDeserializedFrame() {
+        auto l_GatewayAccessFrameLength(std::shared_ptr<GatewayAccessFrameLength>(new GatewayAccessFrameLength));
+        l_GatewayAccessFrameLength->m_eDeserialize = DESERIALIZE_HEADER;
+        l_GatewayAccessFrameLength->m_BytesRemaining = 2; // Next: consume the frame identifier and the length field
+        return l_GatewayAccessFrameLength;
     }
 
     const std::vector<unsigned char>& GetPayload() const {
@@ -51,18 +51,18 @@ public:
 
 private:
     // Private CTOR
-    GwClientFrameLength(): m_eDeserialize(DESERIALIZE_FULL) {
+    GatewayAccessFrameLength(): m_eDeserialize(DESERIALIZE_FULL) {
     }
 
     // Methods
-    E_GWCLIENT_FRAME GetGwClientFrameType() const { return GWCLIENT_FRAME_LENGTH; }
+    E_GATEWAY_ACCESS_FRAME GetGatewayAccessFrameType() const { return GATEWAY_ACCESS_FRAME_LENGTH; }
 
     // Serializer
     const std::vector<unsigned char> Serialize() const {
         assert(m_eDeserialize == DESERIALIZE_FULL);
         std::vector<unsigned char> l_Buffer;
         uint16_t l_NbrOfBytes = m_Buffer.size();
-        l_Buffer.emplace_back(uint8_t(GWCLIENT_FRAME_LENGTH) + ((l_NbrOfBytes >> 8) & 0x0F));
+        l_Buffer.emplace_back(uint8_t(GATEWAY_ACCESS_FRAME_LENGTH) + ((l_NbrOfBytes >> 8) & 0x0F));
         l_Buffer.emplace_back(l_NbrOfBytes & 0xFF);
         l_Buffer.insert(l_Buffer.end(), m_Buffer.begin(), m_Buffer.end());
         return l_Buffer;
@@ -75,7 +75,7 @@ private:
         case DESERIALIZE_HEADER: {
             // Deserialize the header
             assert(m_Buffer.size() == 2);
-            if ((m_Buffer[0] & GWCLIENT_FRAME_MASK) != GWCLIENT_FRAME_LENGTH) {
+            if ((m_Buffer[0] & GATEWAY_ACCESS_FRAME_MASK) != GATEWAY_ACCESS_FRAME_LENGTH) {
                 // Error!
                 m_eDeserialize = DESERIALIZE_ERROR;
                 return false;
@@ -116,4 +116,4 @@ private:
     E_DESERIALIZE m_eDeserialize;
 };
 
-#endif // GWCLIENT_FRAME_LENGTH_H
+#endif // GATEWAY_ACCESS_FRAME_LENGTH_H

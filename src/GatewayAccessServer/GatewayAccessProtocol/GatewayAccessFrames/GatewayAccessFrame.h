@@ -1,5 +1,5 @@
 /**
- * \file      GwClientFrame.h
+ * \file      GatewayAccessFrame.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,23 +21,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_FRAME_H
-#define GWCLIENT_FRAME_H
+#ifndef GATEWAY_ACCESS_FRAME_H
+#define GATEWAY_ACCESS_FRAME_H
 
 #include "Frame.h"
 
 typedef enum {
-    GWCLIENT_FRAME_UNKNOWN  = 0x00,
-    GWCLIENT_FRAME_ESCAPED  = 0x7E,
-    GWCLIENT_FRAME_LENGTH   = 0x80,
+    GATEWAY_ACCESS_FRAME_UNKNOWN  = 0x00,
+    GATEWAY_ACCESS_FRAME_ESCAPED  = 0x7E,
+    GATEWAY_ACCESS_FRAME_LENGTH   = 0x80,
 
     // Book keeping
-    GWCLIENT_FRAME_MASK     = 0x80
-} E_GWCLIENT_FRAME;
+    GATEWAY_ACCESS_FRAME_MASK     = 0x80
+} E_GATEWAY_ACCESS_FRAME;
 
-class GwClientFrame: public Frame {
+class GatewayAccessFrame: public Frame {
 public:
-    virtual E_GWCLIENT_FRAME GetGwClientFrameType() const { return GWCLIENT_FRAME_UNKNOWN; }
+    virtual E_GATEWAY_ACCESS_FRAME GetGatewayAccessFrameType() const { return GATEWAY_ACCESS_FRAME_UNKNOWN; }
 };
 
-#endif // GWCLIENT_FRAME_H
+#endif // GATEWAY_ACCESS_FRAME_H

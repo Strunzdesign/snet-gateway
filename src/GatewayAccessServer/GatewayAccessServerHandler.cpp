@@ -1,5 +1,5 @@
 /**
- * \file      GwClientServerHandler.cpp
+ * \file      GatewayAccessServerHandler.cpp
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GwClientServerHandler.h"
+#include "GatewayAccessServerHandler.h"
 #include "Routing.h"
 #include "SnetServiceMessage.h"
 #include "AddressLease.h"
@@ -29,42 +29,42 @@
 #include "Component.h"
 #include <assert.h>
 
-GwClientServerHandler::GwClientServerHandler(boost::asio::io_service& a_IOService, std::shared_ptr<GwClientServerHandlerCollection> a_GwClientServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket, std::shared_ptr<Routing> a_RoutingEntity, std::shared_ptr<AddressLease> a_AddressLease):
-    m_GwClientServerHandlerCollection(a_GwClientServerHandlerCollection),
+GatewayAccessServerHandler::GatewayAccessServerHandler(boost::asio::io_service& a_IOService, std::shared_ptr<GatewayAccessServerHandlerCollection> a_GatewayAccessServerHandlerCollection, boost::asio::ip::tcp::socket& a_TCPSocket, std::shared_ptr<Routing> a_RoutingEntity, std::shared_ptr<AddressLease> a_AddressLease):
+    m_GatewayAccessServerHandlerCollection(a_GatewayAccessServerHandlerCollection),
     m_RoutingEntity(a_RoutingEntity),
     m_AddressLease(a_AddressLease),
-    m_GwClient(a_IOService, a_TCPSocket),
+    m_GatewayAccessProtocol(a_IOService, a_TCPSocket),
     m_Registered(false) {
     // Checks
-    assert(m_GwClientServerHandlerCollection);
+    assert(m_GatewayAccessServerHandlerCollection);
     assert(m_RoutingEntity);
     assert(m_AddressLease);
     
     // Register callbacks
-    m_GwClient.SetOnDataCallback([this](const std::vector<unsigned char> &a_HigherLayerPayload){ OnPayload(a_HigherLayerPayload); });
-    m_GwClient.SetOnClosedCallback([this](){ Close(); });
+    m_GatewayAccessProtocol.SetOnDataCallback([this](const std::vector<unsigned char> &a_HigherLayerPayload){ OnPayload(a_HigherLayerPayload); });
+    m_GatewayAccessProtocol.SetOnClosedCallback([this](){ Close(); });
 }
 
-void GwClientServerHandler::Start() {
+void GatewayAccessServerHandler::Start() {
     assert(m_Registered == false);
     m_Registered = true;
-    m_GwClientServerHandlerCollection->RegisterGwClientServerHandler(shared_from_this());
-    m_GwClient.Start();
+    m_GatewayAccessServerHandlerCollection->RegisterGatewayAccessServerHandler(shared_from_this());
+    m_GatewayAccessProtocol.Start();
 }
 
-void GwClientServerHandler::Close() {
+void GatewayAccessServerHandler::Close() {
     // Keep this object alive
     auto self(shared_from_this());
     if (m_Registered) {
         m_Registered = false;
         assert(m_AddressLease);
         m_AddressLease.reset(); // Deregisters itself
-        m_GwClientServerHandlerCollection->DeregisterGwClientServerHandler(self);
-        m_GwClientServerHandlerCollection.reset();
+        m_GatewayAccessServerHandlerCollection->DeregisterGatewayAccessServerHandler(self);
+        m_GatewayAccessServerHandlerCollection.reset();
     } // if
 }
 
-bool GwClientServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
+bool GatewayAccessServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     // Check destination address
     if (((a_SnetServiceMessage.GetDstSSA() > 0x4000) && (a_SnetServiceMessage.GetDstSSA() < 0xFFF0)) && (a_SnetServiceMessage.GetDstSSA() != m_AddressLease->GetAddress())) {
         // Not for this tool!
@@ -79,10 +79,10 @@ bool GwClientServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage)
     } // if
         
     // Deliver
-    return m_GwClient.Send(a_SnetServiceMessage.Serialize());
+    return m_GatewayAccessProtocol.Send(a_SnetServiceMessage.Serialize());
 }
 
-void GwClientServerHandler::OnPayload(const std::vector<unsigned char> &a_HigherLayerPayload) {
+void GatewayAccessServerHandler::OnPayload(const std::vector<unsigned char> &a_HigherLayerPayload) {
     // Relay the payload
     SnetServiceMessage l_ServiceMessage;
     if (l_ServiceMessage.Deserialize(a_HigherLayerPayload)) {
@@ -90,7 +90,7 @@ void GwClientServerHandler::OnPayload(const std::vector<unsigned char> &a_Higher
         if (l_ServiceMessage.GetDstSSA() == 0x3FFC) {
             auto l_AddressAssignmentReply = AddressService::ProcessRequest(l_ServiceMessage, m_AddressLease);
             if (l_AddressAssignmentReply.GetSrcServiceId() == 0xAE) {
-                m_GwClient.Send(l_AddressAssignmentReply.Serialize());
+                m_GatewayAccessProtocol.Send(l_AddressAssignmentReply.Serialize());
             } // if
 
             return;
@@ -100,7 +100,7 @@ void GwClientServerHandler::OnPayload(const std::vector<unsigned char> &a_Higher
         if (l_ServiceMessage.GetDstSSA() == 0x4000) {
             auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
             if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
-                m_GwClient.Send(l_PublishSubscribeConfirmation.Serialize());
+                m_GatewayAccessProtocol.Send(l_PublishSubscribeConfirmation.Serialize());
             } // if
 
             return;

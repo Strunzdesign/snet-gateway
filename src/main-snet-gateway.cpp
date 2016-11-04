@@ -27,7 +27,7 @@
 #include <boost/program_options.hpp>
 #include <boost/regex.hpp>
 #include "HdlcdClientHandlerCollection.h"
-#include "GwClientServerHandlerCollection.h"
+#include "GatewayAccessServerHandlerCollection.h"
 #include "Routing.h"
 
 int main(int argc, char* argv[]) {
@@ -85,12 +85,12 @@ int main(int argc, char* argv[]) {
         l_Signals.async_wait([&l_IoService](boost::system::error_code, int){ l_IoService.stop(); });
 
         // Create main components
-        auto l_GwClientServerHandlerCollection = std::make_shared<GwClientServerHandlerCollection>(l_IoService, l_VariablesMap["port"].as<uint16_t>());
-        auto l_HdlcdClientHandlerCollection    = std::make_shared<HdlcdClientHandlerCollection>(l_IoService);
+        auto l_GatewayAccessServerHandlerCollection = std::make_shared<GatewayAccessServerHandlerCollection>(l_IoService, l_VariablesMap["port"].as<uint16_t>());
+        auto l_HdlcdClientHandlerCollection         = std::make_shared<HdlcdClientHandlerCollection>(l_IoService);
         
         // Routing entity
-        auto l_RoutingEntity = std::make_shared<Routing>(l_GwClientServerHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"), l_VariablesMap.count("reliable"));
-        l_GwClientServerHandlerCollection->Initialize(l_RoutingEntity);
+        auto l_RoutingEntity = std::make_shared<Routing>(l_GatewayAccessServerHandlerCollection, l_HdlcdClientHandlerCollection, l_VariablesMap.count("trace"), l_VariablesMap.count("reliable"));
+        l_GatewayAccessServerHandlerCollection->Initialize(l_RoutingEntity);
         l_HdlcdClientHandlerCollection->Initialize(l_RoutingEntity);
         
         // Create HDLCd client entities
@@ -111,7 +111,7 @@ int main(int argc, char* argv[]) {
         
         // Shutdown
         l_HdlcdClientHandlerCollection->SystemShutdown();
-        l_GwClientServerHandlerCollection->SystemShutdown();
+        l_GatewayAccessServerHandlerCollection->SystemShutdown();
         l_RoutingEntity->SystemShutdown();
     } catch (std::exception& a_Error) {
         std::cerr << "Exception: " << a_Error.what() << "\n";

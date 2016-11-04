@@ -1,5 +1,5 @@
 /**
- * \file      GwClientFrameEscaped.h
+ * \file      GatewayAccessFrameEscaped.h
  * \brief     
  * \author    Florian Evers, florian-evers@gmx.de
  * \copyright GNU Public License version 3.
@@ -21,27 +21,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GWCLIENT_FRAME_ESCAPED_H
-#define GWCLIENT_FRAME_ESCAPED_H
+#ifndef GATEWAY_ACCESS_FRAME_ESCAPED_H
+#define GATEWAY_ACCESS_FRAME_ESCAPED_H
 
-#include "GwClientFrame.h"
+#include "GatewayAccessFrame.h"
 #include <memory>
 #include <assert.h>
 
-class GwClientFrameEscaped: public GwClientFrame {
+class GatewayAccessFrameEscaped: public GatewayAccessFrame {
 public:
-    static GwClientFrameEscaped Create(const std::vector<unsigned char> &a_Payload) {
+    static GatewayAccessFrameEscaped Create(const std::vector<unsigned char> &a_Payload) {
         assert(a_Payload.size() < 4096);
-        GwClientFrameEscaped l_GwClientFrameLength;
-        l_GwClientFrameLength.m_Buffer = std::move(a_Payload);
-        return l_GwClientFrameLength;
+        GatewayAccessFrameEscaped l_GatewayAccessFrameEscaped;
+        l_GatewayAccessFrameEscaped.m_Buffer = a_Payload;
+        return l_GatewayAccessFrameEscaped;
     }
 
-    static std::shared_ptr<GwClientFrameEscaped> CreateDeserializedFrame() {
-        auto l_GwClientFrameLength(std::shared_ptr<GwClientFrameEscaped>(new GwClientFrameEscaped));
-        l_GwClientFrameLength->m_eDeserialize = DESERIALIZE_FRAMESTART;
-        l_GwClientFrameLength->m_BytesRemaining = 1; // Next: consume the start-of-frame delimiter
-        return l_GwClientFrameLength;
+    static std::shared_ptr<GatewayAccessFrameEscaped> CreateDeserializedFrame() {
+        auto l_GatewayAccessFrameEscaped(std::shared_ptr<GatewayAccessFrameEscaped>(new GatewayAccessFrameEscaped));
+        l_GatewayAccessFrameEscaped->m_eDeserialize = DESERIALIZE_FRAMESTART;
+        l_GatewayAccessFrameEscaped->m_BytesRemaining = 1; // Next: consume the start-of-frame delimiter
+        return l_GatewayAccessFrameEscaped;
     }
 
     const std::vector<unsigned char>& GetPayload() const {
@@ -51,11 +51,11 @@ public:
 
 private:
     // Private CTOR
-    GwClientFrameEscaped(): m_eDeserialize(DESERIALIZE_FULL) {
+    GatewayAccessFrameEscaped(): m_eDeserialize(DESERIALIZE_FULL) {
     }
 
     // Methods
-    E_GWCLIENT_FRAME GetGwClientFrameType() const { return GWCLIENT_FRAME_ESCAPED; }
+    E_GATEWAY_ACCESS_FRAME GetGatewayAccessFrameType() const { return GATEWAY_ACCESS_FRAME_ESCAPED; }
 
     // Serializer
     const std::vector<unsigned char> Serialize() const {
@@ -93,7 +93,7 @@ private:
         uint8_t& l_LastReceivedByte = m_Buffer[m_Buffer.size() - 1];
         switch (m_eDeserialize) {
         case DESERIALIZE_FRAMESTART: {
-            if (l_LastReceivedByte != GWCLIENT_FRAME_ESCAPED) {
+            if (l_LastReceivedByte != GATEWAY_ACCESS_FRAME_ESCAPED) {
                 // Error: the start-of-frame delimiter 0x7E was expected!
                 m_eDeserialize = DESERIALIZE_ERROR;
                 return false;
@@ -169,4 +169,4 @@ private:
     E_DESERIALIZE m_eDeserialize;
 };
 
-#endif // GWCLIENT_FRAME_ESCAPED_H
+#endif // GATEWAY_ACCESS_FRAME_ESCAPED_H

@@ -6,12 +6,12 @@ include_directories(${Boost_INCLUDE_DIR})
 include_directories(
     "HdlcdClient"
     "Routing"
-    "GwClientServer"
-    "GwClientServer/AddressService"
-    "GwClientServer/PublishSubscribeService"
-    "GwClientServer/GwClient"
-    "GwClientServer/GwClient/CommandResponseFrames"
-    "GwClientServer/GwClient/GwClientFrames"
+    "GatewayAccessServer"
+    "GatewayAccessServer/AddressService"
+    "GatewayAccessServer/PublishSubscribeService"
+    "GatewayAccessServer/GatewayAccessProtocol"
+    "GatewayAccessServer/GatewayAccessProtocol/CommandResponseFrames"
+    "GatewayAccessServer/GatewayAccessProtocol/GatewayAccessFrames"
 )
     
 find_package(Threads)
@@ -21,13 +21,13 @@ add_executable(snet-gateway
     HdlcdClient/HdlcdClientHandler.cpp
     HdlcdClient/HdlcdClientHandlerCollection.cpp
     Routing/Routing.cpp
-    GwClientServer/AddressService/AddressLease.cpp
-    GwClientServer/AddressService/AddressPool.cpp
-    GwClientServer/AddressService/AddressService.cpp
-    GwClientServer/PublishSubscribeService/PublishSubscribeService.cpp
-    GwClientServer/GwClient/GwClient.cpp
-    GwClientServer/GwClientServerHandler.cpp
-    GwClientServer/GwClientServerHandlerCollection.cpp
+    GatewayAccessServer/AddressService/AddressLease.cpp
+    GatewayAccessServer/AddressService/AddressPool.cpp
+    GatewayAccessServer/AddressService/AddressService.cpp
+    GatewayAccessServer/PublishSubscribeService/PublishSubscribeService.cpp
+    GatewayAccessServer/GatewayAccessProtocol/GatewayAccessProtocol.cpp
+    GatewayAccessServer/GatewayAccessServerHandler.cpp
+    GatewayAccessServer/GatewayAccessServerHandlerCollection.cpp
 )
 
 if(WIN32)
