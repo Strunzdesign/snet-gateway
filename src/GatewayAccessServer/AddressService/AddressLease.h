@@ -35,12 +35,12 @@ public:
     ~AddressLease();
     
     // Query
-    uint16_t GetAddress() const { return m_GatewayGlientAddress; }
+    uint16_t GetAddress() const { return m_GatewayClientAddress; }
 
 private:
     // Members
     std::shared_ptr<AddressPool> m_AddressPool;
-    uint16_t m_GatewayGlientAddress;
+    uint16_t m_GatewayClientAddress;
 };
 
 #endif // ADDRESS_LEASE_H
