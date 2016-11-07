@@ -57,7 +57,7 @@ void Routing::RouteSnetPacket(SnetServiceMessage& a_SnetServiceMessage, E_COMPON
             m_HdlcdClientHandlerCollection->Send(HdlcdPacketData::CreatePacket(a_SnetServiceMessage.Serialize(), true));
         } // if
     } else if (l_eDstComponent == COMPONENT_GWCLIENTS) {
-        // To the tools
+        // To the gateway clients
         if (m_bTrace) {
             std::cout << "To clients:   " << a_SnetServiceMessage.Dissect() << std::endl;
         } // if

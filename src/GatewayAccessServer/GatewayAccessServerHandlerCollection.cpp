@@ -68,7 +68,7 @@ void GatewayAccessServerHandlerCollection::Send(const SnetServiceMessage& a_Snet
 void GatewayAccessServerHandlerCollection::DoAccept() {
     m_TcpAcceptor.async_accept(m_TcpSocket, [this](boost::system::error_code a_ErrorCode) {
         if (!a_ErrorCode) {
-            // Create a tool handler object and start it. It registers itself to the tool handler collection
+            // Create a gateway client handler object and start it. It registers itself to the gateway client handler collection
             assert(m_RoutingEntity);
             assert(m_AddressPool);
             auto l_AddressLease = m_AddressPool->ObtainAddressLease();

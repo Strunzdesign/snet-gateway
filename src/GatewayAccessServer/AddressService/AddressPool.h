@@ -35,7 +35,7 @@ public:
     AddressPool();
     
     std::shared_ptr<AddressLease> ObtainAddressLease();
-    void ReleaseAddressLease(uint16_t a_ToolAddress);
+    void ReleaseAddressLease(uint16_t a_GatewayClientAddress);
     
 private:
     // Members

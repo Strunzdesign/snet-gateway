@@ -31,8 +31,8 @@ public:
     CommandResponseFrame(uint16_t a_RequestId = 0): m_RequestId(a_RequestId) {}
     uint16_t GetRequestId() const { return m_RequestId; }
     virtual const std::vector<unsigned char> Serialize() const {
-        std::vector<unsigned char> l_ToolFrameBuffer;
-        return l_ToolFrameBuffer;
+        std::vector<unsigned char> l_Buffer;
+        return l_Buffer;
     }
     
     virtual const std::vector<unsigned char> GetPayload() const = 0;

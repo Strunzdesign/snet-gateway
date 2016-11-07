@@ -43,7 +43,7 @@ std::shared_ptr<AddressLease> AddressPool::ObtainAddressLease() {
     return l_AddressLease;
 }
 
-void AddressPool::ReleaseAddressLease(uint16_t a_ToolAddress) {
+void AddressPool::ReleaseAddressLease(uint16_t a_GatewayClientAddress) {
     // Store the reclaimed address for reuse
-    m_ReleasedAddresses.push_back(a_ToolAddress);
+    m_ReleasedAddresses.push_back(a_GatewayClientAddress);
 }

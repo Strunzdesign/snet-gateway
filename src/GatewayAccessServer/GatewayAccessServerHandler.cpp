@@ -67,7 +67,7 @@ void GatewayAccessServerHandler::Close() {
 bool GatewayAccessServerHandler::Send(const SnetServiceMessage& a_SnetServiceMessage) {
     // Check destination address
     if (((a_SnetServiceMessage.GetDstSSA() > 0x4000) && (a_SnetServiceMessage.GetDstSSA() < 0xFFF0)) && (a_SnetServiceMessage.GetDstSSA() != m_AddressLease->GetAddress())) {
-        // Not for this tool!
+        // Not for this gateway client!
         return false;
     } // if
     

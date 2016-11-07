@@ -30,12 +30,12 @@ class CommandResponseFrame0301: public CommandResponseFrame {
 public:
     CommandResponseFrame0301(): CommandResponseFrame(0x0301) {}
     const std::vector<unsigned char> Serialize() const {
-        std::vector<unsigned char> l_ToolFrameBuffer;
-        l_ToolFrameBuffer.emplace_back(0x03);
-        l_ToolFrameBuffer.emplace_back(0x01);
-        l_ToolFrameBuffer.emplace_back(0x00);
-        l_ToolFrameBuffer.emplace_back(0x00);
-        return l_ToolFrameBuffer;
+        std::vector<unsigned char> l_Buffer;
+        l_Buffer.emplace_back(0x03);
+        l_Buffer.emplace_back(0x01);
+        l_Buffer.emplace_back(0x00);
+        l_Buffer.emplace_back(0x00);
+        return l_Buffer;
     }
     
     const std::vector<unsigned char> GetPayload() const {

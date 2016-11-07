@@ -25,11 +25,11 @@
 #include "AddressPool.h"
 #include <assert.h>
 
-AddressLease::AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t a_ToolAddress): m_AddressPool(a_AddressPool), m_ToolAddress(a_ToolAddress) {
+AddressLease::AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t a_GatewayGlientAddress): m_AddressPool(a_AddressPool), m_GatewayGlientAddress(a_GatewayGlientAddress) {
     assert(m_AddressPool);
 }
 
 AddressLease::~AddressLease() {
     // On destruction, free the leased address
-    m_AddressPool->ReleaseAddressLease(m_ToolAddress);
+    m_AddressPool->ReleaseAddressLease(m_GatewayGlientAddress);
 }

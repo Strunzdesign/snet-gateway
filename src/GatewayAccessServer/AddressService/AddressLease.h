@@ -31,16 +31,16 @@ class AddressPool;
 class AddressLease {
 public:
     // CTOR and DTOR
-    AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t a_ToolAddress);
+    AddressLease(std::shared_ptr<AddressPool> a_AddressPool, uint16_t a_GatewayClientAddress);
     ~AddressLease();
     
     // Query
-    uint16_t GetAddress() const { return m_ToolAddress; }
+    uint16_t GetAddress() const { return m_GatewayGlientAddress; }
 
 private:
     // Members
     std::shared_ptr<AddressPool> m_AddressPool;
-    uint16_t m_ToolAddress;
+    uint16_t m_GatewayGlientAddress;
 };
 
 #endif // ADDRESS_LEASE_H
