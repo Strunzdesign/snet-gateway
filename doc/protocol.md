@@ -159,7 +159,8 @@ that already exist. However, there are some minor differences in terms of handli
   same SSA.
 - The source address of outgoing s-net packets is automatically changed to this unique SSA while passing the gateway (masquerading).
   This assures that response packets sent by sensor nodes will always be routed back to the originating gateway client even if the
-  gateway client chose to use a wrong source SSA.
+  gateway client chose to use a wrong source SSA. The only exception is `0xFFFE` (`WIRED_ADDR`) which will not be changed in order
+  to get a *direct response via the UART* from a node that does not have the *gateway flag* set.
 - Thus, a gateway client *may* use a "junk address" for the source SSA of outgoing packets without causing any trouble.
 - The only benefit of using the *address assignment service* is to query the SSA that was assigned to a gateway client.
   This step is optional.
@@ -214,7 +215,7 @@ T.b.d.: still just a bunch of text fragments and ideas!
 
 For all s-net packets that are sent by nodes of the sensor network that are not addressed to one of the unicast SSAs
 assigned to the gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
-`0xFFFF` (???), but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
+`0xFFFF` (`NON_WSN_ADDR`), but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
 to previous requests sent by one of the gateway clients. Instead, the nature of such packets is that they are sent
 without an external trigger to anybody who is interested. To avoid flooding such unsolicited packets to each of the
 gateway clients, the gateway relays them *only* to gateway clients that explicitely subscribed to them before.
