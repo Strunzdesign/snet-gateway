@@ -160,7 +160,7 @@ that already exist. However, there are some minor differences in terms of handli
 - The source address of outgoing s-net packets is automatically changed to this unique SSA while passing the gateway (masquerading).
   This assures that response packets sent by sensor nodes will always be routed back to the originating gateway client even if the
   gateway client chose to use a wrong source SSA. The only exception is `0xFFFE` (`WIRED_ADDR`) which will not be changed in order
-  to get a *direct response via the UART* from a node that does not have the *gateway flag* set.
+  to get a *direct response via the UART* from a node that does not has the *gateway flag* set.
 - Thus, a gateway client *may* use a "junk address" for the source SSA of outgoing packets without causing any trouble.
 - The only benefit of using the *address assignment service* is to query the SSA that was assigned to a gateway client.
   This step is optional.
