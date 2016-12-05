@@ -77,7 +77,7 @@ bool GatewayAccessProtocol::Send(const std::vector<unsigned char> &a_HigherLayer
     } else if (m_eFramingMode == FRAMING_MODE_LENGTH) {
         // Send the provided payload via a length-based frame
         if (m_FrameEndpoint) {
-            l_bRetVal = m_FrameEndpoint->SendFrame(GatewayAccessFrameEscaped::Create(a_HigherLayerPayload), a_OnSendDoneCallback);
+            l_bRetVal = m_FrameEndpoint->SendFrame(GatewayAccessFrameLength::Create(a_HigherLayerPayload), a_OnSendDoneCallback);
         } else {
             l_bRetVal = true;
             if (a_OnSendDoneCallback) {
