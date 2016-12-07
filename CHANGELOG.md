@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Nothing yet
+
+
+## [1.2] - 2016-12-07
 ## Fixed
-- Fixed length-based framing mode (bug [bug-1])
+- Fixed length-based framing mode (see ticket [bug-1])
 
 
 ## [1.1] - 2016-11-22
@@ -33,7 +37,8 @@ All notable changes to this project will be documented in this file.
 - Works well with s-net(r) BASE release 3.6
 - Works well with each version of the HDLC Daemon (HDLCd)
 
-[Unreleased]: https://github.com/Strunzdesign/snet-gateway/compare/v1.1...HEAD
+[Unreleased]: https://github.com/Strunzdesign/snet-gateway/compare/v1.2...HEAD
+[1.2]: https://github.com/Strunzdesign/snet-gateway/compare/v1.1...v1.2
 [1.1]: https://github.com/Strunzdesign/snet-gateway/compare/v1.0...v1.1
 
 [bug-1]: https://github.com/Strunzdesign/snet-gateway/issues/1
