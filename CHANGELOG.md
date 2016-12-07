@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 
 ## [1.2] - 2016-12-07
-## Fixed
+### Fixed
 - Fixed length-based framing mode (see ticket [bug-1])
 
 
