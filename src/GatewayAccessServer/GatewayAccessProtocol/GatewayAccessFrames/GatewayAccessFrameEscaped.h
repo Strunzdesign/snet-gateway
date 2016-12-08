@@ -123,6 +123,7 @@ private:
                 } else {
                     // Error: the payload exceeded the MTU!
                     m_eDeserialize = DESERIALIZE_ERROR;
+                    return false;
                 } // else
             } // else
             
@@ -139,11 +140,13 @@ private:
             } else {
                 // Invalid character
                 m_eDeserialize = DESERIALIZE_ERROR;
+                return false;
             } // else
             
             if (m_Buffer.size() >= 4096) {
                 // Error: the payload exceeded the MTU!
                 m_eDeserialize = DESERIALIZE_ERROR;
+                return false;
             } // else
 
             break;
