@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- Nothing yet
+### Added
+- Protocol specification of the publish/subscribe service
+
+### Changed
+- The mechanism for removing a service subscription involves a two-way handshake now
 
 
 ## [1.3] - 2016-12-08
