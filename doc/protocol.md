@@ -290,3 +290,11 @@ to the above-mentioned exemplary *service unsubscribe request* message is denote
     00 00 40 00 40 01 00 b0 b0 00 21 10 00 
 
 The destination service identifier (`0xB0`) is copied from the source service identifier field of the respective request message.
+
+## Caveats
+You might encounter problems on your first attempt to write your own gateway client. To avoid that, keep the following hints in mind:
+- The gateway will never deliver you any data on a freshly connected TCP socket. Before it starts with that, *your gateway client* **must**
+  select one of the two possible framing modes first (hint: choose the *length-based framing mode*!) and it **must** communicate this
+  choice to the gateway. Thus, it is absolutely **required** that you send at least one frame to the gateway to activate delivery.
+- If you have no idea what that first frame should look like, especially if you do not want to dig into the *address assignment service*
+  and the *publish-subscribe service*, consider sending an empty frame with a payload size of zero.
