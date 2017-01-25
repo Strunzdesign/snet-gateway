@@ -249,7 +249,7 @@ Besides some other fields specific to s-net the following parameters are relevan
   of the respective reply message.
 - The destination service identifier must be `0xB0`
 - The application-layer token must be set to `0x10` (`PS_TOKEN_SUBSCRIBE_REQUEST`)
-- The application-layer payload exists of exactly one byte containing one service identifier
+- The application-layer payload consists of exactly one byte containing one service identifier
 
 To subscribe to multiple services, a gateway client entity must issue multiple *service subscribe request* messages, one
 for each service identifer. To subscribe to all possible services at once, use the wildcard `0xFF` as the service identifier.
