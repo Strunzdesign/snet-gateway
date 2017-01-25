@@ -232,7 +232,7 @@ To remove subscriptions, a *service unsubscribe request* message is answered wit
 
 #### Anatomy of a service identifier
 The service identifier is communicated via one byte. The range of valid service numbers starts with `0x00` and ends with `0xFE`,
-resulting in a maximum of 254 possible services. `0xFF` is a reserved value that is used as as a wildcard to refer to *all services*.
+resulting in a maximum of 254 possible services. `0xFF` is a reserved value that is used as a wildcard to refer to *all services*.
 
 #### The Service Subscribe Request
 The *service subscribe request* message is sent by a gateway client entity to the gateway. An exemplary byte stream of such a message,
