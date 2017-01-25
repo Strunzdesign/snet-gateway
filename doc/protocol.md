@@ -211,27 +211,70 @@ keep in mind that a gateway client *MUST* use that address in order to be compat
 gateway software. Thus, it is a good advice to ***implement and follow this scheme***.
 
 ### The Publish-Subscribe Service
-T.b.d.: still just a bunch of text fragments and ideas!
+There are two message exchange schemes in s-net that have to be distinguished. At first, you can think of
+request/reply handshakes, where an initiator sends a request message to a peer node in order to receive one or multiple
+reply messages. In this case, that peer node is aware of the respective unicast return address, which it can copy from
+the source address field of the incoming request message. As each gateway client possesses a unique SSA, response messages
+are always routed back to the correct gateway client entity that issued the respective request.
 
-For all s-net packets that are sent by nodes of the sensor network that are not addressed to one of the unicast SSAs
-assigned to the gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
-`0xFFFF` (`NON_WSN_ADDR`), but there might be more. Messages with such a destination address are "spontaneous" messages that are not replies
-to previous requests sent by one of the gateway clients. Instead, the nature of such packets is that they are sent
+Furthermore, there are s-net packets that are sent by nodes of the sensor network that are not addressed to one of the
+unicast SSAs assigned to gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
+`0xFFFF` (`NON_WSN_ADDR`), but there might be more. Messages with such a destination address are "spontaneous" messages that
+are not replies to previous requests sent by one of the gateway clients. Instead, the nature of such packets is that they are sent
 without an external trigger to anybody who is interested. To avoid flooding such unsolicited packets to each of the
 gateway clients, the gateway relays them *only* to gateway clients that explicitely subscribed to them before.
 The purpose of the *publish-subscribe service* is to manage these subscriptions.
 
-    RECV: SrcSSA=0x4001, DstSSA=0x4000, ARQ=0, SrcSrv=0x00, DstSrv=0xb0, Token=0x10, with   1 bytes payload: ae
-    00 00 40 01 40 00 00 00 b0 00 10 ae 
-    SENT: SrcSSA=0x4000, DstSSA=0x4001, ARQ=0, SrcSrv=0xb0, DstSrv=0xb0, Token=0x11, with   2 bytes payload: ae 00
-    00 00 40 00 40 01 00 b0 b0 00 11 ae 00 
-    RECV: SrcSSA=0x4001, DstSSA=0x4000, ARQ=0, SrcSrv=0x00, DstSrv=0xb0, Token=0x10, with   1 bytes payload: 10
-    00 00 40 01 40 00 00 00 b0 00 10 10 
-    SENT: SrcSSA=0x4000, DstSSA=0x4001, ARQ=0, SrcSrv=0xb0, DstSrv=0xb0, Token=0x11, with   2 bytes payload: 10 00
-    00 00 40 00 40 01 00 b0 b0 00 11 10 00
+Accessing the publish-subscribe service involves a two-way handhake between a gateway client entity and the *publish-subscribe service*
+within the gateway. The handshake consists of a  *service subscribe request* message issued by a gateway client entity, which, in turn,
+is answered via a *service subscribe reply* message issued by the *address assignment service*.
 
-- 255 service IDs: `0x00` to `0xFE`. `0xFF` is a wildcard to subscribe to all services.
-- One subscription exchange per service ID, multiple subscriptions are possible.
-- To revoke a subscription subscribe to `0xFF`. After this, rebuild the database by sending the reduced set of
-  subscriptions again. If all subscriptions were already set, a subscription will trigger a reset of the database
-  before this new subscription is applied.
+#### Anatomy of a service identifier
+The service identifier (service ID) is communicated via one byte. The range of valid service numbers starts with `0x00` and ends
+with `0xFE`, resulting in 254 possible services. `0xFF` is a reserved value that is used as as a wildcard to refer to *all services*.
+
+#### The Service Subscribe Request
+The *service subscribe request* is sent by a gateway client to the gateway. An exemplary byte stream of such a message is shown in the
+following:
+
+    00 00 40 01 40 00 00 b0 b0 00 10 10 
+
+Besides some other fields specific to s-net the following parameters are relevant:
+- The source SSA *should* be set to the SSA assigned to the gateway client entity (here: `0x4001`). However, this is only relevant
+  to assure compatibility with the obsolete Java-based gateway. The gateway software at hand simply doesn't care... feel free to
+  use a junk address.
+- The destination address must be `0x4000` to address the gateway (`MULTICAST_GATEWAY`)
+- The source service identifier is ignored but should be set to `0xB0`
+- The destination service identifier must be `0xB0`
+- The application-layer token must be set to `0x10`
+- The application-layer payload exists of exactly one byte containing one service identifier
+
+To subscribe to multiple services, a gateway client must issue multiple *service subscribe request* messages, one for each
+service identifer. To subscribe to all possible services at once, use the wildcard `0xFF` as the service identifier.
+
+#### The Service Subscribe Reply
+The byte stream of a *service subscribe reply* may contain the following values:
+
+    00 00 40 00 40 01 00 b0 b0 00 11 10 00 
+
+These fields denote the following information:
+- The source address will always be (`MULTICAST_GATEWAY`)
+- The destination address will match the SSA assigned to the gateway client entity (here: `0x4001`)
+- Both the source and the destination service identifier will be set to `0xB0`
+- The application-layer token will be `0x11` (expect nothing else)
+- The application-layer payload consists of exactly two bytes:
+  - The service identifier copies that of the respective request (here: `0x10`)
+  - The status byte always indicates success (here: `0x00`, expect nothing else)
+
+For each valid *service subscribe request* a related *service subscribe reply* will be created and sent back.
+
+#### Revoking a set of Subscriptions
+Subscribing to a service identifier that a gateway client subscribed to before does not revoke that subscribtion.
+Thus, it is not possible to remove a single service identifier from the set of subscribed services. Instead, a gateway
+client entity has the possibility to request dropping the complete set of subscriptions first and to add a reduced set of
+subscriptions afterwards.
+
+To remove subscriptions a gateway client has to perform a two-step approach. At first, it must subscribe to the wildcard
+service identifier `0xFF`. Then, it has to send the reduced set of subscriptions again in order to rebuild the
+subscription database with a reduced set of subscriptions. If all subscriptions were already set, any subsequent
+subscription will trigger a reset of the database before this new subscription is applied.
