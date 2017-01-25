@@ -218,12 +218,12 @@ the source SSA field of the incoming request message. As each gateway client pos
 are always routed back to the correct gateway client entity that issued the respective request.
 
 Furthermore, there are s-net packets that are sent by nodes of the sensor network that are not addressed to one of the
-unicast SSAs assigned to gateway clients. Messages with such a destination address are "spontaneous" messages that
-are not replies to previous request messages. Instead, the nature of such packets is that they are sent without an external
-trigger to anybody who is interested. Relevant destination SSAs are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
-`0xFFFF` (`NON_WSN_ADDR`), but there might be more. To avoid flooding such unsolicited packets to each of the
-gateway client entities, the gateway relays them *only* to gateway client entities that explicitely subscribed to them before.
-The purpose of the *publish-subscribe service* is to manage these subscriptions.
+unicast SSAs assigned to gateway clients. Such messages are "spontaneous" messages that are not replies to previous request
+messages. Instead, the nature of such s-net packets is that they are sent without an external trigger to anybody who is interested.
+Relevant destination SSAs are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and `0xFFFF` (`NON_WSN_ADDR`), but there
+might be more. To avoid flooding such unsolicited packets to each of the gateway client entities, the gateway relays them *only*
+to gateway client entities that explicitely subscribed to them before. The purpose of the *publish-subscribe service* is to
+manage these subscriptions.
 
 Accessing the publish-subscribe service involves two-way handhakes between a gateway client entity and the *publish-subscribe service*
 entity within the gateway. To add subscriptions, the handshake consists of a *service subscribe request* message issued by a
