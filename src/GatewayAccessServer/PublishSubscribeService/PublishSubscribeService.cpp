@@ -24,38 +24,60 @@
 #include "PublishSubscribeService.h"
 #include "AddressLease.h"
 
-SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease) {
-    if ((a_ServiceMessage.GetSrcSSA() == a_AddressLease->GetAddress()) &&
-        (a_ServiceMessage.GetDstSSA() == 0x4000) &&
-        (a_ServiceMessage.GetSrcServiceId() == 0x00)   &&
-        (a_ServiceMessage.GetDstServiceId() == 0xB0)   &&
-        (a_ServiceMessage.GetToken() == 0x10)) {
-        // Subscribe request
-        uint8_t l_SubscribedServiceId = a_ServiceMessage.GetPayload()[0];
-        SnetServiceMessage l_PublishSubscribeConfirmation(0xB0, 0xB0, 0x11, 0x4000, a_AddressLease->GetAddress(), false);
-        std::vector<unsigned char> l_Payload;
-        l_Payload.emplace_back(l_SubscribedServiceId);
-        l_Payload.emplace_back(00);
-        l_PublishSubscribeConfirmation.SetPayload(l_Payload);
-        
-        if (m_SubscribedServiceIds.all()) {
-            // If all bits were set before, i.e., all services were subscribed, all subscriptions are released now.
-            // This is the method to revoke subscriptions: subscribe to all via the wildcard 0xFF first, then re-add
-            // your desired set of subscriptions.
-            m_SubscribedServiceIds.reset();
-        } // if
-        
-        if (l_SubscribedServiceId == 0xFF) {
-            // Wildcard: all service IDs are demanded for
-            m_SubscribedServiceIds.set();
-        } else {
-            // A specific service ID was demanded for, add it to the bitset
-            m_SubscribedServiceIds.set(l_SubscribedServiceId);
-        } // else
+// Application-layer tokens
+typedef enum {
+    PS_TOKEN_SUBSCRIBE_REQUEST    = 0x10,
+    PS_TOKEN_SUBSCRIBE_REPLY      = 0x11,
+    PS_TOKEN_UNSUBSCRIBE_REQUEST  = 0x20,
+    PS_TOKEN_UNSUBSCRIBE_REPLY    = 0x21
+} E_PS_TOKEN;
 
-        return l_PublishSubscribeConfirmation;
-    } // if
+SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMessage& a_ServiceMessage, std::shared_ptr<AddressLease> a_AddressLease) {
+    if ((a_ServiceMessage.GetDstSSA() == 0x4000)     &&
+        (a_ServiceMessage.GetDstServiceId() == 0xB0) &&
+        (a_ServiceMessage.GetPayload().size() == 1)) {
+        // What kind of a request message is that?
+        uint8_t l_ServiceIdentifier = a_ServiceMessage.GetPayload()[0];
+        if (a_ServiceMessage.GetToken() == PS_TOKEN_SUBSCRIBE_REQUEST) {
+            // A subscribe service request message
+            SnetServiceMessage l_PublishSubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_SUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
+            std::vector<unsigned char> l_Payload;
+            l_Payload.emplace_back(l_ServiceIdentifier);
+            l_Payload.emplace_back(00); // status byte
+            l_PublishSubscribeReply.SetPayload(l_Payload);
+            
+            // Add a subscription
+            if (l_ServiceIdentifier == 0xFF) {
+                // Wildcard: all service IDs are demanded for subscription
+                m_SubscribedServiceIds.set();
+            } else {
+                // A specific service ID was demanded for, add it to the bitset
+                m_SubscribedServiceIds.set(l_ServiceIdentifier);
+            } // else
+
+            return l_PublishSubscribeReply;
+        } else if (a_ServiceMessage.GetToken() == PS_TOKEN_UNSUBSCRIBE_REQUEST) {
+            // A subscribe service request message
+            SnetServiceMessage l_PublishSubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_UNSUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
+            std::vector<unsigned char> l_Payload;
+            l_Payload.emplace_back(l_ServiceIdentifier);
+            l_Payload.emplace_back(00); // status byte
+            l_PublishSubscribeReply.SetPayload(l_Payload);
+
+            // Remove a subscription
+            if (l_ServiceIdentifier == 0xFF) {
+                // Wildcard: all service IDs are demanded for removal
+                m_SubscribedServiceIds.reset();
+            } else {
+                // A specific service ID was demanded for removal, remove it from the bitset
+                m_SubscribedServiceIds.reset(l_ServiceIdentifier);
+            } // else
+
+            return l_PublishSubscribeReply;
+        } // else if
+    } // if            
     
+    // Not interpreted... return an empty reply message
     return SnetServiceMessage();
 }
 

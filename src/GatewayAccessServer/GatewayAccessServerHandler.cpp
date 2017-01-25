@@ -99,7 +99,8 @@ void GatewayAccessServerHandler::OnPayload(const std::vector<unsigned char> &a_H
         // Check if it is directed to the publish / subscribe service
         if (l_ServiceMessage.GetDstSSA() == 0x4000) {
             auto l_PublishSubscribeConfirmation = m_PublishSubscribeService.ProcessRequest(l_ServiceMessage, m_AddressLease);
-            if (l_PublishSubscribeConfirmation.GetDstServiceId() == 0xB0) {
+            if (l_PublishSubscribeConfirmation.GetSrcServiceId() == 0xB0) {
+                // A valid response message was created
                 m_GatewayAccessProtocol.Send(l_PublishSubscribeConfirmation.Serialize());
             } // if
 
