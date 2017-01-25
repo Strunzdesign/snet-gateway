@@ -20,7 +20,7 @@ and Microsoft Windows (nuwen MinGW).
 
 ## Documentation
 - See *online doxygen documentation* at http://strunzdesign.github.io/snet-gateway/
-- Read the specification of the *gateway client protocol* at https://github.com/Strunzdesign/snet-gateway/blob/master/doc/protocol.md
+- Read the specification of the *gateway access protocol* at https://github.com/Strunzdesign/snet-gateway/blob/master/doc/protocol.md
 - Check the *change log* at https://github.com/Strunzdesign/snet-gateway/blob/master/CHANGELOG.md
 - View the *install instructions* at https://github.com/Strunzdesign/snet-gateway/blob/master/INSTALL
 - Read the *HOWTO* at https://github.com/Strunzdesign/snet-gateway/blob/master/doc/HOWTO.txt
