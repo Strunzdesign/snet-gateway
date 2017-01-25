@@ -40,11 +40,11 @@ SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMess
         uint8_t l_ServiceIdentifier = a_ServiceMessage.GetPayload()[0];
         if (a_ServiceMessage.GetToken() == PS_TOKEN_SUBSCRIBE_REQUEST) {
             // A subscribe service request message
-            SnetServiceMessage l_PublishSubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_SUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
+            SnetServiceMessage l_ServiceSubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_SUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
             std::vector<unsigned char> l_Payload;
             l_Payload.emplace_back(l_ServiceIdentifier);
             l_Payload.emplace_back(00); // status byte
-            l_PublishSubscribeReply.SetPayload(l_Payload);
+            l_ServiceSubscribeReply.SetPayload(l_Payload);
             
             // Add a subscription
             if (l_ServiceIdentifier == 0xFF) {
@@ -55,14 +55,14 @@ SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMess
                 m_SubscribedServiceIds.set(l_ServiceIdentifier);
             } // else
 
-            return l_PublishSubscribeReply;
+            return l_ServiceSubscribeReply;
         } else if (a_ServiceMessage.GetToken() == PS_TOKEN_UNSUBSCRIBE_REQUEST) {
             // A subscribe service request message
-            SnetServiceMessage l_PublishSubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_UNSUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
+            SnetServiceMessage l_ServiceUnsubscribeReply(0xB0, a_ServiceMessage.GetSrcServiceId(), PS_TOKEN_UNSUBSCRIBE_REPLY, 0x4000, a_AddressLease->GetAddress(), false);
             std::vector<unsigned char> l_Payload;
             l_Payload.emplace_back(l_ServiceIdentifier);
             l_Payload.emplace_back(00); // status byte
-            l_PublishSubscribeReply.SetPayload(l_Payload);
+            l_ServiceUnsubscribeReply.SetPayload(l_Payload);
 
             // Remove a subscription
             if (l_ServiceIdentifier == 0xFF) {
@@ -73,7 +73,7 @@ SnetServiceMessage PublishSubscribeService::ProcessRequest(const SnetServiceMess
                 m_SubscribedServiceIds.reset(l_ServiceIdentifier);
             } // else
 
-            return l_PublishSubscribeReply;
+            return l_ServiceUnsubscribeReply;
         } // else if
     } // if            
     
