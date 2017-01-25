@@ -214,14 +214,14 @@ gateway software. Thus, it is a good advice to ***implement and follow this sche
 There are two message exchange schemes in s-net that have to be distinguished. At first, you can think of
 request/reply handshakes, where an initiator sends a request message to a peer node in order to receive one or multiple
 reply messages. In this case, that peer node is aware of the unicast return address of the initiator, which it obtains from
-the source SSA field of the incoming request message. As each gateway client possesses a unique unicast SSA, response messages
+the source SSA field of the incoming request message. As each gateway client possesses a unique unicast SSA, reply messages
 are always routed back to the correct gateway client entity that issued the respective request.
 
 Furthermore, there are s-net packets that are sent by nodes of the sensor network that are not addressed to one of the
-unicast SSAs assigned to gateway clients. Relevant addresses are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
-`0xFFFF` (`NON_WSN_ADDR`), but there might be more. Messages with such a destination address are "spontaneous" messages that
-are not replies to previous request messages. Instead, the nature of such packets is that they are sent
-without an external trigger to anybody who is interested. To avoid flooding such unsolicited packets to each of the
+unicast SSAs assigned to gateway clients. Messages with such a destination address are "spontaneous" messages that
+are not replies to previous request messages. Instead, the nature of such packets is that they are sent without an external
+trigger to anybody who is interested. Relevant destination SSAs are `0x4000` (`MULTICAST_GATEWAY`), `0xFFFE` (`WIRED_ADDR`), and
+`0xFFFF` (`NON_WSN_ADDR`), but there might be more. To avoid flooding such unsolicited packets to each of the
 gateway client entities, the gateway relays them *only* to gateway client entities that explicitely subscribed to them before.
 The purpose of the *publish-subscribe service* is to manage these subscriptions.
 
@@ -248,7 +248,7 @@ Besides some other fields specific to s-net the following parameters are relevan
 - The source service identifier *should* be set to `0xB0`. This value will be used for the destination service identifier field
   of the respective reply message.
 - The destination service identifier must be `0xB0`
-- The application-layer token must be set to `0x10` (`PS_SUBSCRIBE_REQUEST`)
+- The application-layer token must be set to `0x10` (`PS_TOKEN_SUBSCRIBE_REQUEST`)
 - The application-layer payload exists of exactly one byte containing one service identifier
 
 To subscribe to multiple services, a gateway client entity must issue multiple *service subscribe request* messages, one
@@ -264,7 +264,7 @@ These fields denote the following information:
 - The destination address will always match the SSA assigned to the gateway client entity (here: `0x4001`)
 - The source service identifier will be set to `0xB0` (expect nothing else)
 - The destination service identifier is copied from the request message (here: `0xB0`, back to originator)
-- The application-layer token will always be `0x11` (`PS_SUBSCRIBE_REPLY`, expect nothing else)
+- The application-layer token will always be `0x11` (`PS_TOKEN_SUBSCRIBE_REPLY`, expect nothing else)
 - The application-layer payload consists of exactly two bytes:
   - The service identifier is copied from the respective request (here: `0x10`)
   - The status byte always indicates success (here: `0x00`, expect nothing else)
@@ -275,7 +275,7 @@ Subscribing to an already subscribed service identifier is allowed but does not 
 #### The Service Unsubscribe Request
 The *service unsubscribe request* message is sent by a gateway client entity to the gateway. It matches the syntax and semantics
 of that of *service subscribe request* messages but differs in the value of the application-layer token, that is `0x20`
-(`PS_UNSUBSCRIBE_REQUEST`). The following message demands for removal of a subscription regarding service identifier `0x10`:
+(`PS_TOKEN_UNSUBSCRIBE_REQUEST`). The following message demands for removal of a subscription regarding service identifier `0x10`:
 
     00 00 40 01 40 00 00 b0 b0 00 20 10
     
@@ -284,7 +284,7 @@ service identifer. To unsubscribe from all possible services at once, use the wi
 
 #### The Service Unsubscribe Reply
 Again, the *service unsubscribe reply* message is similar to the *service subscribe reply* message. It differs only in terms
-of the application-layer token, which has a value of `0x21` (`PS_UNSUBSCRIBE_REPLY`). A reply message that corresponds
+of the application-layer token, which has a value of `0x21` (`PS_TOKEN_UNSUBSCRIBE_REPLY`). A reply message that corresponds
 to the above-mentioned exemplary *service unsubscribe request* message is denoted in the following:
 
     00 00 40 00 40 01 00 b0 b0 00 21 10 00 
