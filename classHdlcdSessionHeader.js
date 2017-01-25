@@ -1,5 +1,5 @@
 var classHdlcdSessionHeader =
 [
-    [ "GetSerialPortName", "classHdlcdSessionHeader.html#abe05e7c0fb98a83549d0210de5186bff", null ],
-    [ "GetServiceAccessPointSpecifier", "classHdlcdSessionHeader.html#a9d3e518746201d5fd66b2e3b2e7b0f27", null ]
+    [ "GetSerialPortName", "classHdlcdSessionHeader.html#ab73eab1ae951bd73d0cb07fcec0afc5c", null ],
+    [ "GetServiceAccessPointSpecifier", "classHdlcdSessionHeader.html#af4e69baeb9caaee0b834179743195a5b", null ]
 ];

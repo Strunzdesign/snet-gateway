@@ -1,10 +1,6 @@
 var searchData=
 [
   ['close',['Close',['../classGatewayAccessProtocol.html#a21ab766925b4b9a4fd491bfb361313af',1,'GatewayAccessProtocol::Close()'],['../classGatewayAccessServerHandler.html#a7ddf84942b4196fdd86abe1467fb7e43',1,'GatewayAccessServerHandler::Close()'],['../classHdlcdClientHandler.html#a734b8282d4d622f5199197afbc41a826',1,'HdlcdClientHandler::Close()'],['../classFrameEndpoint.html#ad7eea9fd66860006653b3173c06eab23',1,'FrameEndpoint::Close()'],['../classHdlcdClient.html#a6432392d6eeb5321cb2d13e24e09f52d',1,'HdlcdClient::Close()'],['../classHdlcdPacketEndpoint.html#a60e33a54cbd58a29fb22240688b91202',1,'HdlcdPacketEndpoint::Close()']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2framing_2src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2hdlcd-devel_2src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2snet-devel_2src_2CMakeLists_8txt.html',1,'']]],
   ['commandresponseframe',['CommandResponseFrame',['../classCommandResponseFrame.html',1,'CommandResponseFrame'],['../classCommandResponseFrame.html#a650f6c66cae8dcf4934647cfa3b3b546',1,'CommandResponseFrame::CommandResponseFrame()']]],
   ['commandresponseframe_2eh',['CommandResponseFrame.h',['../CommandResponseFrame_8h.html',1,'']]],
   ['commandresponseframe0100',['CommandResponseFrame0100',['../classCommandResponseFrame0100.html',1,'CommandResponseFrame0100'],['../classCommandResponseFrame0100.html#a5aef75c98241f44a47bf6027a2115f9b',1,'CommandResponseFrame0100::CommandResponseFrame0100()']]],

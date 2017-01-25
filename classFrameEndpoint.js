@@ -3,7 +3,7 @@ var classFrameEndpoint =
     [ "FrameEndpoint", "classFrameEndpoint.html#a178e55ba831e53fb8eb7d8fcb816e53e", null ],
     [ "~FrameEndpoint", "classFrameEndpoint.html#ab53760ef897d37e1e6aeade53b1c9766", null ],
     [ "Close", "classFrameEndpoint.html#ad7eea9fd66860006653b3173c06eab23", null ],
-    [ "GetWasStarted", "classFrameEndpoint.html#a9e2f8f8f92f8f2dd56b43788ff32326b", null ],
+    [ "GetWasStarted", "classFrameEndpoint.html#ad0688a7a417d97b95919f7fa5492a80f", null ],
     [ "RegisterFrameFactory", "classFrameEndpoint.html#a1ea55d7b0c6f7236c27022992f205aeb", null ],
     [ "ResetFrameFactories", "classFrameEndpoint.html#a0cf33b5f5e61e19196c320ceadf7ecdd", null ],
     [ "SendFrame", "classFrameEndpoint.html#aa672b6a8a3444735ee233f9dc7c55d41", null ],

@@ -1,0 +1,4 @@
+<map id="SnetPacket::GetSize" name="SnetPacket::GetSize">
+<area shape="rect" id="node2" href="$classSnetAppMessage.html#a7ec0f555fbaba1e24ade4f3d2a265b7c" title="SnetAppMessage::GetSize" alt="" coords="204,13,395,39"/>
+<area shape="rect" id="node3" href="$classSnetServiceMessage.html#a100aaa1fb6020a829e4a5ccbe2d1216f" title="SnetServiceMessage\l::GetSize" alt="" coords="443,5,599,47"/>
+</map>

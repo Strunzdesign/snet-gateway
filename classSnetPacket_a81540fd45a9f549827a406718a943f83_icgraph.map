@@ -1,5 +1,0 @@
-<map id="SnetPacket::Dissect" name="SnetPacket::Dissect">
-<area shape="rect" id="node2" href="$classSnetAppMessage.html#ae2010d110cfa9fa358853d830bf869d1" title="SnetAppMessage::Dissect" alt="" coords="200,13,387,39"/>
-<area shape="rect" id="node3" href="$classSnetServiceMessage.html#ab75610cca1ca1767c0675412503db8e8" title="SnetServiceMessage\l::Dissect" alt="" coords="435,5,591,47"/>
-<area shape="rect" id="node4" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="639,13,824,39"/>
-</map>

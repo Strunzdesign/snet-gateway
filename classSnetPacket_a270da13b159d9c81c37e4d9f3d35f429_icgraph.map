@@ -1,7 +1,0 @@
-<map id="SnetPacket::GetSrcSSA" name="SnetPacket::GetSrcSSA">
-<area shape="rect" id="node2" href="$classAddressService.html#ac47ff05bc56bbe092e0ff280a084bf93" title="AddressService::ProcessRequest" alt="" coords="224,5,455,32"/>
-<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#ac413f18a5dfbd46a7977190ae2b38d2b" title="GatewayAccessServerHandler\l::OnPayload" alt="" coords="503,49,717,90"/>
-<area shape="rect" id="node5" href="$classPublishSubscribeService.html#a3d3d202cf4648e00298c4b37f24da482" title="PublishSubscribeService\l::ProcessRequest" alt="" coords="253,107,426,149"/>
-<area shape="rect" id="node6" href="$classRouting.html#ac23dcf95216e1cbd22e2471df8888e5e" title="Routing::RouteSnetPacket" alt="" coords="247,173,432,200"/>
-<area shape="rect" id="node4" href="$classGatewayAccessServerHandler.html#ac3d9b1511c0d495ab0bb8c9fb24dc569" title="GatewayAccessServerHandler\l::GatewayAccessServerHandler" alt="" coords="765,49,987,90"/>
-</map>

@@ -1,4 +1,4 @@
 var classHdlcdPacket =
 [
-    [ "GetHdlcdPacketType", "classHdlcdPacket.html#add280d6f20d1ba0b204eb9fc04280c44", null ]
+    [ "GetHdlcdPacketType", "classHdlcdPacket.html#a29264d2e30961861187f371ab256fb19", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bytesneeded',['BytesNeeded',['../classFrame.html#ae5d4b218c9e23d41b48a688bdf4c63e8',1,'Frame']]]
+  ['bytesneeded',['BytesNeeded',['../classFrame.html#a334bcc990b8b2706e50f695a3dce626d',1,'Frame']]]
 ];

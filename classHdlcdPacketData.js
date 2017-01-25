@@ -1,7 +1,7 @@
 var classHdlcdPacketData =
 [
-    [ "GetData", "classHdlcdPacketData.html#abc690e2d3d84998df23221f10f893f81", null ],
-    [ "GetInvalid", "classHdlcdPacketData.html#a8797aee7e556ae194f9a3a12e1900895", null ],
-    [ "GetReliable", "classHdlcdPacketData.html#a8507220f68c484c80527e708a85d0034", null ],
-    [ "GetWasSent", "classHdlcdPacketData.html#a3e3ed17e50f5689f9f044c62582f3194", null ]
+    [ "GetData", "classHdlcdPacketData.html#a3e6e194940cabd88ffa0488dbcdf841d", null ],
+    [ "GetInvalid", "classHdlcdPacketData.html#a8c9b37dc2d7c3753945b899d287cf7fd", null ],
+    [ "GetReliable", "classHdlcdPacketData.html#ac58bc6977e63e50f25dc0e106d9d1531", null ],
+    [ "GetWasSent", "classHdlcdPacketData.html#a4c5a5536feee2a0917a4857963af5b62", null ]
 ];

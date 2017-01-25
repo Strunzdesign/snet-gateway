@@ -1,0 +1,5 @@
+<map id="SnetAppMessage::Serialize" name="SnetAppMessage::Serialize">
+<area shape="rect" id="node2" href="$classSnetServiceMessage.html#a885621223ad7ebd271d77262e9b0f12c" title="SnetServiceMessage\l::Serialize" alt="" coords="248,35,404,76"/>
+<area shape="rect" id="node3" href="$classGatewayAccessServerHandler.html#a9529e2888edbc1307a8bed3880ffded7" title="GatewayAccessServerHandler\l::Send" alt="" coords="452,5,667,47"/>
+<area shape="rect" id="node4" href="$classRouting.html#af3f4c8ca7e9e0b58d3e68d7ccc34d7ee" title="Routing::RouteSnetPacket" alt="" coords="467,71,652,98"/>
+</map>

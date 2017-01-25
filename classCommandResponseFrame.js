@@ -1,7 +1,7 @@
 var classCommandResponseFrame =
 [
     [ "CommandResponseFrame", "classCommandResponseFrame.html#a650f6c66cae8dcf4934647cfa3b3b546", null ],
-    [ "GetPayload", "classCommandResponseFrame.html#a09b1f2fa31e566a41e9d4af2c78611bf", null ],
-    [ "GetRequestId", "classCommandResponseFrame.html#a3634d0fe78db97b54c427f6eecbb76a3", null ],
-    [ "Serialize", "classCommandResponseFrame.html#ac032c138d8b38d1e384c04fd57bb308e", null ]
+    [ "GetPayload", "classCommandResponseFrame.html#a2d5fa1ed6d2d68c6df47c2c194a35605", null ],
+    [ "GetRequestId", "classCommandResponseFrame.html#a37166f8a3191635705de2aa9cdb45124", null ],
+    [ "Serialize", "classCommandResponseFrame.html#ab9018b091aadbd34eb6ca2070845ee59", null ]
 ];

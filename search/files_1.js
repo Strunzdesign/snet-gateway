@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['cmakelists_2etxt',['CMakeLists.txt',['../src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2framing_2src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2snet-devel_2src_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../libs_2hdlcd-devel_2src_2CMakeLists_8txt.html',1,'']]],
   ['commandresponseframe_2eh',['CommandResponseFrame.h',['../CommandResponseFrame_8h.html',1,'']]],
   ['commandresponseframe0100_2eh',['CommandResponseFrame0100.h',['../CommandResponseFrame0100_8h.html',1,'']]],
   ['commandresponseframe0101_2eh',['CommandResponseFrame0101.h',['../CommandResponseFrame0101_8h.html',1,'']]],
