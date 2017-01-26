@@ -9,7 +9,7 @@ This software is intended to be portable and makes use of the boost libraries. I
 and Microsoft Windows (nuwen MinGW).
 
 ## Latest stable release of the s-net(r) gateway software:
-- v1.3 from 08.12.2016 
+- v1.4 from 26.01.2017
 
 ## Required libraries and tools:
 - GCC, the only tested compiler collection thus far (tested: GCC 4.9.3, GCC 6.1)
