@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classHdlcdClientHandlerCollection.html#a7e58bd05d855ef80ee39fc71b725cc1e":[0,0,21,4],
+"classHdlcdClientHandlerCollection.html#adbcc58b7c5cd5f891aac23e4ab9f3b78":[0,0,21,3],
+"classHdlcdClientHandlerCollection.html#af5d156682ab7eef53878134e3eaa1df4":[0,0,21,2],
+"classHdlcdPacket.html":[0,0,22],
 "classHdlcdPacket.html#a29264d2e30961861187f371ab256fb19":[0,0,22,0],
 "classHdlcdPacketCtrl.html":[0,0,23],
 "classHdlcdPacketCtrl.html#a4f44f527ab1b984fc441f5b42f6aff95":[0,0,23,3],
@@ -110,8 +114,8 @@ var NAVTREEINDEX1 =
 "globals_func.html":[1,1,1],
 "hierarchy.html":[0,2],
 "index.html":[],
-"main-snet-gateway_8cpp.html":[1,0,1,3],
-"main-snet-gateway_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[1,0,1,3,0],
-"main-snet-gateway_8cpp_source.html":[1,0,1,3],
+"main-snet-gateway_8cpp.html":[1,0,1,4],
+"main-snet-gateway_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[1,0,1,4,0],
+"main-snet-gateway_8cpp_source.html":[1,0,1,4],
 "pages.html":[]
 };

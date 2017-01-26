@@ -3,6 +3,5 @@
 <area shape="rect" id="node3" href="$classSnetAppMessage.html#ad5edd46a0959772db5aecff7d519ab38" title="SnetAppMessage::GetDstServiceId" alt="" coords="227,56,469,83"/>
 <area shape="rect" id="node4" href="$classSnetServiceMessage.html#a980ef98869ffdf7e605742a7b06795ce" title="SnetServiceMessage\l::GetPayload" alt="" coords="270,107,426,149"/>
 <area shape="rect" id="node5" href="$classSnetAppMessage.html#afaa400f5e073fac158b151ff97d1821f" title="SnetAppMessage::GetToken" alt="" coords="247,173,449,200"/>
-<area shape="rect" id="node6" href="$classSnetAppMessage.html#af821d17870f484e0e8739f4b567649d7" title="SnetAppMessage::GetSrcServiceId" alt="" coords="227,224,469,251"/>
-<area shape="rect" id="node7" href="$classSnetServiceMessage.html#af6105527d3c7724cb57b551367a19aef" title="SnetServiceMessage\l::SetPayload" alt="" coords="270,275,426,317"/>
+<area shape="rect" id="node6" href="$classSnetServiceMessage.html#af6105527d3c7724cb57b551367a19aef" title="SnetServiceMessage\l::SetPayload" alt="" coords="270,225,426,266"/>
 </map>

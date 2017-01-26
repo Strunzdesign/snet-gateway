@@ -31,6 +31,8 @@ var searchData=
   ['shutdown',['Shutdown',['../classFrameEndpoint.html#a0452cb8274bed71dccd4c1b3a66ed619',1,'FrameEndpoint::Shutdown()'],['../classHdlcdClient.html#aa99303f6eee0726654e8cd7b4a2aba2d',1,'HdlcdClient::Shutdown()'],['../classHdlcdPacketEndpoint.html#a2716d1eca247b778d34351313a27f4d9',1,'HdlcdPacketEndpoint::Shutdown()']]],
   ['snet_5fdevel_5fversion_5fmajor',['SNET_DEVEL_VERSION_MAJOR',['../SnetConfig_8h.html#a68c0fd3ad4944f57ba19d43ab54d4266',1,'SnetConfig.h']]],
   ['snet_5fdevel_5fversion_5fminor',['SNET_DEVEL_VERSION_MINOR',['../SnetConfig_8h.html#a692c0230d26d538a58e0d6848ea98a12',1,'SnetConfig.h']]],
+  ['snet_5fgateway_5fversion_5fmajor',['SNET_GATEWAY_VERSION_MAJOR',['../Config_8h.html#aaf64333e652da207dc382ad179baeb92',1,'Config.h']]],
+  ['snet_5fgateway_5fversion_5fminor',['SNET_GATEWAY_VERSION_MINOR',['../Config_8h.html#aab2207e0834bbdfc9c64ea5e0d2161e5',1,'Config.h']]],
   ['snetappmessage',['SnetAppMessage',['../classSnetAppMessage.html',1,'SnetAppMessage'],['../classSnetAppMessage.html#af9f49c4f8edc88935dec6bedca8749b0',1,'SnetAppMessage::SnetAppMessage()']]],
   ['snetappmessage_2eh',['SnetAppMessage.h',['../SnetAppMessage_8h.html',1,'']]],
   ['snetconfig_2eh',['SnetConfig.h',['../SnetConfig_8h.html',1,'']]],
