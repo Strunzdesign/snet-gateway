@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Nothing yet
+
 
 ## [1.4] - 2017-01-26
 ### Added
