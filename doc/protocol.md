@@ -245,8 +245,7 @@ Besides some other fields specific to s-net the following parameters are relevan
   if compatibility with the obsolete Java-based gateway is a goal. The gateway software at hand simply doesn't care... feel free to
   use a junk address such as `0x0000`.
 - The destination address must be `0x4000` to address the gateway (`MULTICAST_GATEWAY`)
-- The source service identifier *should* be set to `0xB0`. This value will be used for the destination service identifier field
-  of the respective reply message.
+- The source service identifier *should* be set to `0xB0`, but in fact, its value is intentionally ignored.
 - The destination service identifier must be `0xB0`
 - The application-layer token must be set to `0x10` (`PS_TOKEN_SUBSCRIBE_REQUEST`)
 - The application-layer payload consists of exactly one byte containing one service identifier
@@ -263,7 +262,7 @@ These fields denote the following information:
 - The source address will always be `0x4000` (`MULTICAST_GATEWAY`)
 - The destination address will always match the SSA assigned to the gateway client entity (here: `0x4001`)
 - The source service identifier will be set to `0xB0` (expect nothing else)
-- The destination service identifier is copied from the request message (here: `0xB0`, back to originator)
+- The destination service identifier will be set to `0xB0` (expect nothing else)
 - The application-layer token will always be `0x11` (`PS_TOKEN_SUBSCRIBE_REPLY`, expect nothing else)
 - The application-layer payload consists of exactly two bytes:
   - The service identifier is copied from the respective request (here: `0x10`)
@@ -288,8 +287,6 @@ of the application-layer token, which has a value of `0x21` (`PS_TOKEN_UNSUBSCRI
 to the above-mentioned exemplary *service unsubscribe request* message is denoted in the following:
 
     00 00 40 00 40 01 00 b0 b0 00 21 10 00 
-
-The destination service identifier (`0xB0`) is copied from the source service identifier field of the respective request message.
 
 ## Caveats
 You might encounter problems on your first attempt to write your own gateway client. To avoid that, keep the following hints in mind:
