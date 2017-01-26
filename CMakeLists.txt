@@ -28,7 +28,7 @@ include_directories(
 )
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/Config.h.in"
-    "${PROJECT_BINARY_DIR}/src/Config.h"
+    "${PROJECT_SOURCE_DIR}/src/Config.h"
 )
 
 add_subdirectory(src)
