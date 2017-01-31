@@ -149,6 +149,8 @@ private:
                 return false;
             } // else
 
+            // The next byte will be an unescaped character again
+            m_eDeserialize = DESERIALIZE_UNESCAPED;
             break;
         }
         case DESERIALIZE_ERROR:
